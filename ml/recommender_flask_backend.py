@@ -5,7 +5,7 @@ from owner_recom_model import generate_recommendations as getOwnerRecs
 
 app = Flask(__name__)
 
-@app.route("/recommend", methods=["POST"])
+@app.route("/recommend/seeker", methods=["POST"])
 def recommend():
     data = request.json
     seeker_id = data["seeker_id"]

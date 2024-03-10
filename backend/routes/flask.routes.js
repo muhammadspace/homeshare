@@ -2,11 +2,11 @@ const express = require("express")
 const router = express.Router()
 const axios = require("axios")
 
-router.post("/recommend", async (req, res, next) => {
+router.post("/recommend/seeker", async (req, res, next) => {
     try
     {
         const { seeker_id } = req.body
-        const recs_response = await axios.post("http://localhost:5000/recommend", { seeker_id })
+        const recs_response = await axios.post("http://localhost:5000/recommend/seeker", { seeker_id })
         const recs = recs_response.data
         console.log("sent to Flask")
         console.log(recs)
