@@ -4,3 +4,6 @@ frontend/untitled/build
 
 #backend
 backend/node_modules
+
+#ml
+ml/__pycache__

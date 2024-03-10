@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import json
-from seeker import recommend_owners_and_apartments as getRecs
-from owenr import generate_recommendations as getOwnerRecs
+from seeker_recom_model import recommend_owners_and_apartments as getRecs
+from owner_recom_model import generate_recommendations as getOwnerRecs
 
 app = Flask(__name__)
 

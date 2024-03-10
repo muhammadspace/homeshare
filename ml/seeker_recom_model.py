@@ -4,11 +4,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 
 # Load seeker and owner datasets separately
-seekers_df = pd.read_csv('seekers.csv')  # Assuming you have a CSV file containing seeker data
-owners_df = pd.read_csv('owners.csv')    # Assuming you have a CSV file containing owner data
+seekers_df = pd.read_csv('datasets/seekers.csv')  # Assuming you have a CSV file containing seeker data
+owners_df = pd.read_csv('datasets/owners.csv')    # Assuming you have a CSV file containing owner data
 
 # Load the apartments dataset
-apartments_df = pd.read_csv('apartments.csv')  # Assuming you have a CSV file containing apartment data
+apartments_df = pd.read_csv('datasets/apartments.csv')  # Assuming you have a CSV file containing apartment data
 
 # TF-IDF encoding for seeker interests
 tfidf_vectorizer = TfidfVectorizer()

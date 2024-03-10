@@ -3,9 +3,10 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
+
 #hena me7ataga a passelo el dataset bta3et el owner bs
 # Load dataset containing user interests
-user_interests_df = pd.read_csv('trials.csv')  # Update with your dataset path 
+user_interests_df = pd.read_csv('datasets/trials.csv')  # Update with your dataset path 
 
 # Create TF-IDF vectorizer
 vectorizer = TfidfVectorizer()
