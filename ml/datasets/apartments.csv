@@ -1,0 +1,38 @@
+apartment_id,owner_id,Price,Size,Rooms,Toilets,Suites,Parking,Elevator,Furnished,location,Status ,Property Type,size_sqm,floor_number,avalable_for
+1,1,3000,107,2,2,1,1,0,1,"Park View, North Investors Area, New Cairo City, Cairo",rent,apartment,345,1,All
+2,2,3000,105,2,2,1,1,0,1,"Mivida, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,285,2,All
+3,3,3000,108,2,2,1,1,0,1,"Lake View Residence, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,210,6,All
+4,4,3000,108,2,2,1,1,0,1,"La Vista City, New Capital Compounds, New Capital City, Cairo",rent,apartment,230,1,Family Only
+5,5,1300,55,2,2,1,1,1,1,"Villette, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,284,4,Family Only
+6,6,1170,50,2,2,1,1,0,1,"Tag Sultan, Ring Road, Cairo",rent,apartment,172,1,All
+7,7,1170,52,1,2,1,1,1,1,"Cairo Festival City, North Investors Area, New Cairo City, Cairo",rent,apartment,250,1,"Family , Bachelors (Men Only)"
+8,8,1170,100,2,2,1,1,0,1,"Taj City, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,220,5,None
+9,9,1170,65,2,2,1,1,0,1,"Tag Sultan, Ring Road, Cairo",rent,apartment,114,9,Family Only
+10,10,1170,100,2,2,1,1,0,1,"Lake View Residence, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,204,3,All
+11,11,1170,38,2,2,1,1,0,1,"Palm Hills New Cairo, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,172,9,"Family , Bachelors (Women Only)"
+12,12,1170,108,2,2,1,1,0,1,"Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,327,3,All
+13,13,1170,56,2,2,1,1,0,1,"IL Bosco, New Capital Compounds, New Capital City, Cairo",rent,apartment,330,0,Family Only
+14,14,1170,56,2,2,1,1,0,1,"El Rehab Extension, Al Rehab, New Cairo City, Cairo",rent,apartment,235,5,Family Only
+15,15,1800,510,2,2,1,1,1,1,"Villette, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,177,5,All
+16,16,1600,105,2,2,1,1,0,1,"Tag Sultan, Ring Road, Cairo",rent,apartment,124,4,Family Only
+17,17,1500,55,2,2,1,1,1,1,"Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,185,0,Family Only
+18,18,1600,103,2,2,1,1,1,1,"Mountain View Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,165,5,Family Only
+19,19,1600,80,2,2,1,1,1,1,"Al Gezira St., South Investors Area, New Cairo City, Cairo",rent,apartment,465,2,All
+20,20,1600,106,2,2,1,1,0,0,"Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,320,5,All
+21,21,1900,67,3,2,1,1,1,1,"Oia, New Capital Compounds, New Capital City, Cairo",rent,apartment,136,7,Family Only
+22,22,2500,68,3,2,1,1,0,0,"Sarai, Mostakbal City Compounds, Mostakbal City - Future City, Cairo",rent,apartment,125,4,Family Only
+23,23,1400,63,2,2,1,1,0,0,"Sarai, Mostakbal City Compounds, Mostakbal City - Future City, Cairo",rent,apartment,206,0,"Family , Bachelors (Women Only)"
+24,24,1800,59,3,2,1,1,0,0,"District 5, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,258,2,All
+25,25,1500,230,3,2,1,2,0,0,"Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,207,5,Family Only
+26,26,2300,113,3,2,1,2,1,0,"Palm Hills New Cairo, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,144,6,"Family , Bachelors (Women Only)"
+27,27,2250,68,2,2,1,1,0,0,"Tag Sultan, Ring Road, Cairo",rent,apartment,142,2,All
+28,28,1700,65,2,2,1,1,0,0,"Al Burouj Compound, El Shorouk Compounds, Shorouk City, Cairo",rent,apartment,345,0,Family Only
+29,29,1726,55,2,2,1,1,1,0,"Mountain View Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,164,8,All
+30,30,1700,50,1,2,1,1,1,0,"Ismailia Square, El Ismailia Square, Heliopolis - Masr El Gedida, Cairo",rent,apartment,235,6,Family Only
+31,31,1600,108,2,2,1,1,1,0,"IL Bosco, New Capital Compounds, New Capital City, Cairo",rent,apartment,165,2,Family Only
+32,32,810,36,1,2,1,1,0,0,"Stone Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,344,5,Family Only
+33,33,300,107,3,3,1,2,1,0,"Mountain View Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,287,2,Family Only
+34,34,600,150,3,4,3,2,1,1,"Taj City, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,156,2,Family Only
+35,35,1750,60,3,2,1,1,0,0,"Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo",rent,apartment,216,2,All
+36,36,2500,113,3,2,1,2,1,0,"West Golf Extension, El Katameya Compounds, El Katameya, New Cairo City, Cairo",rent,apartment,260,2,All
+37,37,3800,155,3,4,3,3,1,1,"Mountain View Executive, Al Andalus District, New Cairo City, Cairo",rent,apartment,248,7,Family Only
