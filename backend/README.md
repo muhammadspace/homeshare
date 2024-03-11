@@ -12,3 +12,4 @@
 
 # TODO
 - [ ] fix the Flask implementation of seeker recommendations such that it includes `apts`
+- [ ] replace the local datasets with MongoDB 
