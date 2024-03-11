@@ -1,4 +1,3 @@
-// user.model.js
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
@@ -48,6 +47,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  invites: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "invite",
+  }]
 }, { timestamps: true });
 
 userSchema.pre('save', async function () {

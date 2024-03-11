@@ -2,6 +2,7 @@
 const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+require("dotenv").config()
 
 class UserServices {
   static async registerUser(userData) {
@@ -22,17 +23,18 @@ class UserServices {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) throw new Error('Invalid password');
 
-      return await this.generateAccessToken({ email: user.email }, process.env.JWT_SECRET_KEY, process.env.JWT_EXPIRE);
+      return await this.generateAccessToken({ id: user._id, email: user.email, username: user.username }, process.env.JWT_SECRET_KEY, process.env.JWT_EXPIRE);
     } catch (err) {
       console.error("Error in loginUser service:", err);
       throw err;
     }
   }
 
-  static async generateAccessToken(tokenData) {
-    const JWTSecret_Key = 'your_secret_key';  // Replace with your actual secret key
-    const JWT_EXPIRE = '1h';  // Replace with your desired expiration time
+  static async generateAccessToken(tokenData, JWTSecret_Key, JWT_EXPIRE) {
+    // const JWTSecret_Key = 'your_secret_key';  // Replace with your actual secret key
+    // const JWT_EXPIRE = '1h';  // Replace with your desired expiration time
   
+    console.log(JWTSecret_Key, JWT_EXPIRE)
     return jwt.sign(tokenData, JWTSecret_Key, { expiresIn: JWT_EXPIRE });
   }
 }
