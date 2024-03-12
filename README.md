@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./public/homeshare2.png" alt="Appwrite Logo">
+    <img src="./public/homeshare2.png" alt="Homeshare Logo">
     <br />
     <br />
     <b>homeshare</b> is a cross-platform application that helps people find and share housing with other people they relate to.
