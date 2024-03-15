@@ -7,7 +7,7 @@
     <br />
 </p>
 
-<sup>Photo by [Jeremy Bishop](https://unsplash.com/photos/KFIjzXYg1RM) on [Unsplash](https://unsplash.com/)</sup>
+<sup>Photo by [Adrian Newell](https://unsplash.com/photos/a-row-of-multicolored-houses-on-a-street-UtfxJZ-uy5Q) on [Unsplash](https://unsplash.com/)</sup>
 
 # Technologies
 This app was developed using a combination of modern technologies:
