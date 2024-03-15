@@ -3,13 +3,13 @@ const UserService = require('../services/user.service');
 
 exports.register = async (req, res, next) => {
   try {
-    const userData = { username, email, password, picture, dob, job, gender, move_in_date, type } = req.body;
+    const userData = { username, email, password, picture, dob, job, gender, move_in_date, type, interests, traits } = req.body;
     const successRes = await UserService.registerUser(userData);
-    res.json({ status: true, success: 'User Registered Successfully' });
+    res.json({ success: true, message: 'User Registered Successfully' });
     console.log("User registered successfully")
   } catch (error) {
     console.error("Error in registration:", error);
-    res.status(500).json({ status: false, error: 'Internal Server Error' });
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
 
@@ -22,10 +22,10 @@ exports.login = async (req, res, next) => {
     
     console.log('Login successful. Generated token:', token);
 
-    res.json({ status: true, message: 'Login successful', token });
+    res.json({ success: true, message: 'Login successful', token });
   } catch (error) {
     console.error("Error in login:", error);
-    res.status(401).json({ status: false, error: 'Invalid email or password' });
+    res.status(401).json({ success: false, message: 'Invalid email or password' });
   }
 };
 

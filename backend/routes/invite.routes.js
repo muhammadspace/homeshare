@@ -3,11 +3,13 @@ const Invite = require("../models/invite.model")
 const User = require("../models/user.model")
 const Apt = require("../models/apt.model")
 
+// create a new invite
 router.post("/", async (req, res) => {
-    // owner invites a seeker to join his apartment
     try
     {
         const { to, from, apt } = req.body
+
+        // if (req.headers.authorization)
         const tmpInvite = new Invite({ to, from, apt, rejected: false, accepted: false })
 
         const invite = await tmpInvite.save()
@@ -24,21 +26,29 @@ router.post("/", async (req, res) => {
         else 
             sender.invites.push(invite._id)
 
-        recepient.save()
-        sender.save()
+        const aptObj = await Apt.findById(invite.apt)
+        if (!aptObj.invites)
+            aptObj.invites = [invite._id]
+        else 
+            aptObj.invites.push(invite._id)
+
+        await recepient.save()
+        await sender.save()
+        await aptObj.save()
 
         console.log(`
-            ✔ Invite created. 
-                ID: ${invite._id}
-                Apartment: ${invite.apt}
-                To user ID: ${invite.to}
-                From user ID: ${invite.from}
+        ✔ Invite created. 
+            ├ ID: ${invite._id}
+            ├ Apartment: ${invite.apt}
+            ├ To user ID: ${invite.to}
+            └ From user ID: ${invite.from}
             `)
 
-        res.json({ id: invite._id, to: invite.to, from: invite.from, apt: invite.apt }).status(200)
+        res.json({ id: invite._id, to: invite.to, from: invite.from, apt: invite.apt }).status(201)
     } catch (err) {
         console.log("Whoops! An error occured when trying to POST this invite:")
         console.log(err)
+        res.json({ error: err, success: false }).status(500)
     }
 })
 
@@ -55,6 +65,7 @@ router.get("/:inviteid", async (req, res) => {
     } catch (err) {
         console.log("Whoops! An error occured when trying to GET this invite:")
         console.log(err)
+        res.json({ error: err, success: false }).status(500)
     }
 })
 
@@ -82,9 +93,9 @@ router.post(("/:inviteid/reject"), async (req, res) => {
             res.json({ success: true, message: `Successfully rejected invite ${req.params.inviteid}` }).status(200)
         }
     } catch (err) {
-        console.log("🔴 Whoops! An error occured when trying to POST reject this invite:")
+        console.log("🔴 Whoops! An error occured when trying to reject this invite:")
         console.log(err)
-        res.status(500)
+        res.json({ error: err, success: false }).status(500)
     }
 })
 
@@ -112,9 +123,9 @@ router.post(("/:inviteid/accept"), async (req, res) => {
             res.json({ success: true, message: `Successfully accepted invite ${req.params.inviteid}` }).status(200)
         }
     } catch (err) {
-        console.log("🔴 Whoops! An error occured when trying to POST accept this invite:")
+        console.log("🔴 Whoops! An error occured when trying to accept this invite:")
         console.log(err)
-        res.status(500)
+        res.json({ error: err, success: false }).status(500)
     }
 })
 

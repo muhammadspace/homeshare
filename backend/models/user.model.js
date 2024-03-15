@@ -50,7 +50,9 @@ const userSchema = new Schema({
   invites: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "invite",
-  }]
+  }],
+  interests: [String],
+  traits: [String],
 }, { timestamps: true });
 
 userSchema.pre('save', async function () {
