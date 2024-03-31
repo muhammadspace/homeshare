@@ -16,7 +16,7 @@ const Apt = require('./models/apt.model.js');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(middleware.tokenExtractor)
-app.use(middleware.userExtractor)
+// app.use(middleware.userExtractor)
 
 app.use('/', UserRoute);
 app.use("/flask/", FlaskRoute);
