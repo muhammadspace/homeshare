@@ -10,6 +10,10 @@ const aptSchema = new mongoose.Schema({
         ref: "user",
         required: true
     },
+    max: {
+        type: Number,
+        required: true
+    },
     residents: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",

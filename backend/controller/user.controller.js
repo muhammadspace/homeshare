@@ -28,5 +28,3 @@ exports.login = async (req, res, next) => {
     res.status(401).json({ success: false, message: 'Invalid email or password' });
   }
 };
-
-

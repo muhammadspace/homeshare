@@ -15,12 +15,15 @@
 ## GET
 | **Endpoint**        | **Description**                               | **Request Body** | **Response**                                                                                                            | **Notes** |
 |---------------------|-----------------------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
-| `/invite/:inviteid` | Gets information of invite with ID `inviteid` |                  | `_id`: invite ID, `to`: recepient ID, `from`: sender ID, `apt`: apartment ID, `rejeceted`: boolean, `accepted`: boolean |
+| `/invite/:inviteid` | Gets information of invite with ID `inviteid` |                  | `id`: invite ID, `to`: recepient ID, `from`: sender ID, `apt`: apartment ID, `rejeceted`: boolean, `accepted`: boolean |
+| `/user/:id` | Gets information of user |  Request body is empty but the request headers should have an `Authorization` header that starts with `Bearer ` and then the token                 |  |
 
 ---
 <br>
 
 # TODO
+- [ ] implement user update endpoint
+- [x] implement user get information endpoint
 - [ ] fix the Flask implementation of seeker recommendations such that it includes `apts`
 - [ ] replace the local datasets with MongoDB 
 - [ ] implement jwt token authorization for invites
