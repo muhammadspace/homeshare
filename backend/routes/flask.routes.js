@@ -2,11 +2,13 @@ const express = require("express")
 const router = express.Router()
 const axios = require("axios")
 
+const flaskAPILink = "https://homeshare-1.onrender.com"
+
 router.post("/recommend/seeker", async (req, res, next) => {
     try
     {
         const { seeker_id } = req.body
-        const recs_response = await axios.post("http://localhost:5000/recommend/seeker", { seeker_id })
+        const recs_response = await axios.post(`${flaskAPILink}/recommend/seeker`, { seeker_id })
         const recs = recs_response.data
         console.log("sent to Flask")
         console.log(recs)
@@ -24,7 +26,7 @@ router.post("/recommend/owner", async (req, res, next) => {
     try
     {
         const { target_user } = req.body
-        const recs_response = await axios.post("http://localhost:5000/recommend/owner", { target_user })
+        const recs_response = await axios.post(`${flaskAPILink}/recommend/owner`, { target_user })
         const recs = recs_response.data
         console.log("sent to Flask")
         console.log(recs)
