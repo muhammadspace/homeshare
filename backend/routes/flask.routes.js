@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const axios = require("axios")
 
-const flaskAPILink = "https://homeshare-1.onrender.com"
+const flaskAPILink = "https://homeshare-flask.onrender.com"
 
 router.post("/recommend/seeker", async (req, res, next) => {
     try
