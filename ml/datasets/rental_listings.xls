@@ -1,0 +1,1001 @@
+Serial Number,Location,Bedrooms,Bathrooms,price(USD),Property Type,Property_id,owner_id,Start Date,End Date
+1,"Heliopolis, El Nil Street, Building 901, Floor 5",2,3,3000,House,149,279,2024-03-01,2024-10-03
+2,"Dokki, Nile Corniche, Building 399, Floor 11",2,1,2000,House,191,859,2024-03-01,2025-01-31
+3,"Heliopolis, Nile Corniche, Building 320, Floor 8",4,1,2800,House,449,21,2024-03-01,2025-02-19
+4,"Dokki, Pyramids Street, Building 697, Floor 7",1,3,3000,Room,486,26,2024-03-01,2024-11-17
+5,"Dokki, Nile Corniche, Building 539, Floor 8",4,3,2800,Room,888,751,2024-03-01,2024-09-15
+6,"Dokki, El Nil Street, Building 899, Floor 5",2,2,2000,Flat,326,42,2024-03-01,2024-06-23
+7,"Zamalek, Pyramids Street, Building 274, Floor 2",2,1,2000,Flat,624,497,2024-03-01,2024-12-13
+8,"Heliopolis, El Nil Street, Building 563, Floor 7",4,2,1800,Room,732,923,2024-03-01,2024-11-01
+9,"Zamalek, Sphinx Street, Building 601, Floor 1",4,3,1500,House,737,493,2024-03-01,2025-01-19
+10,"Maadi, Nile Corniche, Building 29, Floor 12",2,3,2200,House,628,310,2024-03-01,2024-09-15
+11,"Mohandessin, Sphinx Street, Building 902, Floor 9",1,2,2000,Room,516,861,2024-03-01,2024-11-06
+12,"Dokki, Sphinx Street, Building 382, Floor 11",1,2,2500,House,210,692,2024-03-01,2024-07-15
+13,"Heliopolis, Nile Corniche, Building 38, Floor 8",4,2,2000,Room,172,531,2024-03-01,2024-10-30
+14,"Maadi, Sphinx Street, Building 74, Floor 7",4,2,3000,House,8,473,2024-03-01,2024-11-30
+15,"Mohandessin, El Nil Street, Building 653, Floor 10",2,3,2800,Flat,318,738,2024-03-01,2024-10-07
+16,"Zamalek, Pyramids Street, Building 576, Floor 3",3,1,2800,Room,283,413,2024-03-01,2024-09-04
+17,"Maadi, Sphinx Street, Building 514, Floor 5",3,1,3000,House,155,481,2024-03-01,2024-09-10
+18,"Zamalek, Pyramids Street, Building 793, Floor 1",1,2,2500,Room,324,560,2024-03-01,2024-10-01
+19,"Heliopolis, El Nil Street, Building 557, Floor 5",3,2,2200,Room,265,557,2024-03-01,2024-07-18
+20,"Mohandessin, Tahrir Street, Building 606, Floor 11",1,3,3000,Flat,336,936,2024-03-01,2024-07-05
+21,"Mohandessin, El Nil Street, Building 126, Floor 11",4,2,2200,Room,837,225,2024-03-01,2024-11-06
+22,"Zamalek, El Nil Street, Building 927, Floor 5",3,2,3000,Flat,277,472,2024-03-01,2024-08-21
+23,"Mohandessin, Pyramids Street, Building 325, Floor 13",2,2,2200,Room,953,862,2024-03-01,2024-06-19
+24,"Zamalek, Pyramids Street, Building 376, Floor 9",3,2,2800,Flat,604,146,2024-03-01,2024-06-21
+25,"Maadi, El Nil Street, Building 264, Floor 12",1,2,1500,Flat,972,179,2024-03-01,2024-06-26
+26,"Heliopolis, Tahrir Street, Building 333, Floor 6",2,1,2000,House,170,637,2024-03-01,2024-08-01
+27,"Mohandessin, Tahrir Street, Building 677, Floor 9",4,2,3000,House,644,84,2024-03-01,2024-06-13
+28,"Dokki, Sphinx Street, Building 955, Floor 11",4,1,2800,House,291,729,2024-03-01,2024-07-28
+29,"Heliopolis, El Nil Street, Building 333, Floor 8",1,2,2500,Room,696,674,2024-03-01,2024-12-04
+30,"Maadi, El Nil Street, Building 243, Floor 10",4,1,1800,Room,592,858,2024-03-01,2025-02-21
+31,"Mohandessin, El Nil Street, Building 824, Floor 3",1,3,1800,Flat,985,629,2024-03-01,2024-11-16
+32,"Maadi, Sphinx Street, Building 871, Floor 10",2,1,2800,House,18,582,2024-03-01,2024-08-18
+33,"Heliopolis, Nile Corniche, Building 514, Floor 13",4,1,1800,Room,350,890,2024-03-01,2024-11-28
+34,"Maadi, Pyramids Street, Building 191, Floor 7",3,2,2000,Room,317,71,2024-03-01,2024-06-29
+35,"Zamalek, Nile Corniche, Building 67, Floor 8",1,3,1800,House,314,522,2024-03-01,2024-11-29
+36,"Heliopolis, Nile Corniche, Building 595, Floor 4",2,3,1800,Room,143,99,2024-03-01,2025-01-14
+37,"Heliopolis, Sphinx Street, Building 895, Floor 9",2,1,2800,House,224,828,2024-03-01,2025-02-24
+38,"Maadi, Pyramids Street, Building 161, Floor 10",1,2,3000,Room,755,883,2024-03-01,2025-02-10
+39,"Heliopolis, Nile Corniche, Building 241, Floor 7",1,2,2000,House,527,237,2024-03-01,2024-09-14
+40,"Dokki, Pyramids Street, Building 491, Floor 12",2,3,3000,House,567,885,2024-03-01,2024-07-18
+41,"Mohandessin, Pyramids Street, Building 698, Floor 3",4,2,1500,Room,387,196,2024-03-01,2024-06-20
+42,"Mohandessin, Pyramids Street, Building 129, Floor 6",2,3,2000,House,470,255,2024-03-01,2024-10-25
+43,"Zamalek, Tahrir Street, Building 7, Floor 4",1,2,1800,Room,268,794,2024-03-01,2024-09-06
+44,"Heliopolis, Nile Corniche, Building 288, Floor 13",2,3,3000,House,51,506,2024-03-01,2025-01-17
+45,"Zamalek, El Nil Street, Building 606, Floor 2",4,2,1500,Flat,280,122,2024-03-01,2024-08-09
+46,"Maadi, Tahrir Street, Building 509, Floor 11",2,1,1800,Flat,944,966,2024-03-01,2024-07-13
+47,"Dokki, Pyramids Street, Building 953, Floor 6",1,1,2200,Room,860,795,2024-03-01,2024-08-09
+48,"Dokki, Nile Corniche, Building 332, Floor 3",4,2,1800,Flat,257,655,2024-03-01,2024-08-08
+49,"Dokki, Nile Corniche, Building 865, Floor 3",3,1,1800,Flat,232,792,2024-03-01,2024-06-10
+50,"Zamalek, Tahrir Street, Building 204, Floor 10",2,3,2500,House,462,689,2024-03-01,2024-08-21
+51,"Zamalek, El Nil Street, Building 776, Floor 2",4,1,2500,Flat,597,120,2024-03-01,2024-10-07
+52,"Mohandessin, Tahrir Street, Building 796, Floor 11",1,3,2800,House,715,976,2024-03-01,2025-02-16
+53,"Mohandessin, Pyramids Street, Building 727, Floor 3",2,2,3000,Room,956,320,2024-03-01,2024-09-07
+54,"Zamalek, Pyramids Street, Building 646, Floor 8",4,2,2200,Flat,754,687,2024-03-01,2024-11-18
+55,"Dokki, El Nil Street, Building 279, Floor 11",2,3,2800,Room,297,315,2024-03-01,2024-05-30
+56,"Mohandessin, Nile Corniche, Building 141, Floor 10",4,3,3000,House,104,68,2024-03-01,2024-07-01
+57,"Maadi, Tahrir Street, Building 46, Floor 2",4,1,2000,Room,402,592,2024-03-01,2024-05-30
+58,"Mohandessin, Pyramids Street, Building 788, Floor 2",4,2,1500,Room,652,29,2024-03-01,2025-02-23
+59,"Heliopolis, Nile Corniche, Building 251, Floor 11",4,1,1500,House,365,669,2024-03-01,2024-11-23
+60,"Dokki, Sphinx Street, Building 351, Floor 7",2,3,2200,Flat,897,824,2024-03-01,2024-12-03
+61,"Maadi, Sphinx Street, Building 592, Floor 1",4,2,1800,Flat,467,389,2024-03-01,2024-11-10
+62,"Maadi, Sphinx Street, Building 905, Floor 11",1,3,2200,House,505,680,2024-03-01,2024-06-28
+63,"Heliopolis, Pyramids Street, Building 758, Floor 9",2,1,1500,Flat,909,947,2024-03-01,2024-09-28
+64,"Maadi, Pyramids Street, Building 666, Floor 11",4,1,3000,Flat,687,728,2024-03-01,2024-11-22
+65,"Dokki, Sphinx Street, Building 81, Floor 2",4,1,2800,Flat,70,897,2024-03-01,2024-11-17
+66,"Maadi, Nile Corniche, Building 837, Floor 6",1,1,1800,Room,672,339,2024-03-01,2025-01-15
+67,"Zamalek, Nile Corniche, Building 755, Floor 5",2,3,2500,Room,67,239,2024-03-01,2024-09-17
+68,"Maadi, Sphinx Street, Building 15, Floor 12",2,2,1500,House,384,293,2024-03-01,2024-09-07
+69,"Mohandessin, Tahrir Street, Building 369, Floor 7",3,2,2500,Room,546,37,2024-03-01,2025-02-12
+70,"Dokki, Tahrir Street, Building 431, Floor 3",3,3,3000,Room,859,147,2024-03-01,2025-02-17
+71,"Heliopolis, Tahrir Street, Building 583, Floor 10",4,1,3000,House,939,349,2024-03-01,2024-07-01
+72,"Heliopolis, Nile Corniche, Building 797, Floor 12",4,3,2500,Room,206,199,2024-03-01,2024-07-23
+73,"Dokki, Pyramids Street, Building 149, Floor 6",4,1,2000,Room,708,480,2024-03-01,2024-07-05
+74,"Dokki, Nile Corniche, Building 906, Floor 7",4,3,2500,Room,201,422,2024-03-01,2024-09-13
+75,"Heliopolis, Tahrir Street, Building 289, Floor 10",3,3,2500,House,399,3,2024-03-01,2024-09-29
+76,"Mohandessin, Sphinx Street, Building 379, Floor 12",2,2,3000,Flat,335,664,2024-03-01,2024-06-06
+77,"Heliopolis, Sphinx Street, Building 420, Floor 10",3,3,3000,Room,936,822,2024-03-01,2024-11-13
+78,"Maadi, Nile Corniche, Building 56, Floor 2",4,3,2500,Flat,174,798,2024-03-01,2024-06-27
+79,"Zamalek, Pyramids Street, Building 468, Floor 4",1,1,3000,House,656,409,2024-03-01,2024-08-23
+80,"Dokki, El Nil Street, Building 941, Floor 11",3,3,2500,Room,19,545,2024-03-01,2024-09-19
+81,"Dokki, El Nil Street, Building 577, Floor 1",1,2,3000,Room,42,261,2024-03-01,2024-07-31
+82,"Dokki, Sphinx Street, Building 311, Floor 1",3,1,2800,House,659,395,2024-03-01,2024-07-01
+83,"Zamalek, Sphinx Street, Building 457, Floor 13",1,2,3000,House,946,415,2024-03-01,2024-06-14
+84,"Dokki, Pyramids Street, Building 197, Floor 6",1,2,1800,Room,591,171,2024-03-01,2025-01-11
+85,"Maadi, El Nil Street, Building 993, Floor 7",3,1,2500,Room,612,820,2024-03-01,2024-08-16
+86,"Mohandessin, Pyramids Street, Building 478, Floor 8",1,1,1500,House,669,711,2024-03-01,2024-08-22
+87,"Maadi, Sphinx Street, Building 493, Floor 8",4,2,1500,Room,39,219,2024-03-01,2024-09-29
+88,"Maadi, Sphinx Street, Building 131, Floor 3",2,1,2500,Room,362,571,2024-03-01,2025-02-09
+89,"Mohandessin, Nile Corniche, Building 906, Floor 10",1,1,2200,Room,719,504,2024-03-01,2024-06-11
+90,"Maadi, Tahrir Street, Building 898, Floor 2",4,2,2000,House,366,918,2024-03-01,2024-07-13
+91,"Heliopolis, El Nil Street, Building 7, Floor 1",3,2,2500,House,423,271,2024-03-01,2024-09-05
+92,"Maadi, Tahrir Street, Building 478, Floor 9",3,2,2000,House,865,502,2024-03-01,2024-06-10
+93,"Dokki, El Nil Street, Building 427, Floor 10",3,1,1800,House,282,825,2024-03-01,2024-06-07
+94,"Maadi, Pyramids Street, Building 121, Floor 6",1,1,1800,House,886,250,2024-03-01,2024-08-23
+95,"Maadi, Nile Corniche, Building 990, Floor 7",4,3,3000,Room,957,50,2024-03-01,2024-12-27
+96,"Heliopolis, Pyramids Street, Building 681, Floor 5",1,1,3000,Flat,889,847,2024-03-01,2024-06-21
+97,"Maadi, Sphinx Street, Building 739, Floor 3",2,3,2500,Flat,252,152,2024-03-01,2024-12-01
+98,"Zamalek, Pyramids Street, Building 841, Floor 10",3,1,1500,Room,961,206,2024-03-01,2025-02-24
+99,"Heliopolis, Tahrir Street, Building 235, Floor 11",1,1,3000,Room,32,381,2024-03-01,2025-02-13
+100,"Dokki, El Nil Street, Building 2, Floor 3",1,2,2800,House,928,432,2024-03-01,2024-10-11
+101,"Heliopolis, Nile Corniche, Building 783, Floor 8",3,3,2800,Flat,378,776,2024-03-01,2024-07-06
+102,"Mohandessin, Nile Corniche, Building 245, Floor 12",2,3,1800,Flat,722,988,2024-03-01,2025-01-18
+103,"Heliopolis, Tahrir Street, Building 223, Floor 9",2,3,3000,Flat,962,668,2024-03-01,2024-11-21
+104,"Zamalek, Sphinx Street, Building 312, Floor 2",3,2,2000,Flat,716,775,2024-03-01,2024-10-28
+105,"Maadi, Pyramids Street, Building 448, Floor 10",1,1,1800,Room,75,270,2024-03-01,2024-10-08
+106,"Mohandessin, Pyramids Street, Building 819, Floor 8",2,3,2500,Room,358,781,2024-03-01,2024-11-19
+107,"Heliopolis, Tahrir Street, Building 951, Floor 2",3,1,2200,Flat,368,27,2024-03-01,2024-11-05
+108,"Zamalek, Sphinx Street, Building 78, Floor 9",3,1,3000,Room,316,574,2024-03-01,2024-09-19
+109,"Dokki, Nile Corniche, Building 642, Floor 6",1,3,2000,Flat,600,618,2024-03-01,2025-01-08
+110,"Mohandessin, El Nil Street, Building 901, Floor 4",2,2,2200,Flat,790,617,2024-03-01,2024-11-24
+111,"Dokki, El Nil Street, Building 436, Floor 3",4,2,1800,Room,654,760,2024-03-01,2024-08-21
+112,"Maadi, Nile Corniche, Building 448, Floor 6",3,2,2800,Room,655,7,2024-03-01,2025-02-03
+113,"Heliopolis, Sphinx Street, Building 220, Floor 11",1,1,3000,House,434,455,2024-03-01,2025-01-14
+114,"Zamalek, El Nil Street, Building 982, Floor 11",3,2,3000,House,731,920,2024-03-01,2024-09-07
+115,"Dokki, Nile Corniche, Building 445, Floor 4",4,1,2500,Room,109,587,2024-03-01,2024-09-03
+116,"Heliopolis, Sphinx Street, Building 512, Floor 1",1,1,1800,Room,480,963,2024-03-01,2025-01-22
+117,"Zamalek, El Nil Street, Building 950, Floor 4",3,2,2500,House,372,44,2024-03-01,2024-06-20
+118,"Mohandessin, Tahrir Street, Building 122, Floor 10",2,3,1500,House,828,63,2024-03-01,2024-10-16
+119,"Zamalek, Nile Corniche, Building 794, Floor 8",1,2,1800,Flat,977,740,2024-03-01,2024-06-04
+120,"Zamalek, Sphinx Street, Building 272, Floor 13",1,1,2000,Flat,548,495,2024-03-01,2024-11-10
+121,"Zamalek, Nile Corniche, Building 659, Floor 13",2,1,1500,Flat,556,959,2024-03-01,2024-06-24
+122,"Dokki, El Nil Street, Building 864, Floor 8",4,1,2000,House,208,73,2024-03-01,2024-12-21
+123,"Dokki, Tahrir Street, Building 572, Floor 13",4,2,2500,Flat,395,965,2024-03-01,2025-02-13
+124,"Maadi, Pyramids Street, Building 919, Floor 10",3,1,1500,Flat,385,183,2024-03-01,2025-01-26
+125,"Heliopolis, El Nil Street, Building 817, Floor 10",4,3,1500,House,647,127,2024-03-01,2024-09-13
+126,"Zamalek, Nile Corniche, Building 845, Floor 5",2,3,3000,Flat,881,836,2024-03-01,2024-06-13
+127,"Mohandessin, Nile Corniche, Building 448, Floor 7",4,3,2800,Room,96,366,2024-03-01,2024-11-24
+128,"Mohandessin, Nile Corniche, Building 346, Floor 1",2,2,1500,Room,339,155,2024-03-01,2025-01-09
+129,"Heliopolis, El Nil Street, Building 729, Floor 12",4,2,1500,Room,262,356,2024-03-01,2024-08-31
+130,"Zamalek, El Nil Street, Building 430, Floor 12",1,1,1500,House,185,477,2024-03-01,2025-02-20
+131,"Maadi, Nile Corniche, Building 249, Floor 6",2,2,2200,Flat,440,185,2024-03-01,2024-06-27
+132,"Maadi, El Nil Street, Building 565, Floor 13",3,2,2500,Room,491,95,2024-03-01,2024-12-15
+133,"Dokki, Nile Corniche, Building 431, Floor 8",1,3,2000,Room,867,942,2024-03-01,2024-07-29
+134,"Dokki, El Nil Street, Building 984, Floor 1",4,1,2800,Flat,126,263,2024-03-01,2024-12-27
+135,"Dokki, El Nil Street, Building 424, Floor 13",4,1,2000,Room,896,683,2024-03-01,2024-11-15
+136,"Maadi, Pyramids Street, Building 304, Floor 8",4,2,1800,Flat,776,686,2024-03-01,2024-09-04
+137,"Heliopolis, Nile Corniche, Building 157, Floor 1",3,1,2200,Room,465,597,2024-03-01,2024-11-03
+138,"Zamalek, Tahrir Street, Building 864, Floor 6",2,1,2500,Flat,631,544,2024-03-01,2024-07-22
+139,"Dokki, Pyramids Street, Building 308, Floor 5",4,3,2000,Flat,565,763,2024-03-01,2024-08-08
+140,"Mohandessin, Sphinx Street, Building 625, Floor 8",1,3,3000,House,714,839,2024-03-01,2024-09-14
+141,"Dokki, El Nil Street, Building 59, Floor 8",2,2,2000,House,698,13,2024-03-01,2024-08-23
+142,"Heliopolis, Nile Corniche, Building 771, Floor 6",1,1,3000,Flat,489,718,2024-03-01,2025-01-21
+143,"Maadi, Pyramids Street, Building 763, Floor 5",3,2,2200,Flat,725,532,2024-03-01,2024-10-30
+144,"Heliopolis, Pyramids Street, Building 422, Floor 13",2,1,2500,House,107,468,2024-03-01,2024-09-25
+145,"Maadi, Pyramids Street, Building 1000, Floor 1",2,3,1500,Room,1000,628,2024-03-01,2024-10-16
+146,"Zamalek, Nile Corniche, Building 893, Floor 1",1,2,2000,House,616,140,2024-03-01,2024-10-31
+147,"Heliopolis, Pyramids Street, Building 148, Floor 9",2,2,2000,House,898,221,2024-03-01,2024-08-23
+148,"Maadi, Nile Corniche, Building 74, Floor 9",4,3,3000,Room,785,952,2024-03-01,2025-01-24
+149,"Maadi, Pyramids Street, Building 636, Floor 10",3,3,2000,Flat,130,619,2024-03-01,2024-12-30
+150,"Heliopolis, Tahrir Street, Building 809, Floor 10",2,1,2500,Flat,68,739,2024-03-01,2024-08-25
+151,"Zamalek, Sphinx Street, Building 323, Floor 6",4,2,1500,Room,529,906,2024-03-01,2024-12-11
+152,"Dokki, Tahrir Street, Building 533, Floor 3",1,1,2000,Room,406,783,2024-03-01,2025-01-05
+153,"Zamalek, Nile Corniche, Building 363, Floor 11",4,3,1500,House,225,650,2024-03-01,2024-07-08
+154,"Heliopolis, Sphinx Street, Building 179, Floor 12",2,3,2500,House,743,534,2024-03-01,2024-06-13
+155,"Heliopolis, Nile Corniche, Building 962, Floor 1",1,1,1500,Flat,446,823,2024-03-01,2024-08-14
+156,"Maadi, El Nil Street, Building 358, Floor 3",1,3,1500,Flat,79,232,2024-03-01,2024-05-31
+157,"Maadi, El Nil Street, Building 458, Floor 6",3,2,1800,Flat,321,524,2024-03-01,2024-09-30
+158,"Zamalek, El Nil Street, Building 881, Floor 5",4,3,2000,Flat,246,758,2024-03-01,2024-11-27
+159,"Dokki, Nile Corniche, Building 181, Floor 6",3,2,2000,Flat,724,52,2024-03-01,2025-02-06
+160,"Maadi, Tahrir Street, Building 544, Floor 12",2,2,2800,Flat,401,652,2024-03-01,2025-02-27
+161,"Maadi, El Nil Street, Building 192, Floor 6",1,2,3000,House,301,797,2024-03-01,2024-06-18
+162,"Heliopolis, El Nil Street, Building 553, Floor 12",4,3,2200,Room,287,277,2024-03-01,2024-11-03
+163,"Zamalek, Pyramids Street, Building 251, Floor 8",3,1,1500,House,535,734,2024-03-01,2024-09-17
+164,"Heliopolis, Tahrir Street, Building 627, Floor 6",3,2,2200,Room,857,475,2024-03-01,2024-10-11
+165,"Maadi, Nile Corniche, Building 737, Floor 1",3,2,1500,House,264,10,2024-03-01,2024-08-15
+166,"Heliopolis, Pyramids Street, Building 449, Floor 9",1,3,1800,Room,512,676,2024-03-01,2024-10-12
+167,"Heliopolis, El Nil Street, Building 189, Floor 4",3,2,2000,Flat,552,5,2024-03-01,2024-07-06
+168,"Heliopolis, Tahrir Street, Building 248, Floor 11",3,3,1800,Flat,110,340,2024-03-01,2024-09-07
+169,"Heliopolis, Sphinx Street, Building 598, Floor 10",1,2,2800,Flat,996,958,2024-03-01,2024-12-11
+170,"Dokki, Pyramids Street, Building 751, Floor 1",2,3,1800,Flat,935,441,2024-03-01,2024-08-27
+171,"Heliopolis, Sphinx Street, Building 317, Floor 3",2,1,2200,House,296,933,2024-03-01,2024-09-01
+172,"Dokki, El Nil Street, Building 719, Floor 1",1,1,1800,Room,945,205,2024-03-01,2024-07-21
+173,"Mohandessin, Tahrir Street, Building 743, Floor 5",4,1,2200,Flat,784,615,2024-03-01,2024-07-31
+174,"Heliopolis, Sphinx Street, Building 661, Floor 8",2,2,1800,Room,703,154,2024-03-01,2025-01-10
+175,"Maadi, Nile Corniche, Building 491, Floor 4",4,1,2800,Room,645,533,2024-03-01,2024-10-27
+176,"Dokki, Sphinx Street, Building 184, Floor 9",2,2,1500,Room,830,964,2024-03-01,2024-12-20
+177,"Mohandessin, Sphinx Street, Building 872, Floor 3",4,2,2500,Flat,100,89,2024-03-01,2024-08-13
+178,"Heliopolis, Nile Corniche, Building 448, Floor 10",2,1,2000,House,10,156,2024-03-01,2025-02-08
+179,"Heliopolis, Nile Corniche, Building 774, Floor 8",2,1,2200,Room,195,877,2024-03-01,2024-11-27
+180,"Dokki, El Nil Street, Building 329, Floor 3",3,3,2200,Flat,134,996,2024-03-01,2024-08-07
+181,"Maadi, Pyramids Street, Building 384, Floor 7",3,3,2200,House,16,228,2024-03-01,2024-09-28
+182,"Mohandessin, El Nil Street, Building 470, Floor 4",2,3,2000,Flat,217,253,2024-03-01,2024-12-27
+183,"Dokki, Tahrir Street, Building 809, Floor 9",1,2,2200,Flat,188,314,2024-03-01,2024-08-06
+184,"Mohandessin, El Nil Street, Building 786, Floor 6",1,3,2000,Flat,842,424,2024-03-01,2025-01-05
+185,"Heliopolis, Nile Corniche, Building 904, Floor 7",4,2,1500,Room,240,722,2024-03-01,2024-12-28
+186,"Mohandessin, Nile Corniche, Building 730, Floor 10",1,3,2800,House,864,116,2024-03-01,2025-01-19
+187,"Heliopolis, El Nil Street, Building 309, Floor 2",3,3,3000,Room,281,119,2024-03-01,2024-10-23
+188,"Maadi, Sphinx Street, Building 523, Floor 9",4,3,2800,Flat,922,259,2024-03-01,2024-06-19
+189,"Maadi, Nile Corniche, Building 257, Floor 4",4,3,2800,Room,78,326,2024-03-01,2024-08-05
+190,"Mohandessin, El Nil Street, Building 909, Floor 8",2,2,3000,Room,237,290,2024-03-01,2024-12-24
+191,"Mohandessin, El Nil Street, Building 625, Floor 3",2,3,2200,Flat,35,508,2024-03-01,2025-01-12
+192,"Zamalek, El Nil Street, Building 672, Floor 1",4,3,3000,Room,639,370,2024-03-01,2025-01-20
+193,"Heliopolis, Nile Corniche, Building 933, Floor 4",2,1,2000,Room,46,956,2024-03-01,2025-02-25
+194,"Dokki, Tahrir Street, Building 156, Floor 7",2,3,2800,Room,700,610,2024-03-01,2024-12-16
+195,"Heliopolis, Nile Corniche, Building 543, Floor 1",1,2,2800,House,441,15,2024-03-01,2025-01-19
+196,"Mohandessin, Tahrir Street, Building 659, Floor 1",4,2,3000,Flat,524,677,2024-03-01,2024-06-16
+197,"Zamalek, Pyramids Street, Building 588, Floor 4",4,2,3000,Flat,932,788,2024-03-01,2024-08-18
+198,"Mohandessin, Nile Corniche, Building 36, Floor 4",1,2,1500,Flat,606,325,2024-03-01,2024-10-31
+199,"Maadi, Pyramids Street, Building 245, Floor 9",2,3,3000,Flat,970,463,2024-03-01,2024-08-31
+200,"Heliopolis, Sphinx Street, Building 245, Floor 2",2,2,1500,Room,248,367,2024-03-01,2024-08-09
+201,"Zamalek, Tahrir Street, Building 829, Floor 6",3,1,2000,House,496,368,2024-03-01,2024-08-01
+202,"Mohandessin, Nile Corniche, Building 642, Floor 2",1,3,2200,House,142,748,2024-03-01,2024-12-04
+203,"Heliopolis, Tahrir Street, Building 416, Floor 2",1,2,3000,Room,44,667,2024-03-01,2024-07-05
+204,"Mohandessin, Tahrir Street, Building 753, Floor 4",3,3,1800,Flat,553,678,2024-03-01,2024-06-15
+205,"Zamalek, Pyramids Street, Building 157, Floor 10",3,2,1500,Room,274,25,2024-03-01,2024-07-09
+206,"Maadi, Sphinx Street, Building 666, Floor 5",1,3,2800,Room,615,961,2024-03-01,2024-10-06
+207,"Maadi, Nile Corniche, Building 215, Floor 9",4,1,2000,House,701,791,2024-03-01,2024-11-29
+208,"Heliopolis, Tahrir Street, Building 572, Floor 9",4,3,1800,Flat,670,420,2024-03-01,2024-11-15
+209,"Zamalek, Sphinx Street, Building 674, Floor 12",3,2,2800,Room,895,634,2024-03-01,2024-08-10
+210,"Zamalek, El Nil Street, Building 582, Floor 13",3,3,2000,House,442,447,2024-03-01,2024-06-08
+211,"Mohandessin, Sphinx Street, Building 934, Floor 13",2,3,2000,House,469,181,2024-03-01,2024-06-17
+212,"Zamalek, Sphinx Street, Building 34, Floor 4",2,2,2000,Room,539,893,2024-03-01,2025-01-11
+213,"Zamalek, Nile Corniche, Building 830, Floor 12",3,2,1500,House,949,291,2024-03-01,2024-08-21
+214,"Maadi, El Nil Street, Building 507, Floor 5",2,2,2000,Room,85,806,2024-03-01,2024-09-06
+215,"Maadi, Nile Corniche, Building 938, Floor 1",2,1,2000,Room,414,977,2024-03-01,2025-02-11
+216,"Maadi, Tahrir Street, Building 476, Floor 10",2,3,2500,Room,518,973,2024-03-01,2024-08-01
+217,"Mohandessin, Pyramids Street, Building 855, Floor 13",4,2,2000,Flat,421,537,2024-03-01,2024-12-18
+218,"Mohandessin, Nile Corniche, Building 445, Floor 6",2,1,1800,House,211,856,2024-03-01,2025-01-11
+219,"Zamalek, Pyramids Street, Building 448, Floor 8",2,3,1800,Flat,678,579,2024-03-01,2024-12-14
+220,"Dokki, Sphinx Street, Building 824, Floor 4",3,2,2000,House,13,570,2024-03-01,2024-09-05
+221,"Heliopolis, Pyramids Street, Building 777, Floor 1",2,2,2000,House,702,503,2024-03-01,2024-07-04
+222,"Heliopolis, Pyramids Street, Building 223, Floor 5",3,2,2500,House,300,510,2024-03-01,2024-08-23
+223,"Dokki, Pyramids Street, Building 185, Floor 11",3,2,1500,House,973,215,2024-03-01,2024-10-03
+224,"Maadi, Tahrir Street, Building 40, Floor 11",4,1,3000,Flat,950,994,2024-03-01,2024-11-15
+225,"Dokki, Nile Corniche, Building 305, Floor 12",2,1,2500,Room,176,889,2024-03-01,2024-09-18
+226,"Heliopolis, Nile Corniche, Building 450, Floor 13",4,3,2500,Room,181,967,2024-03-01,2024-10-20
+227,"Heliopolis, Tahrir Street, Building 519, Floor 11",1,3,2200,Flat,763,77,2024-03-01,2024-08-05
+228,"Maadi, El Nil Street, Building 273, Floor 3",4,1,1500,Room,549,613,2024-03-01,2024-08-21
+229,"Maadi, Tahrir Street, Building 456, Floor 5",2,2,1500,Room,803,449,2024-03-01,2024-11-18
+230,"Heliopolis, El Nil Street, Building 435, Floor 2",4,2,1500,Flat,254,614,2024-03-01,2024-10-02
+231,"Zamalek, El Nil Street, Building 710, Floor 4",1,2,1500,Flat,766,390,2024-03-01,2024-07-03
+232,"Dokki, Pyramids Street, Building 948, Floor 10",2,1,1800,Room,92,36,2024-03-01,2025-01-25
+233,"Zamalek, Sphinx Street, Building 490, Floor 12",1,3,1800,Flat,157,47,2024-03-01,2024-07-21
+234,"Mohandessin, Sphinx Street, Building 307, Floor 9",1,3,3000,Flat,198,72,2024-03-01,2024-09-20
+235,"Zamalek, Tahrir Street, Building 236, Floor 2",3,2,3000,Room,150,793,2024-03-01,2024-06-27
+236,"Heliopolis, Nile Corniche, Building 562, Floor 7",2,3,3000,Room,992,813,2024-03-01,2024-07-26
+237,"Dokki, Pyramids Street, Building 970, Floor 1",1,2,2800,House,447,641,2024-03-01,2025-02-03
+238,"Heliopolis, Pyramids Street, Building 461, Floor 11",4,2,1500,Flat,838,548,2024-03-01,2024-07-04
+239,"Zamalek, Pyramids Street, Building 826, Floor 12",4,2,1800,Room,938,96,2024-03-01,2024-07-20
+240,"Dokki, Sphinx Street, Building 607, Floor 6",3,3,1500,House,506,8,2024-03-01,2024-08-03
+241,"Heliopolis, El Nil Street, Building 758, Floor 11",2,3,2200,House,595,9,2024-03-01,2025-02-19
+242,"Zamalek, Tahrir Street, Building 665, Floor 6",2,3,1800,House,579,974,2024-03-01,2024-06-21
+243,"Dokki, Sphinx Street, Building 714, Floor 9",1,1,3000,Flat,90,433,2024-03-01,2024-07-17
+244,"Mohandessin, El Nil Street, Building 591, Floor 11",3,3,1800,Room,915,539,2024-03-01,2024-12-09
+245,"Zamalek, Sphinx Street, Building 755, Floor 6",2,3,3000,Room,367,212,2024-03-01,2024-11-20
+246,"Heliopolis, El Nil Street, Building 317, Floor 6",1,3,2800,Flat,951,204,2024-03-01,2024-06-14
+247,"Zamalek, Pyramids Street, Building 858, Floor 7",3,2,2500,House,236,834,2024-03-01,2025-02-26
+248,"Zamalek, Pyramids Street, Building 853, Floor 7",4,2,1800,Room,677,386,2024-03-01,2024-07-18
+249,"Mohandessin, Pyramids Street, Building 792, Floor 11",4,2,2000,House,129,4,2024-03-01,2024-12-15
+250,"Maadi, Tahrir Street, Building 73, Floor 4",2,1,1800,Flat,554,22,2024-03-01,2024-12-09
+251,"Zamalek, Tahrir Street, Building 346, Floor 6",2,1,2000,House,801,187,2024-03-01,2024-12-04
+252,"Maadi, Pyramids Street, Building 335, Floor 9",3,2,2000,House,525,31,2024-03-01,2024-09-23
+253,"Mohandessin, Sphinx Street, Building 435, Floor 10",4,2,1800,Flat,189,759,2024-03-01,2024-06-14
+254,"Mohandessin, Tahrir Street, Building 565, Floor 7",3,2,1800,Room,425,82,2024-03-01,2024-10-15
+255,"Zamalek, Pyramids Street, Building 552, Floor 1",1,2,1800,Flat,147,431,2024-03-01,2024-10-26
+256,"Heliopolis, Pyramids Street, Building 482, Floor 5",1,1,1800,Flat,831,384,2024-03-01,2024-08-12
+257,"Dokki, El Nil Street, Building 520, Floor 7",3,1,3000,House,361,576,2024-03-01,2024-07-05
+258,"Maadi, Sphinx Street, Building 316, Floor 6",3,1,2200,House,417,494,2024-03-01,2024-08-15
+259,"Zamalek, El Nil Street, Building 417, Floor 7",4,2,2000,Room,800,87,2024-03-01,2024-06-14
+260,"Mohandessin, Nile Corniche, Building 109, Floor 1",2,1,2800,House,187,561,2024-03-01,2024-10-16
+261,"Zamalek, Pyramids Street, Building 828, Floor 3",1,1,2200,House,389,921,2024-03-01,2024-10-24
+262,"Zamalek, Pyramids Street, Building 467, Floor 5",1,3,2000,House,212,461,2024-03-01,2025-02-04
+263,"Heliopolis, El Nil Street, Building 438, Floor 2",4,1,2000,Flat,58,499,2024-03-01,2024-11-04
+264,"Heliopolis, El Nil Street, Building 360, Floor 13",3,1,3000,Flat,509,968,2024-03-01,2025-01-23
+265,"Dokki, Tahrir Street, Building 109, Floor 5",2,2,2800,House,868,695,2024-03-01,2024-12-09
+266,"Maadi, El Nil Street, Building 566, Floor 1",4,3,2000,Flat,299,242,2024-03-01,2025-01-19
+267,"Heliopolis, El Nil Street, Building 928, Floor 5",1,1,3000,Room,982,948,2024-03-01,2024-10-28
+268,"Mohandessin, El Nil Street, Building 654, Floor 6",3,2,3000,Room,574,754,2024-03-01,2024-06-21
+269,"Maadi, El Nil Street, Building 508, Floor 4",3,1,1800,Room,537,112,2024-03-01,2024-11-26
+270,"Dokki, Sphinx Street, Building 995, Floor 6",2,3,2500,Room,369,708,2024-03-01,2024-12-07
+271,"Dokki, Pyramids Street, Building 431, Floor 5",2,3,2800,House,153,518,2024-03-01,2024-10-19
+272,"Heliopolis, El Nil Street, Building 346, Floor 13",3,1,1500,Flat,937,459,2024-03-01,2024-06-15
+273,"Dokki, Sphinx Street, Building 96, Floor 12",1,3,2200,Flat,626,941,2024-03-01,2024-07-17
+274,"Heliopolis, Pyramids Street, Building 944, Floor 6",3,2,2800,Room,843,908,2024-03-01,2024-11-27
+275,"Zamalek, El Nil Street, Building 279, Floor 13",1,3,2000,House,836,812,2024-03-01,2024-07-12
+276,"Maadi, Tahrir Street, Building 65, Floor 13",1,2,2500,Room,228,684,2024-03-01,2024-12-29
+277,"Zamalek, Sphinx Street, Building 2, Floor 7",2,3,1800,House,272,131,2024-03-01,2024-07-03
+278,"Zamalek, Nile Corniche, Building 60, Floor 11",1,3,1500,House,634,559,2024-03-01,2024-12-23
+279,"Dokki, Nile Corniche, Building 745, Floor 9",4,1,2000,Room,190,526,2024-03-01,2024-06-05
+280,"Dokki, Tahrir Street, Building 100, Floor 12",3,1,3000,Flat,902,945,2024-03-01,2024-10-28
+281,"Mohandessin, Nile Corniche, Building 231, Floor 13",2,1,1500,Flat,218,762,2024-03-01,2024-11-08
+282,"Heliopolis, El Nil Street, Building 967, Floor 9",4,1,2200,Room,356,601,2024-03-01,2025-02-25
+283,"Mohandessin, Pyramids Street, Building 74, Floor 8",2,2,2500,Flat,954,191,2024-03-01,2024-10-27
+284,"Mohandessin, Nile Corniche, Building 98, Floor 5",2,2,2200,Flat,695,379,2024-03-01,2024-11-12
+285,"Heliopolis, El Nil Street, Building 627, Floor 13",4,2,3000,Room,538,129,2024-03-01,2025-02-06
+286,"Heliopolis, Pyramids Street, Building 13, Floor 4",2,3,1800,Flat,521,489,2024-03-01,2024-08-26
+287,"Mohandessin, Nile Corniche, Building 532, Floor 1",4,3,1500,House,742,375,2024-03-01,2024-07-22
+288,"Mohandessin, Sphinx Street, Building 859, Floor 11",2,1,2200,House,99,224,2024-03-01,2024-09-30
+289,"Maadi, Tahrir Street, Building 761, Floor 3",3,3,2800,Room,133,186,2024-03-01,2024-07-27
+290,"Maadi, Sphinx Street, Building 31, Floor 8",3,3,2200,Room,273,121,2024-03-01,2024-12-11
+291,"Mohandessin, Pyramids Street, Building 630, Floor 10",3,1,2800,Flat,139,329,2024-03-01,2024-06-19
+292,"Dokki, El Nil Street, Building 942, Floor 1",3,3,2000,Room,866,159,2024-03-01,2024-12-25
+293,"Dokki, El Nil Street, Building 793, Floor 1",2,1,1500,Room,101,445,2024-03-01,2025-02-05
+294,"Mohandessin, El Nil Street, Building 441, Floor 1",2,3,3000,House,846,905,2024-03-01,2025-02-01
+295,"Heliopolis, El Nil Street, Building 766, Floor 12",3,1,2500,Room,308,865,2024-03-01,2024-10-31
+296,"Zamalek, Sphinx Street, Building 930, Floor 11",2,1,2500,House,890,192,2024-03-01,2024-08-30
+297,"Dokki, Sphinx Street, Building 881, Floor 3",2,2,1800,House,275,302,2024-03-01,2024-08-19
+298,"Zamalek, Sphinx Street, Building 7, Floor 5",3,3,2000,Flat,381,709,2024-03-01,2024-07-21
+299,"Dokki, Pyramids Street, Building 619, Floor 7",1,3,2000,Room,359,423,2024-03-01,2024-11-09
+300,"Heliopolis, El Nil Street, Building 160, Floor 10",3,3,1800,Flat,682,844,2024-03-01,2024-07-17
+301,"Heliopolis, Tahrir Street, Building 400, Floor 9",4,3,2200,Flat,586,319,2024-03-01,2024-12-01
+302,"Zamalek, Tahrir Street, Building 607, Floor 13",4,1,3000,House,812,626,2024-03-01,2025-01-04
+303,"Zamalek, Tahrir Street, Building 782, Floor 12",1,1,2000,Room,21,568,2024-03-01,2024-09-05
+304,"Zamalek, El Nil Street, Building 215, Floor 5",4,2,1500,Flat,756,188,2024-03-01,2024-11-27
+305,"Maadi, Pyramids Street, Building 16, Floor 7",4,1,1800,Flat,22,418,2024-03-01,2024-12-25
+306,"Zamalek, Pyramids Street, Building 312, Floor 2",3,3,1800,House,519,725,2024-03-01,2024-07-27
+307,"Heliopolis, Sphinx Street, Building 705, Floor 6",1,1,2500,Flat,910,452,2024-03-01,2024-12-13
+308,"Dokki, Pyramids Street, Building 177, Floor 6",2,1,3000,Flat,353,731,2024-03-01,2024-10-21
+309,"Mohandessin, El Nil Street, Building 18, Floor 10",1,1,2000,Flat,855,789,2024-03-01,2025-02-19
+310,"Dokki, Sphinx Street, Building 311, Floor 9",4,2,3000,Room,34,590,2024-03-01,2024-08-31
+311,"Zamalek, Nile Corniche, Building 446, Floor 1",4,1,2000,Room,834,128,2024-03-01,2024-11-15
+312,"Heliopolis, Nile Corniche, Building 437, Floor 8",2,2,2800,Flat,461,354,2024-03-01,2024-11-24
+313,"Dokki, Pyramids Street, Building 196, Floor 12",1,3,1500,Room,355,426,2024-03-01,2024-11-15
+314,"Zamalek, Tahrir Street, Building 503, Floor 9",1,1,2800,Room,730,443,2024-03-01,2024-11-18
+315,"Zamalek, Sphinx Street, Building 296, Floor 13",4,1,2000,House,382,715,2024-03-01,2024-11-19
+316,"Heliopolis, Tahrir Street, Building 119, Floor 8",3,3,1800,House,373,907,2024-03-01,2024-11-21
+317,"Zamalek, El Nil Street, Building 871, Floor 9",3,2,2200,House,71,541,2024-03-01,2024-12-11
+318,"Heliopolis, Tahrir Street, Building 604, Floor 7",1,2,1500,House,448,580,2024-03-01,2025-01-27
+319,"Dokki, El Nil Street, Building 962, Floor 3",2,3,2500,Room,87,808,2024-03-01,2024-12-07
+320,"Zamalek, Tahrir Street, Building 282, Floor 6",2,2,3000,Room,984,840,2024-03-01,2024-06-28
+321,"Heliopolis, Sphinx Street, Building 163, Floor 12",2,2,2500,House,825,512,2024-03-01,2024-08-27
+322,"Zamalek, Nile Corniche, Building 937, Floor 12",2,1,2200,Room,930,487,2024-03-01,2024-12-04
+323,"Maadi, Tahrir Street, Building 998, Floor 11",1,3,2200,Room,6,821,2024-03-01,2024-08-24
+324,"Maadi, Sphinx Street, Building 772, Floor 6",3,3,1800,Room,999,949,2024-03-01,2024-09-01
+325,"Maadi, El Nil Street, Building 159, Floor 10",2,3,2000,Room,97,276,2024-03-01,2024-08-14
+326,"Heliopolis, Sphinx Street, Building 898, Floor 10",3,1,1500,House,453,800,2024-03-01,2024-11-30
+327,"Maadi, Pyramids Street, Building 714, Floor 7",2,1,1500,House,502,816,2024-03-01,2025-02-21
+328,"Maadi, Nile Corniche, Building 789, Floor 11",3,1,2000,Room,547,925,2024-03-01,2025-01-06
+329,"Heliopolis, Nile Corniche, Building 263, Floor 7",3,3,2000,House,61,111,2024-03-01,2024-10-07
+330,"Heliopolis, Tahrir Street, Building 610, Floor 6",2,3,2500,Room,2,456,2024-03-01,2025-02-27
+331,"Heliopolis, El Nil Street, Building 216, Floor 12",3,2,2200,Flat,557,288,2024-03-01,2024-08-23
+332,"Zamalek, Pyramids Street, Building 518, Floor 4",3,3,1500,Flat,477,699,2024-03-01,2024-07-13
+333,"Zamalek, El Nil Street, Building 57, Floor 12",1,3,1800,Flat,663,946,2024-03-01,2025-01-02
+334,"Heliopolis, Nile Corniche, Building 267, Floor 1",1,3,1800,House,530,870,2024-03-01,2024-07-14
+335,"Maadi, El Nil Street, Building 406, Floor 3",3,1,2800,Room,931,57,2024-03-01,2024-08-27
+336,"Maadi, El Nil Street, Building 656, Floor 12",2,3,1800,Flat,121,114,2024-03-01,2024-10-13
+337,"Heliopolis, Sphinx Street, Building 916, Floor 3",3,2,1500,Flat,125,39,2024-03-01,2024-10-20
+338,"Dokki, Nile Corniche, Building 949, Floor 1",1,1,3000,Room,675,32,2024-03-01,2024-06-17
+339,"Mohandessin, Pyramids Street, Building 176, Floor 4",2,1,2200,Room,878,737,2024-03-01,2025-01-06
+340,"Maadi, El Nil Street, Building 306, Floor 4",4,2,1800,House,364,148,2024-03-01,2024-08-04
+341,"Heliopolis, Sphinx Street, Building 248, Floor 3",3,1,2200,Flat,623,891,2024-03-01,2024-07-22
+342,"Dokki, Tahrir Street, Building 887, Floor 9",3,1,2000,House,485,817,2024-03-01,2024-08-10
+343,"Dokki, Sphinx Street, Building 123, Floor 8",2,2,2800,Room,783,721,2024-03-01,2024-06-13
+344,"Heliopolis, Sphinx Street, Building 882, Floor 9",3,3,1800,Flat,261,411,2024-03-01,2024-08-08
+345,"Heliopolis, Pyramids Street, Building 433, Floor 8",4,2,1800,Room,7,786,2024-03-01,2025-02-18
+346,"Zamalek, El Nil Street, Building 492, Floor 10",2,1,1800,Flat,899,863,2024-03-01,2024-07-23
+347,"Dokki, Pyramids Street, Building 287, Floor 1",4,1,2500,Flat,184,133,2024-03-01,2025-02-20
+348,"Heliopolis, Pyramids Street, Building 726, Floor 9",1,1,2000,Room,787,903,2024-03-01,2024-12-18
+349,"Zamalek, Tahrir Street, Building 861, Floor 5",3,1,1500,House,348,986,2024-03-01,2024-11-16
+350,"Mohandessin, Sphinx Street, Building 636, Floor 11",2,1,2000,Room,934,770,2024-03-01,2024-11-24
+351,"Maadi, Sphinx Street, Building 145, Floor 12",2,3,2800,Room,649,143,2024-03-01,2024-10-04
+352,"Dokki, Pyramids Street, Building 377, Floor 13",3,2,2000,Room,758,162,2024-03-01,2024-07-26
+353,"Zamalek, Sphinx Street, Building 522, Floor 4",1,3,1800,House,328,141,2024-03-01,2024-06-30
+354,"Dokki, Pyramids Street, Building 812, Floor 9",1,1,1800,House,555,161,2024-03-01,2024-08-19
+355,"Dokki, Tahrir Street, Building 317, Floor 7",1,1,1500,House,583,886,2024-03-01,2025-02-22
+356,"Mohandessin, Pyramids Street, Building 596, Floor 2",4,3,1800,Room,576,109,2024-03-01,2024-07-03
+357,"Dokki, Nile Corniche, Building 998, Floor 11",4,3,1500,House,614,251,2024-03-01,2024-06-07
+358,"Dokki, Pyramids Street, Building 631, Floor 6",2,3,1800,Room,759,307,2024-03-01,2024-10-29
+359,"Maadi, Tahrir Street, Building 514, Floor 7",2,1,2500,Room,72,208,2024-03-01,2024-08-20
+360,"Dokki, Tahrir Street, Building 29, Floor 9",3,2,3000,Room,416,312,2024-03-01,2024-11-26
+361,"Maadi, Sphinx Street, Building 315, Floor 6",2,3,2000,Flat,664,750,2024-03-01,2024-06-30
+362,"Dokki, Tahrir Street, Building 830, Floor 3",3,1,1500,Room,303,654,2024-03-01,2024-11-16
+363,"Dokki, Pyramids Street, Building 704, Floor 8",2,3,2200,Room,883,92,2024-03-01,2025-02-15
+364,"Mohandessin, El Nil Street, Building 976, Floor 1",4,2,2500,House,433,515,2024-03-01,2024-07-24
+365,"Maadi, Sphinx Street, Building 494, Floor 2",4,2,2800,House,279,364,2024-03-01,2025-01-13
+366,"Dokki, Nile Corniche, Building 951, Floor 6",4,1,2000,Flat,392,417,2024-03-01,2024-09-28
+367,"Dokki, Nile Corniche, Building 747, Floor 7",3,3,2000,House,468,66,2024-03-01,2025-01-06
+368,"Maadi, El Nil Street, Building 169, Floor 4",1,3,1800,Room,625,704,2024-03-01,2024-09-25
+369,"Dokki, Tahrir Street, Building 281, Floor 10",3,1,1500,House,289,950,2024-03-01,2025-01-05
+370,"Heliopolis, Nile Corniche, Building 610, Floor 2",2,3,2000,House,569,283,2024-03-01,2024-09-18
+371,"Zamalek, Pyramids Street, Building 261, Floor 11",2,3,1800,Flat,826,93,2024-03-01,2025-02-20
+372,"Zamalek, Nile Corniche, Building 556, Floor 4",3,2,3000,House,543,857,2024-03-01,2024-07-18
+373,"Zamalek, Pyramids Street, Building 940, Floor 12",2,3,2500,Room,45,151,2024-03-01,2025-02-13
+374,"Maadi, Tahrir Street, Building 351, Floor 2",2,2,1500,Flat,145,716,2024-03-01,2024-08-23
+375,"Dokki, Nile Corniche, Building 16, Floor 8",2,2,1500,Flat,221,137,2024-03-01,2024-06-17
+376,"Dokki, Nile Corniche, Building 254, Floor 4",2,1,2500,Flat,432,62,2024-03-01,2024-10-26
+377,"Zamalek, Tahrir Street, Building 330, Floor 11",1,1,3000,Room,523,274,2024-03-01,2024-08-07
+378,"Dokki, Sphinx Street, Building 612, Floor 9",1,1,2000,Flat,753,874,2024-03-01,2025-01-28
+379,"Zamalek, Tahrir Street, Building 334, Floor 13",2,1,1500,Room,712,881,2024-03-01,2024-10-20
+380,"Zamalek, Nile Corniche, Building 101, Floor 9",4,2,1800,Flat,667,962,2024-03-01,2025-01-12
+381,"Mohandessin, Sphinx Street, Building 1, Floor 6",1,2,1500,Flat,561,642,2024-03-01,2024-06-30
+382,"Zamalek, Pyramids Street, Building 861, Floor 6",3,1,3000,Room,760,474,2024-03-01,2024-05-30
+383,"Maadi, El Nil Street, Building 521, Floor 3",1,2,1500,Flat,213,648,2024-03-01,2024-06-03
+384,"Heliopolis, Tahrir Street, Building 599, Floor 13",1,3,2000,Flat,585,575,2024-03-01,2024-06-20
+385,"Mohandessin, El Nil Street, Building 509, Floor 3",1,3,2800,House,983,218,2024-03-01,2024-10-08
+386,"Zamalek, Tahrir Street, Building 338, Floor 5",4,2,1800,House,829,913,2024-03-01,2024-11-12
+387,"Zamalek, El Nil Street, Building 466, Floor 10",4,3,3000,Room,41,536,2024-03-01,2024-10-15
+388,"Maadi, El Nil Street, Building 432, Floor 3",3,1,2800,Room,986,55,2024-03-01,2024-08-17
+389,"Maadi, Tahrir Street, Building 435, Floor 3",3,2,2800,House,312,313,2024-03-01,2024-12-14
+390,"Dokki, Tahrir Street, Building 148, Floor 12",4,3,1500,Room,169,547,2024-03-01,2024-12-10
+391,"Mohandessin, El Nil Street, Building 324, Floor 5",1,3,2800,Flat,481,138,2024-03-01,2025-02-22
+392,"Zamalek, Sphinx Street, Building 415, Floor 6",1,2,1500,House,570,746,2024-03-01,2025-01-07
+393,"Mohandessin, Nile Corniche, Building 56, Floor 12",2,1,1800,Flat,192,867,2024-03-01,2024-12-22
+394,"Heliopolis, Pyramids Street, Building 579, Floor 3",3,3,3000,Flat,815,766,2024-03-01,2024-12-08
+395,"Mohandessin, Tahrir Street, Building 590, Floor 2",4,1,1800,Flat,694,358,2024-03-01,2024-11-23
+396,"Dokki, Sphinx Street, Building 92, Floor 10",3,3,2000,Flat,415,304,2024-03-01,2024-10-02
+397,"Heliopolis, Nile Corniche, Building 534, Floor 3",1,1,2500,House,409,514,2024-03-01,2024-09-01
+398,"Mohandessin, Tahrir Street, Building 395, Floor 2",1,1,2800,House,620,719,2024-03-01,2024-10-19
+399,"Zamalek, Sphinx Street, Building 928, Floor 2",1,3,2500,Room,112,342,2024-03-01,2024-11-22
+400,"Maadi, El Nil Street, Building 916, Floor 13",2,1,1500,Flat,540,944,2024-03-01,2024-09-22
+401,"Mohandessin, El Nil Street, Building 168, Floor 4",2,2,1500,Room,589,872,2024-03-01,2024-09-16
+402,"Dokki, El Nil Street, Building 331, Floor 8",4,3,1500,House,60,398,2024-03-01,2024-06-16
+403,"Heliopolis, Sphinx Street, Building 127, Floor 6",1,1,2000,Flat,429,833,2024-03-01,2024-09-25
+404,"Maadi, El Nil Street, Building 893, Floor 12",4,3,2000,House,905,168,2024-03-01,2024-12-03
+405,"Maadi, Sphinx Street, Building 796, Floor 8",3,3,2000,House,483,562,2024-03-01,2025-02-12
+406,"Heliopolis, Sphinx Street, Building 721, Floor 1",3,1,2200,House,532,714,2024-03-01,2024-08-12
+407,"Dokki, Tahrir Street, Building 690, Floor 8",4,1,1800,Flat,764,56,2024-03-01,2024-12-17
+408,"Zamalek, Nile Corniche, Building 96, Floor 12",4,3,1800,House,84,656,2024-03-01,2024-07-02
+409,"Heliopolis, Sphinx Street, Building 610, Floor 2",4,1,2200,Flat,808,28,2024-03-01,2024-11-25
+410,"Heliopolis, Tahrir Street, Building 976, Floor 13",1,1,2800,Flat,811,101,2024-03-01,2024-07-07
+411,"Heliopolis, El Nil Street, Building 509, Floor 10",2,2,1800,Flat,186,299,2024-03-01,2024-11-09
+412,"Heliopolis, Nile Corniche, Building 388, Floor 7",1,2,2800,House,747,620,2024-03-01,2024-10-12
+413,"Mohandessin, El Nil Street, Building 103, Floor 11",1,2,1500,House,180,479,2024-03-01,2024-06-19
+414,"Zamalek, Sphinx Street, Building 482, Floor 4",2,3,2200,House,9,341,2024-03-01,2025-01-21
+415,"Mohandessin, Sphinx Street, Building 738, Floor 2",1,2,2000,House,662,593,2024-03-01,2024-11-20
+416,"Maadi, Pyramids Street, Building 205, Floor 8",2,2,1500,Room,964,577,2024-03-01,2024-08-02
+417,"Dokki, Pyramids Street, Building 182, Floor 5",3,2,1500,Flat,979,80,2024-03-01,2025-01-23
+418,"Zamalek, Tahrir Street, Building 459, Floor 13",1,1,1800,House,376,558,2024-03-01,2025-01-23
+419,"Dokki, Tahrir Street, Building 437, Floor 6",4,2,2500,Room,479,53,2024-03-01,2024-12-15
+420,"Heliopolis, Nile Corniche, Building 196, Floor 11",3,3,2800,Room,245,70,2024-03-01,2024-11-14
+421,"Maadi, Sphinx Street, Building 596, Floor 13",4,3,3000,Room,450,173,2024-03-01,2024-10-08
+422,"Maadi, Pyramids Street, Building 839, Floor 10",3,3,2000,House,319,805,2024-03-01,2024-08-13
+423,"Zamalek, Sphinx Street, Building 479, Floor 12",3,2,2000,Flat,646,230,2024-03-01,2025-01-10
+424,"Dokki, Tahrir Street, Building 222, Floor 10",1,2,2200,House,471,448,2024-03-01,2024-12-14
+425,"Heliopolis, Sphinx Street, Building 674, Floor 11",2,3,2800,Flat,54,12,2024-03-01,2024-11-24
+426,"Zamalek, Sphinx Street, Building 660, Floor 1",3,1,1800,Room,223,334,2024-03-01,2024-12-03
+427,"Heliopolis, Nile Corniche, Building 803, Floor 3",4,2,2200,House,637,771,2024-03-01,2025-02-07
+428,"Dokki, Sphinx Street, Building 511, Floor 6",4,1,2800,House,852,735,2024-03-01,2025-01-04
+429,"Mohandessin, Pyramids Street, Building 730, Floor 8",4,2,2500,Flat,156,85,2024-03-01,2024-11-23
+430,"Mohandessin, Tahrir Street, Building 192, Floor 11",4,3,2200,House,410,318,2024-03-01,2024-08-15
+431,"Zamalek, Sphinx Street, Building 715, Floor 1",2,3,1800,Room,773,595,2024-03-01,2025-02-26
+432,"Mohandessin, Nile Corniche, Building 220, Floor 5",3,3,1500,Room,510,742,2024-03-01,2025-02-28
+433,"Dokki, El Nil Street, Building 638, Floor 12",2,1,3000,Flat,658,741,2024-03-01,2025-01-19
+434,"Mohandessin, Pyramids Street, Building 533, Floor 8",2,1,2200,Flat,575,222,2024-03-01,2024-10-08
+435,"Mohandessin, Nile Corniche, Building 304, Floor 2",3,3,1500,Room,163,175,2024-03-01,2025-02-22
+436,"Heliopolis, Nile Corniche, Building 692, Floor 10",1,3,2500,Room,57,457,2024-03-01,2024-08-19
+437,"Mohandessin, Tahrir Street, Building 329, Floor 3",2,3,2500,House,609,528,2024-03-01,2024-12-10
+438,"Mohandessin, Sphinx Street, Building 656, Floor 9",4,2,3000,Flat,693,470,2024-03-01,2024-12-01
+439,"Mohandessin, El Nil Street, Building 313, Floor 2",2,3,2200,Room,420,909,2024-03-01,2024-10-09
+440,"Mohandessin, Pyramids Street, Building 989, Floor 6",3,3,1800,Room,294,926,2024-03-01,2025-02-20
+441,"Mohandessin, Pyramids Street, Building 276, Floor 13",1,3,3000,Flat,720,412,2024-03-01,2024-09-15
+442,"Dokki, El Nil Street, Building 848, Floor 11",4,2,2800,Room,588,60,2024-03-01,2025-01-09
+443,"Zamalek, Pyramids Street, Building 526, Floor 8",2,3,2500,Room,880,385,2024-03-01,2024-06-21
+444,"Dokki, Nile Corniche, Building 135, Floor 5",4,1,3000,Flat,590,19,2024-03-01,2024-08-08
+445,"Maadi, Pyramids Street, Building 240, Floor 9",2,1,2200,Flat,500,194,2024-03-01,2025-02-21
+446,"Maadi, Nile Corniche, Building 620, Floor 5",2,3,1500,House,12,540,2024-03-01,2024-09-05
+447,"Mohandessin, El Nil Street, Building 162, Floor 8",1,1,2800,House,178,160,2024-03-01,2024-06-11
+448,"Zamalek, Nile Corniche, Building 625, Floor 8",4,1,2000,House,53,115,2024-03-01,2024-06-16
+449,"Zamalek, Tahrir Street, Building 918, Floor 11",3,1,2500,Flat,396,640,2024-03-01,2024-07-29
+450,"Zamalek, Sphinx Street, Building 560, Floor 11",4,1,1500,House,794,556,2024-03-01,2024-08-21
+451,"Dokki, Nile Corniche, Building 648, Floor 11",1,3,2800,Flat,856,94,2024-03-01,2024-06-08
+452,"Zamalek, Nile Corniche, Building 332, Floor 13",3,3,1500,Flat,633,807,2024-03-01,2024-11-06
+453,"Maadi, Sphinx Street, Building 306, Floor 3",1,2,2000,Flat,27,65,2024-03-01,2024-12-28
+454,"Dokki, Nile Corniche, Building 588, Floor 6",3,1,2500,House,947,217,2024-03-01,2024-06-26
+455,"Dokki, Pyramids Street, Building 742, Floor 13",1,2,1800,House,736,753,2024-03-01,2024-07-16
+456,"Dokki, El Nil Street, Building 497, Floor 1",3,1,1500,Room,874,607,2024-03-01,2024-09-17
+457,"Heliopolis, El Nil Street, Building 430, Floor 2",3,2,2000,House,969,727,2024-03-01,2024-06-10
+458,"Dokki, El Nil Street, Building 36, Floor 11",1,1,2200,Flat,28,34,2024-03-01,2025-02-05
+459,"Zamalek, Tahrir Street, Building 388, Floor 7",3,1,1800,Flat,904,252,2024-03-01,2024-11-22
+460,"Mohandessin, Pyramids Street, Building 188, Floor 1",4,1,3000,Room,436,200,2024-03-01,2024-12-14
+461,"Zamalek, Pyramids Street, Building 631, Floor 2",2,2,1500,House,853,343,2024-03-01,2025-01-08
+462,"Maadi, Tahrir Street, Building 103, Floor 11",3,1,1500,Flat,357,437,2024-03-01,2024-09-28
+463,"Maadi, Nile Corniche, Building 852, Floor 5",1,3,3000,Flat,906,569,2024-03-01,2024-08-08
+464,"Dokki, Sphinx Street, Building 311, Floor 6",1,1,2800,Room,325,280,2024-03-01,2024-06-29
+465,"Mohandessin, Nile Corniche, Building 400, Floor 3",3,1,1500,House,214,103,2024-03-01,2025-02-09
+466,"Mohandessin, Tahrir Street, Building 267, Floor 1",1,2,2200,Flat,887,265,2024-03-01,2024-08-01
+467,"Maadi, El Nil Street, Building 40, Floor 3",2,3,2500,Room,386,627,2024-03-01,2024-07-22
+468,"Zamalek, Pyramids Street, Building 631, Floor 13",2,3,2200,Flat,117,688,2024-03-01,2024-12-03
+469,"Maadi, Pyramids Street, Building 546, Floor 4",4,2,1500,Flat,593,665,2024-03-01,2024-07-30
+470,"Dokki, Tahrir Street, Building 927, Floor 7",1,2,2200,Room,148,394,2024-03-01,2025-02-27
+471,"Heliopolis, El Nil Street, Building 856, Floor 3",4,2,2200,Flat,685,832,2024-03-01,2025-01-04
+472,"Dokki, Pyramids Street, Building 907, Floor 9",2,1,1500,House,752,723,2024-03-01,2025-02-08
+473,"Dokki, El Nil Street, Building 464, Floor 2",4,2,1500,Flat,613,827,2024-03-01,2024-08-14
+474,"Zamalek, Nile Corniche, Building 686, Floor 3",3,3,3000,House,249,235,2024-03-01,2024-08-01
+475,"Maadi, El Nil Street, Building 835, Floor 13",2,3,2800,House,50,876,2024-03-01,2024-11-01
+476,"Mohandessin, El Nil Street, Building 908, Floor 7",1,2,1800,Flat,241,679,2024-03-01,2024-10-12
+477,"Dokki, Pyramids Street, Building 175, Floor 9",2,3,2500,House,444,306,2024-03-01,2025-02-24
+478,"Maadi, Tahrir Street, Building 562, Floor 5",2,1,1800,House,809,657,2024-03-01,2024-10-05
+479,"Heliopolis, El Nil Street, Building 759, Floor 4",1,1,2000,Room,204,978,2024-03-01,2025-01-31
+480,"Zamalek, Sphinx Street, Building 325, Floor 13",1,1,2500,House,106,195,2024-03-01,2025-01-29
+481,"Dokki, Nile Corniche, Building 973, Floor 7",2,3,2200,Room,171,33,2024-03-01,2024-11-23
+482,"Dokki, Sphinx Street, Building 75, Floor 12",1,1,1800,Flat,665,769,2024-03-01,2025-02-16
+483,"Zamalek, Sphinx Street, Building 766, Floor 12",4,2,2800,Flat,127,414,2024-03-01,2025-01-30
+484,"Maadi, Nile Corniche, Building 160, Floor 4",2,1,2000,Room,819,972,2024-03-01,2025-02-02
+485,"Maadi, El Nil Street, Building 220, Floor 12",4,2,2800,Flat,690,924,2024-03-01,2025-02-20
+486,"Dokki, Sphinx Street, Building 84, Floor 3",4,3,3000,Room,455,589,2024-03-01,2024-09-13
+487,"Dokki, Pyramids Street, Building 9, Floor 8",4,3,2000,Flat,848,238,2024-03-01,2024-06-18
+488,"Maadi, Nile Corniche, Building 101, Floor 12",4,3,1800,Room,118,623,2024-03-01,2024-11-02
+489,"Dokki, Sphinx Street, Building 811, Floor 7",4,1,2800,Room,313,243,2024-03-01,2024-09-27
+490,"Maadi, Tahrir Street, Building 143, Floor 5",1,3,2500,House,457,282,2024-03-01,2024-12-18
+491,"Maadi, Tahrir Street, Building 52, Floor 5",1,1,3000,Flat,77,361,2024-03-01,2024-08-07
+492,"Maadi, Tahrir Street, Building 977, Floor 10",4,1,1500,Flat,551,391,2024-03-01,2025-02-26
+493,"Zamalek, El Nil Street, Building 983, Floor 8",4,3,2200,Room,445,223,2024-03-01,2024-12-14
+494,"Heliopolis, Tahrir Street, Building 796, Floor 7",3,3,3000,Flat,727,460,2024-03-01,2024-06-25
+495,"Mohandessin, Tahrir Street, Building 670, Floor 11",4,3,2500,House,309,91,2024-03-01,2024-08-11
+496,"Dokki, Tahrir Street, Building 464, Floor 13",1,1,3000,Room,835,54,2024-03-01,2025-01-16
+497,"Maadi, El Nil Street, Building 201, Floor 13",4,3,1800,Room,403,387,2024-03-01,2024-12-16
+498,"Mohandessin, Tahrir Street, Building 638, Floor 10",4,1,2800,Flat,873,900,2024-03-01,2024-08-28
+499,"Dokki, Sphinx Street, Building 855, Floor 13",4,3,2500,Room,438,649,2024-03-01,2024-11-18
+500,"Heliopolis, Tahrir Street, Building 144, Floor 4",1,2,1500,Flat,354,396,2024-03-01,2025-01-12
+501,"Maadi, Sphinx Street, Building 516, Floor 4",4,2,1500,Room,306,61,2024-03-01,2025-01-17
+502,"Zamalek, Sphinx Street, Building 612, Floor 1",1,2,2200,Room,997,910,2024-03-01,2024-07-31
+503,"Zamalek, Pyramids Street, Building 260, Floor 8",2,2,2800,Room,108,980,2024-03-01,2024-12-09
+504,"Dokki, El Nil Street, Building 460, Floor 10",3,3,2800,House,605,380,2024-03-01,2024-12-31
+505,"Dokki, El Nil Street, Building 72, Floor 7",4,3,2000,Flat,346,888,2024-03-01,2024-12-10
+506,"Maadi, Tahrir Street, Building 669, Floor 9",3,1,3000,House,439,670,2024-03-01,2025-01-31
+507,"Zamalek, Pyramids Street, Building 181, Floor 9",2,2,2500,House,958,451,2024-03-01,2024-10-25
+508,"Zamalek, El Nil Street, Building 164, Floor 1",2,2,2500,Flat,774,837,2024-03-01,2024-12-10
+509,"Zamalek, El Nil Street, Building 531, Floor 11",3,3,1800,Room,772,873,2024-03-01,2024-08-27
+510,"Zamalek, Sphinx Street, Building 725, Floor 12",4,1,2500,Flat,258,1,2024-03-01,2024-11-22
+511,"Heliopolis, Tahrir Street, Building 121, Floor 10",1,3,2000,House,220,67,2024-03-01,2024-08-08
+512,"Maadi, El Nil Street, Building 641, Floor 6",4,2,3000,Flat,738,236,2024-03-01,2024-12-26
+513,"Maadi, Pyramids Street, Building 978, Floor 4",4,1,1500,House,15,260,2024-03-01,2025-02-17
+514,"Heliopolis, El Nil Street, Building 427, Floor 8",2,1,2000,Flat,683,285,2024-03-01,2025-01-04
+515,"Mohandessin, Pyramids Street, Building 604, Floor 9",3,2,1500,Room,621,469,2024-03-01,2024-12-12
+516,"Heliopolis, El Nil Street, Building 359, Floor 1",3,1,1800,House,256,90,2024-03-01,2024-06-16
+517,"Heliopolis, Tahrir Street, Building 58, Floor 8",3,1,2000,House,598,784,2024-03-01,2024-12-02
+518,"Maadi, Sphinx Street, Building 551, Floor 12",4,1,1800,Room,458,983,2024-03-01,2024-12-31
+519,"Maadi, Pyramids Street, Building 717, Floor 2",1,1,3000,House,146,117,2024-03-01,2024-06-04
+520,"Maadi, El Nil Street, Building 39, Floor 9",2,3,3000,House,298,922,2024-03-01,2025-01-29
+521,"Zamalek, Nile Corniche, Building 890, Floor 10",4,2,2800,Flat,239,814,2024-03-01,2024-06-08
+522,"Maadi, Nile Corniche, Building 353, Floor 13",4,2,2800,House,160,726,2024-03-01,2024-10-14
+523,"Heliopolis, Nile Corniche, Building 438, Floor 2",3,2,1800,Room,493,509,2024-03-01,2024-12-18
+524,"Maadi, Pyramids Street, Building 475, Floor 2",3,1,2200,House,26,311,2024-03-01,2024-11-18
+525,"Zamalek, Sphinx Street, Building 567, Floor 12",3,2,2800,House,478,145,2024-03-01,2025-02-24
+526,"Dokki, El Nil Street, Building 892, Floor 6",2,2,2800,House,37,203,2024-03-01,2024-11-18
+527,"Dokki, El Nil Street, Building 846, Floor 2",1,2,2200,House,407,246,2024-03-01,2025-02-25
+528,"Heliopolis, Nile Corniche, Building 232, Floor 13",3,3,3000,Room,347,841,2024-03-01,2024-08-27
+529,"Zamalek, Tahrir Street, Building 430, Floor 5",4,2,2000,House,391,360,2024-03-01,2024-10-09
+530,"Mohandessin, Nile Corniche, Building 752, Floor 2",2,1,2800,Flat,498,403,2024-03-01,2024-12-28
+531,"Mohandessin, Tahrir Street, Building 209, Floor 5",4,3,2500,House,288,485,2024-03-01,2024-10-28
+532,"Heliopolis, Sphinx Street, Building 829, Floor 1",4,2,1800,Flat,845,245,2024-03-01,2024-09-02
+533,"Mohandessin, Pyramids Street, Building 656, Floor 9",2,1,2800,Flat,707,330,2024-03-01,2024-10-07
+534,"Maadi, Pyramids Street, Building 479, Floor 7",2,2,1800,House,789,917,2024-03-01,2024-05-31
+535,"Maadi, Nile Corniche, Building 152, Floor 9",3,3,1500,Room,88,519,2024-03-01,2024-11-15
+536,"Maadi, Tahrir Street, Building 484, Floor 4",1,1,2000,House,726,616,2024-03-01,2025-02-26
+537,"Zamalek, Nile Corniche, Building 216, Floor 1",1,1,1800,Flat,542,755,2024-03-01,2025-01-16
+538,"Heliopolis, Pyramids Street, Building 325, Floor 1",2,3,1800,House,343,842,2024-03-01,2024-11-25
+539,"Zamalek, Tahrir Street, Building 922, Floor 1",1,3,2800,Room,611,365,2024-03-01,2024-11-27
+540,"Mohandessin, El Nil Street, Building 376, Floor 6",1,2,2800,Room,955,262,2024-03-01,2025-01-07
+541,"Maadi, Sphinx Street, Building 117, Floor 8",2,2,2800,Flat,884,118,2024-03-01,2024-11-02
+542,"Maadi, Pyramids Street, Building 723, Floor 3",1,3,2800,Flat,893,106,2024-03-01,2024-09-29
+543,"Dokki, Nile Corniche, Building 676, Floor 11",3,2,2200,Flat,91,164,2024-03-01,2024-07-18
+544,"Maadi, Pyramids Street, Building 850, Floor 10",1,1,2000,Room,914,419,2024-03-01,2024-10-16
+545,"Maadi, Pyramids Street, Building 231, Floor 9",3,2,2500,Room,650,780,2024-03-01,2024-12-05
+546,"Maadi, Pyramids Street, Building 487, Floor 1",4,3,2000,House,933,934,2024-03-01,2024-09-23
+547,"Heliopolis, Sphinx Street, Building 312, Floor 2",4,3,2000,Room,231,328,2024-03-01,2024-10-04
+548,"Maadi, Sphinx Street, Building 107, Floor 2",2,3,2500,House,340,703,2024-03-01,2024-10-06
+549,"Maadi, Pyramids Street, Building 960, Floor 2",3,1,1500,Room,869,488,2024-03-01,2024-11-28
+550,"Heliopolis, Nile Corniche, Building 167, Floor 4",4,3,2500,House,82,663,2024-03-01,2024-12-11
+551,"Dokki, Sphinx Street, Building 902, Floor 6",2,3,1500,Room,494,197,2024-03-01,2024-12-12
+552,"Zamalek, El Nil Street, Building 628, Floor 13",3,3,1500,Flat,397,927,2024-03-01,2024-06-09
+553,"Dokki, Nile Corniche, Building 827, Floor 11",4,3,2200,House,466,712,2024-03-01,2024-06-18
+554,"Heliopolis, Pyramids Street, Building 283, Floor 6",2,3,3000,Room,219,88,2024-03-01,2024-10-22
+555,"Heliopolis, Tahrir Street, Building 472, Floor 13",3,2,2500,Flat,765,267,2024-03-01,2024-08-28
+556,"Maadi, El Nil Street, Building 38, Floor 6",4,1,1800,Room,858,374,2024-03-01,2024-10-08
+557,"Mohandessin, Tahrir Street, Building 96, Floor 13",2,1,1500,House,427,393,2024-03-01,2024-07-04
+558,"Mohandessin, Nile Corniche, Building 717, Floor 7",3,1,2200,House,697,336,2024-03-01,2024-12-04
+559,"Maadi, Sphinx Street, Building 22, Floor 3",3,2,2500,Flat,788,643,2024-03-01,2024-10-10
+560,"Dokki, Sphinx Street, Building 845, Floor 1",3,3,1800,Flat,235,975,2024-03-01,2024-12-25
+561,"Mohandessin, Sphinx Street, Building 66, Floor 3",2,2,2500,Flat,841,598,2024-03-01,2024-08-15
+562,"Mohandessin, El Nil Street, Building 623, Floor 5",4,1,2800,Room,472,139,2024-03-01,2024-10-14
+563,"Maadi, Sphinx Street, Building 616, Floor 3",2,2,2000,Flat,777,400,2024-03-01,2024-07-23
+564,"Mohandessin, Sphinx Street, Building 902, Floor 1",4,1,1500,House,844,732,2024-03-01,2025-01-10
+565,"Heliopolis, Nile Corniche, Building 315, Floor 6",1,2,2500,House,522,525,2024-03-01,2024-12-28
+566,"Heliopolis, El Nil Street, Building 932, Floor 7",1,3,2200,Flat,989,713,2024-03-01,2024-11-07
+567,"Heliopolis, Sphinx Street, Building 590, Floor 4",2,2,1800,Room,705,756,2024-03-01,2024-09-17
+568,"Zamalek, Nile Corniche, Building 467, Floor 5",1,2,2200,Room,253,866,2024-03-01,2024-12-03
+569,"Dokki, El Nil Street, Building 960, Floor 2",2,2,2000,Flat,734,954,2024-03-01,2025-02-22
+570,"Dokki, Sphinx Street, Building 487, Floor 1",1,1,1500,House,5,653,2024-03-01,2024-10-17
+571,"Mohandessin, Sphinx Street, Building 951, Floor 4",3,3,1800,Room,332,846,2024-03-01,2024-07-25
+572,"Zamalek, Pyramids Street, Building 399, Floor 12",1,3,2500,Room,3,914,2024-03-01,2025-02-14
+573,"Heliopolis, Tahrir Street, Building 93, Floor 12",3,3,2200,Flat,879,517,2024-03-01,2024-10-25
+574,"Dokki, Nile Corniche, Building 273, Floor 9",4,3,2800,Room,400,701,2024-03-01,2025-01-17
+575,"Dokki, Pyramids Street, Building 979, Floor 2",3,2,3000,House,900,845,2024-03-01,2024-11-14
+576,"Heliopolis, El Nil Street, Building 373, Floor 4",2,2,1500,Flat,473,335,2024-03-01,2024-10-30
+577,"Dokki, Sphinx Street, Building 299, Floor 12",3,2,1500,Room,717,591,2024-03-01,2025-01-13
+578,"Zamalek, El Nil Street, Building 507, Floor 2",3,1,2800,Flat,533,563,2024-03-01,2025-01-29
+579,"Dokki, Pyramids Street, Building 831, Floor 9",2,2,2200,Flat,833,466,2024-03-01,2025-01-26
+580,"Heliopolis, Tahrir Street, Building 421, Floor 3",4,1,2000,Flat,775,289,2024-03-01,2024-08-19
+581,"Dokki, El Nil Street, Building 363, Floor 4",4,2,2200,Room,345,193,2024-03-01,2024-08-25
+582,"Heliopolis, Nile Corniche, Building 912, Floor 9",1,3,2200,Flat,550,887,2024-03-01,2025-02-10
+583,"Zamalek, Pyramids Street, Building 737, Floor 7",1,1,3000,Flat,338,850,2024-03-01,2025-02-24
+584,"Zamalek, Tahrir Street, Building 61, Floor 1",3,3,2500,Room,618,507,2024-03-01,2024-11-28
+585,"Heliopolis, El Nil Street, Building 947, Floor 6",1,1,1800,Room,495,565,2024-03-01,2024-09-01
+586,"Heliopolis, Sphinx Street, Building 546, Floor 8",4,1,2500,Room,778,59,2024-03-01,2024-10-03
+587,"Zamalek, Tahrir Street, Building 974, Floor 1",3,3,2800,House,278,868,2024-03-01,2024-12-06
+588,"Zamalek, Tahrir Street, Building 798, Floor 9",1,3,1800,Room,452,672,2024-03-01,2024-07-07
+589,"Mohandessin, El Nil Street, Building 611, Floor 3",4,1,2000,Room,302,564,2024-03-01,2025-02-26
+590,"Zamalek, Nile Corniche, Building 580, Floor 8",4,1,2200,House,167,158,2024-03-01,2024-08-19
+591,"Heliopolis, Nile Corniche, Building 749, Floor 7",3,2,1800,Room,740,16,2024-03-01,2024-11-21
+592,"Maadi, Sphinx Street, Building 345, Floor 1",3,1,1800,Flat,430,166,2024-03-01,2024-11-27
+593,"Mohandessin, El Nil Street, Building 330, Floor 7",3,2,3000,Room,861,694,2024-03-01,2024-06-20
+594,"Zamalek, El Nil Street, Building 494, Floor 10",4,1,2200,Flat,209,104,2024-03-01,2024-10-19
+595,"Zamalek, El Nil Street, Building 186, Floor 9",1,1,2200,Room,814,125,2024-03-01,2024-08-03
+596,"Dokki, Tahrir Street, Building 115, Floor 3",2,1,2000,Room,74,706,2024-03-01,2024-06-16
+597,"Dokki, Sphinx Street, Building 98, Floor 4",1,2,2800,Room,48,135,2024-03-01,2024-08-01
+598,"Maadi, Pyramids Street, Building 958, Floor 12",2,2,2200,House,676,76,2024-03-01,2024-09-28
+599,"Mohandessin, Pyramids Street, Building 969, Floor 6",2,2,2000,Room,526,957,2024-03-01,2024-10-30
+600,"Maadi, Sphinx Street, Building 149, Floor 5",1,2,2000,House,247,730,2024-03-01,2024-06-12
+601,"Maadi, Sphinx Street, Building 139, Floor 9",4,3,1800,House,564,773,2024-03-01,2024-06-04
+602,"Dokki, El Nil Street, Building 690, Floor 11",1,2,2000,Flat,95,297,2024-03-01,2024-09-07
+603,"Mohandessin, Nile Corniche, Building 298, Floor 13",3,3,2800,Flat,791,853,2024-03-01,2024-08-23
+604,"Mohandessin, Nile Corniche, Building 269, Floor 12",3,2,1800,Room,388,421,2024-03-01,2024-12-23
+605,"Heliopolis, Tahrir Street, Building 362, Floor 8",3,3,3000,Flat,305,453,2024-03-01,2024-06-10
+606,"Dokki, Sphinx Street, Building 132, Floor 6",4,1,1800,House,352,352,2024-03-01,2024-07-29
+607,"Heliopolis, El Nil Street, Building 965, Floor 5",1,3,2800,House,926,345,2024-03-01,2024-10-16
+608,"Dokki, Tahrir Street, Building 773, Floor 11",1,2,2000,House,912,220,2024-03-01,2024-10-12
+609,"Maadi, Sphinx Street, Building 18, Floor 9",4,1,2500,Flat,394,351,2024-03-01,2024-12-07
+610,"Zamalek, El Nil Street, Building 185, Floor 2",3,2,1800,House,991,2,2024-03-01,2025-02-17
+611,"Heliopolis, Nile Corniche, Building 448, Floor 12",3,3,1500,House,327,331,2024-03-01,2025-01-02
+612,"Heliopolis, Tahrir Street, Building 370, Floor 9",3,2,2000,Room,411,745,2024-03-01,2025-02-15
+613,"Maadi, Pyramids Street, Building 448, Floor 4",1,2,2500,Room,793,172,2024-03-01,2025-02-17
+614,"Mohandessin, El Nil Street, Building 857, Floor 13",3,3,3000,Room,684,693,2024-03-01,2025-02-05
+615,"Mohandessin, Pyramids Street, Building 183, Floor 9",1,1,1500,Room,89,799,2024-03-01,2025-01-25
+616,"Maadi, Tahrir Street, Building 469, Floor 12",4,3,1500,House,55,467,2024-03-01,2025-01-02
+617,"Dokki, El Nil Street, Building 357, Floor 12",4,1,2200,House,323,830,2024-03-01,2024-11-15
+618,"Maadi, Tahrir Street, Building 66, Floor 11",3,2,2000,House,657,809,2024-03-01,2024-11-21
+619,"Maadi, Tahrir Street, Building 368, Floor 5",4,3,2200,Flat,290,660,2024-03-01,2024-10-03
+620,"Dokki, Tahrir Street, Building 180, Floor 3",4,2,3000,Flat,390,471,2024-03-01,2024-07-19
+621,"Dokki, Sphinx Street, Building 658, Floor 4",2,1,2200,Flat,691,369,2024-03-01,2024-11-02
+622,"Zamalek, Sphinx Street, Building 685, Floor 6",1,3,1500,House,270,359,2024-03-01,2024-11-02
+623,"Heliopolis, Tahrir Street, Building 949, Floor 13",1,2,2800,Room,166,327,2024-03-01,2024-11-07
+624,"Dokki, El Nil Street, Building 616, Floor 9",2,3,2000,House,93,631,2024-03-01,2024-11-28
+625,"Heliopolis, El Nil Street, Building 892, Floor 13",1,2,2200,Room,183,227,2024-03-01,2024-08-03
+626,"Zamalek, Tahrir Street, Building 385, Floor 8",2,2,1500,House,179,97,2024-03-01,2025-01-07
+627,"Heliopolis, Pyramids Street, Building 937, Floor 9",1,2,3000,Room,573,338,2024-03-01,2024-07-09
+628,"Dokki, Sphinx Street, Building 189, Floor 2",4,2,2200,Flat,959,150,2024-03-01,2024-06-17
+629,"Mohandessin, Tahrir Street, Building 921, Floor 9",4,3,1500,House,563,287,2024-03-01,2024-07-26
+630,"Maadi, Sphinx Street, Building 795, Floor 11",2,2,1500,Room,168,744,2024-03-01,2025-01-08
+631,"Maadi, Nile Corniche, Building 96, Floor 7",2,1,2200,House,487,444,2024-03-01,2024-07-13
+632,"Maadi, Nile Corniche, Building 518, Floor 6",1,2,3000,Flat,123,743,2024-03-01,2024-10-11
+633,"Maadi, Tahrir Street, Building 278, Floor 9",1,1,2800,Room,374,520,2024-03-01,2024-09-01
+634,"Mohandessin, Sphinx Street, Building 273, Floor 3",1,3,2000,Flat,226,892,2024-03-01,2024-12-04
+635,"Mohandessin, Tahrir Street, Building 502, Floor 4",4,3,1500,Room,30,523,2024-03-01,2024-08-25
+636,"Maadi, El Nil Street, Building 468, Floor 12",3,1,2000,House,771,803,2024-03-01,2025-02-12
+637,"Mohandessin, Sphinx Street, Building 761, Floor 11",1,1,2200,Room,459,542,2024-03-01,2024-11-08
+638,"Zamalek, Tahrir Street, Building 271, Floor 8",4,3,1800,Flat,713,831,2024-03-01,2024-10-10
+639,"Dokki, Nile Corniche, Building 745, Floor 1",2,3,2800,Room,941,501,2024-03-01,2025-01-26
+640,"Dokki, Nile Corniche, Building 361, Floor 5",3,2,1800,House,132,234,2024-03-01,2024-06-16
+641,"Zamalek, Tahrir Street, Building 316, Floor 6",3,1,1800,Room,315,264,2024-03-01,2024-09-08
+642,"Mohandessin, Sphinx Street, Building 402, Floor 6",4,2,2500,Flat,267,134,2024-03-01,2024-12-11
+643,"Mohandessin, Pyramids Street, Building 826, Floor 5",4,1,1800,Room,151,984,2024-03-01,2024-08-17
+644,"Maadi, Nile Corniche, Building 309, Floor 11",4,3,1800,Room,729,275,2024-03-01,2024-12-09
+645,"Zamalek, Tahrir Street, Building 278, Floor 8",2,1,2200,Flat,750,322,2024-03-01,2025-01-09
+646,"Heliopolis, Tahrir Street, Building 99, Floor 8",3,2,1800,Room,767,989,2024-03-01,2024-07-22
+647,"Heliopolis, Tahrir Street, Building 800, Floor 2",4,3,3000,Flat,120,184,2024-03-01,2024-11-28
+648,"Dokki, Nile Corniche, Building 434, Floor 6",2,2,2200,Flat,227,815,2024-03-01,2024-12-11
+649,"Maadi, Pyramids Street, Building 361, Floor 9",1,2,2200,House,966,83,2024-03-01,2024-07-24
+650,"Heliopolis, Pyramids Street, Building 505, Floor 5",2,3,2800,Room,840,765,2024-03-01,2024-08-28
+651,"Mohandessin, Nile Corniche, Building 148, Floor 2",2,3,2000,House,871,301,2024-03-01,2025-02-16
+652,"Maadi, Pyramids Street, Building 575, Floor 8",3,3,1800,House,233,229,2024-03-01,2024-07-13
+653,"Dokki, Pyramids Street, Building 195, Floor 12",1,2,2800,Room,408,233,2024-03-01,2025-02-16
+654,"Maadi, Tahrir Street, Building 159, Floor 8",1,1,2500,House,602,970,2024-03-01,2024-12-02
+655,"Heliopolis, Nile Corniche, Building 535, Floor 12",4,1,2000,Room,919,446,2024-03-01,2024-10-06
+656,"Zamalek, Pyramids Street, Building 265, Floor 11",4,2,2800,Room,64,153,2024-03-01,2024-12-04
+657,"Heliopolis, Sphinx Street, Building 304, Floor 13",2,3,2000,Room,559,632,2024-03-01,2024-12-10
+658,"Heliopolis, El Nil Street, Building 447, Floor 8",2,3,2200,Flat,66,757,2024-03-01,2024-08-14
+659,"Zamalek, El Nil Street, Building 632, Floor 4",3,3,2500,House,891,705,2024-03-01,2025-02-22
+660,"Heliopolis, Nile Corniche, Building 391, Floor 5",3,2,1800,House,164,30,2024-03-01,2024-06-07
+661,"Zamalek, Sphinx Street, Building 408, Floor 11",4,3,1800,House,686,17,2024-03-01,2024-10-10
+662,"Heliopolis, Sphinx Street, Building 897, Floor 6",4,2,1500,Flat,863,707,2024-03-01,2024-06-07
+663,"Dokki, Sphinx Street, Building 567, Floor 13",3,2,2800,Flat,584,427,2024-03-01,2024-08-30
+664,"Dokki, Pyramids Street, Building 708, Floor 1",3,2,1500,Flat,749,257,2024-03-01,2025-01-24
+665,"Maadi, El Nil Street, Building 624, Floor 5",3,3,2500,Flat,706,41,2024-03-01,2024-10-27
+666,"Zamalek, Pyramids Street, Building 693, Floor 5",3,2,2200,Room,872,673,2024-03-01,2024-10-05
+667,"Maadi, El Nil Street, Building 519, Floor 4",4,3,1800,House,721,454,2024-03-01,2025-01-08
+668,"Mohandessin, El Nil Street, Building 297, Floor 1",3,1,2200,House,603,490,2024-03-01,2024-10-17
+669,"Dokki, El Nil Street, Building 215, Floor 11",1,1,2200,Flat,770,132,2024-03-01,2024-08-30
+670,"Maadi, Tahrir Street, Building 666, Floor 11",3,3,1800,Flat,182,40,2024-03-01,2024-08-25
+671,"Heliopolis, Nile Corniche, Building 371, Floor 3",4,2,3000,Flat,49,843,2024-03-01,2024-12-28
+672,"Zamalek, Sphinx Street, Building 749, Floor 2",3,2,2500,Room,911,939,2024-03-01,2024-12-11
+673,"Zamalek, Nile Corniche, Building 657, Floor 9",2,1,3000,Flat,607,543,2024-03-01,2024-08-10
+674,"Mohandessin, Tahrir Street, Building 540, Floor 8",2,1,2800,Room,216,624,2024-03-01,2024-07-14
+675,"Mohandessin, Nile Corniche, Building 229, Floor 9",4,1,2500,House,14,266,2024-03-01,2024-08-19
+676,"Mohandessin, Nile Corniche, Building 701, Floor 13",2,3,1500,Flat,341,465,2024-03-01,2024-11-15
+677,"Mohandessin, Pyramids Street, Building 523, Floor 3",3,1,2800,Room,393,581,2024-03-01,2024-06-07
+678,"Dokki, Sphinx Street, Building 755, Floor 3",4,3,2000,Flat,497,685,2024-03-01,2024-10-06
+679,"Maadi, Tahrir Street, Building 174, Floor 3",4,3,1500,Flat,474,149,2024-03-01,2024-10-27
+680,"Maadi, Tahrir Street, Building 974, Floor 11",3,1,3000,Room,371,935,2024-03-01,2024-11-27
+681,"Mohandessin, El Nil Street, Building 93, Floor 11",3,1,2800,Flat,968,698,2024-03-01,2024-12-26
+682,"Zamalek, El Nil Street, Building 704, Floor 6",4,2,2200,House,98,521,2024-03-01,2024-10-12
+683,"Zamalek, Pyramids Street, Building 26, Floor 10",1,2,1800,Room,520,397,2024-03-01,2024-11-07
+684,"Dokki, El Nil Street, Building 954, Floor 5",1,1,2200,Flat,443,604,2024-03-01,2025-02-02
+685,"Heliopolis, El Nil Street, Building 373, Floor 2",1,2,2800,Flat,544,348,2024-03-01,2024-10-16
+686,"Maadi, Tahrir Street, Building 961, Floor 6",3,2,2800,Room,304,498,2024-03-01,2025-02-06
+687,"Dokki, El Nil Street, Building 43, Floor 13",2,2,1500,House,310,875,2024-03-01,2025-02-11
+688,"Heliopolis, Sphinx Street, Building 861, Floor 6",2,2,2500,Room,651,511,2024-03-01,2024-11-13
+689,"Zamalek, Pyramids Street, Building 388, Floor 3",1,1,1500,House,507,717,2024-03-01,2024-10-21
+690,"Maadi, Sphinx Street, Building 217, Floor 13",4,2,2800,House,349,226,2024-03-01,2025-02-10
+691,"Mohandessin, Sphinx Street, Building 202, Floor 1",2,1,3000,Room,668,123,2024-03-01,2024-06-14
+692,"Heliopolis, Pyramids Street, Building 135, Floor 7",1,3,2000,Room,86,383,2024-03-01,2024-12-14
+693,"Maadi, Nile Corniche, Building 644, Floor 7",3,1,1800,Room,916,464,2024-03-01,2024-10-14
+694,"Heliopolis, Pyramids Street, Building 119, Floor 13",3,2,2200,Flat,266,350,2024-03-01,2024-09-23
+695,"Dokki, Tahrir Street, Building 630, Floor 12",2,3,2200,Room,578,960,2024-03-01,2024-09-06
+696,"Maadi, Sphinx Street, Building 622, Floor 3",2,1,2500,Flat,577,198,2024-03-01,2024-08-12
+697,"Dokki, Sphinx Street, Building 812, Floor 5",4,2,1500,House,137,535,2024-03-01,2024-10-24
+698,"Maadi, Tahrir Street, Building 740, Floor 9",3,3,1500,Flat,963,254,2024-03-01,2025-01-22
+699,"Mohandessin, Nile Corniche, Building 684, Floor 2",3,1,2200,House,943,585,2024-03-01,2024-06-22
+700,"Heliopolis, El Nil Street, Building 209, Floor 7",3,2,2800,House,515,167,2024-03-01,2024-10-28
+701,"Mohandessin, Tahrir Street, Building 139, Floor 5",2,3,2500,Flat,62,102,2024-03-01,2024-10-04
+702,"Dokki, El Nil Street, Building 698, Floor 1",3,2,1500,Flat,207,247,2024-03-01,2025-01-05
+703,"Heliopolis, Tahrir Street, Building 863, Floor 7",3,3,2800,House,65,48,2024-03-01,2024-06-13
+704,"Mohandessin, Sphinx Street, Building 896, Floor 8",1,2,2500,Flat,105,785,2024-03-01,2024-07-31
+705,"Maadi, Sphinx Street, Building 885, Floor 5",3,3,2800,Flat,11,505,2024-03-01,2024-07-18
+706,"Maadi, Sphinx Street, Building 561, Floor 13",1,1,2500,Flat,965,144,2024-03-01,2024-08-19
+707,"Dokki, El Nil Street, Building 517, Floor 10",1,2,3000,Flat,545,993,2024-03-01,2025-01-03
+708,"Zamalek, Nile Corniche, Building 234, Floor 10",3,2,1500,Room,820,78,2024-03-01,2025-02-12
+709,"Dokki, Pyramids Street, Building 233, Floor 7",3,3,3000,Room,271,165,2024-03-01,2024-11-03
+710,"Dokki, Pyramids Street, Building 195, Floor 5",3,3,2500,Room,419,912,2024-03-01,2024-07-26
+711,"Mohandessin, El Nil Street, Building 452, Floor 11",2,2,2200,House,610,612,2024-03-01,2024-07-09
+712,"Zamalek, Tahrir Street, Building 562, Floor 8",4,1,2500,Flat,832,710,2024-03-01,2024-06-24
+713,"Zamalek, Sphinx Street, Building 551, Floor 5",3,1,1800,Room,234,720,2024-03-01,2024-08-03
+714,"Maadi, El Nil Street, Building 828, Floor 12",3,2,2200,Flat,804,625,2024-03-01,2024-11-01
+715,"Maadi, Sphinx Street, Building 562, Floor 12",2,2,1500,Room,960,851,2024-03-01,2024-07-03
+716,"Dokki, Nile Corniche, Building 120, Floor 9",2,3,1800,Room,875,268,2024-03-01,2024-12-30
+717,"Heliopolis, Sphinx Street, Building 377, Floor 7",1,1,2800,House,424,982,2024-03-01,2024-09-04
+718,"Mohandessin, Pyramids Street, Building 128, Floor 12",1,3,2500,Room,918,605,2024-03-01,2024-11-09
+719,"Mohandessin, Pyramids Street, Building 679, Floor 10",4,3,1500,Room,560,378,2024-03-01,2024-07-04
+720,"Mohandessin, El Nil Street, Building 461, Floor 7",1,3,2800,House,619,527,2024-03-01,2024-11-13
+721,"Dokki, Tahrir Street, Building 141, Floor 2",1,1,2800,Room,913,281,2024-03-01,2025-02-28
+722,"Mohandessin, Pyramids Street, Building 231, Floor 13",4,1,2200,House,513,869,2024-03-01,2024-06-23
+723,"Mohandessin, El Nil Street, Building 143, Floor 10",3,2,2800,Room,980,622,2024-03-01,2024-06-01
+724,"Dokki, Sphinx Street, Building 385, Floor 9",3,2,1800,Flat,344,436,2024-03-01,2024-09-25
+725,"Dokki, Nile Corniche, Building 936, Floor 6",4,2,1800,House,536,646,2024-03-01,2024-08-18
+726,"Heliopolis, El Nil Street, Building 282, Floor 1",2,1,1800,Flat,73,58,2024-03-01,2024-10-05
+727,"Mohandessin, Tahrir Street, Building 219, Floor 3",2,1,2200,House,159,929,2024-03-01,2024-06-29
+728,"Dokki, Nile Corniche, Building 455, Floor 7",1,3,2800,House,285,258,2024-03-01,2024-07-27
+729,"Dokki, Sphinx Street, Building 159, Floor 8",3,2,1500,House,782,38,2024-03-01,2025-02-18
+730,"Heliopolis, Nile Corniche, Building 824, Floor 9",1,2,2800,Room,36,810,2024-03-01,2024-06-11
+731,"Maadi, Tahrir Street, Building 197, Floor 5",3,2,3000,House,629,105,2024-03-01,2024-10-09
+732,"Mohandessin, Pyramids Street, Building 367, Floor 2",4,2,1500,Flat,4,938,2024-03-01,2024-09-05
+733,"Zamalek, Pyramids Street, Building 187, Floor 11",3,3,2500,Flat,908,955,2024-03-01,2024-08-14
+734,"Mohandessin, Nile Corniche, Building 188, Floor 2",1,2,2800,House,460,606,2024-03-01,2024-06-13
+735,"Mohandessin, Nile Corniche, Building 400, Floor 3",1,1,2000,House,967,309,2024-03-01,2024-09-18
+736,"Mohandessin, Sphinx Street, Building 513, Floor 10",2,1,2500,Room,885,284,2024-03-01,2025-02-05
+737,"Mohandessin, Tahrir Street, Building 83, Floor 12",3,3,2500,Room,24,529,2024-03-01,2024-09-23
+738,"Zamalek, Sphinx Street, Building 697, Floor 12",1,1,1500,House,243,662,2024-03-01,2024-12-10
+739,"Dokki, El Nil Street, Building 542, Floor 13",2,3,3000,House,974,801,2024-03-01,2024-11-24
+740,"Heliopolis, Tahrir Street, Building 975, Floor 3",1,2,2500,Flat,63,382,2024-03-01,2024-09-25
+741,"Mohandessin, Pyramids Street, Building 96, Floor 2",4,3,2000,Room,870,768,2024-03-01,2025-02-04
+742,"Dokki, Sphinx Street, Building 29, Floor 5",4,1,2000,House,320,586,2024-03-01,2024-12-20
+743,"Maadi, Tahrir Street, Building 809, Floor 13",1,2,2500,Room,847,323,2024-03-01,2024-06-15
+744,"Heliopolis, Sphinx Street, Building 749, Floor 13",1,1,2500,Flat,769,177,2024-03-01,2024-06-11
+745,"Zamalek, Nile Corniche, Building 272, Floor 2",4,3,1800,Flat,138,272,2024-03-01,2025-02-08
+746,"Mohandessin, Tahrir Street, Building 864, Floor 10",1,3,1500,House,681,35,2024-03-01,2024-10-28
+747,"Mohandessin, Nile Corniche, Building 691, Floor 7",2,1,1800,House,942,332,2024-03-01,2025-02-13
+748,"Zamalek, Nile Corniche, Building 898, Floor 1",4,3,2500,House,661,790,2024-03-01,2024-06-10
+749,"Heliopolis, Pyramids Street, Building 634, Floor 6",3,1,3000,House,404,848,2024-03-01,2024-08-30
+750,"Zamalek, Pyramids Street, Building 337, Floor 6",1,3,2500,House,81,402,2024-03-01,2024-11-30
+751,"Heliopolis, Sphinx Street, Building 740, Floor 13",1,3,2500,Flat,263,864,2024-03-01,2024-12-19
+752,"Mohandessin, El Nil Street, Building 675, Floor 9",3,3,3000,Room,805,388,2024-03-01,2024-09-20
+753,"Zamalek, El Nil Street, Building 236, Floor 8",1,1,2500,House,632,23,2024-03-01,2024-06-26
+754,"Mohandessin, Pyramids Street, Building 379, Floor 11",2,1,2800,Flat,435,647,2024-03-01,2024-11-23
+755,"Zamalek, Pyramids Street, Building 855, Floor 1",4,3,1500,Room,135,896,2024-03-01,2024-10-27
+756,"Heliopolis, Nile Corniche, Building 663, Floor 13",4,3,1500,Room,492,333,2024-03-01,2024-07-28
+757,"Heliopolis, Pyramids Street, Building 25, Floor 1",2,2,2500,Room,177,995,2024-03-01,2024-06-12
+758,"Maadi, Tahrir Street, Building 908, Floor 5",2,2,1500,House,894,804,2024-03-01,2024-11-30
+759,"Mohandessin, Tahrir Street, Building 519, Floor 3",3,3,2500,Flat,723,113,2024-03-01,2024-11-22
+760,"Zamalek, Sphinx Street, Building 463, Floor 7",4,1,1500,House,718,902,2024-03-01,2025-01-06
+761,"Zamalek, Sphinx Street, Building 842, Floor 3",4,1,2800,Room,322,697,2024-03-01,2024-10-23
+762,"Heliopolis, Pyramids Street, Building 631, Floor 6",1,2,1800,House,981,428,2024-03-01,2024-10-28
+763,"Heliopolis, Tahrir Street, Building 303, Floor 3",4,2,2800,Room,122,126,2024-03-01,2024-06-30
+764,"Zamalek, Pyramids Street, Building 137, Floor 3",4,2,2800,Flat,534,110,2024-03-01,2024-12-22
+765,"Maadi, Pyramids Street, Building 664, Floor 11",2,3,3000,House,786,81,2024-03-01,2024-10-05
+766,"Maadi, Nile Corniche, Building 760, Floor 5",2,3,2500,Flat,370,1000,2024-03-01,2024-12-18
+767,"Zamalek, Sphinx Street, Building 161, Floor 12",4,3,2000,Flat,587,178,2024-03-01,2024-08-12
+768,"Dokki, Pyramids Street, Building 254, Floor 2",1,1,2000,House,222,772,2024-03-01,2024-07-03
+769,"Mohandessin, El Nil Street, Building 821, Floor 4",1,2,2200,House,780,377,2024-03-01,2025-02-08
+770,"Dokki, Nile Corniche, Building 719, Floor 12",2,1,2000,Flat,739,999,2024-03-01,2025-01-05
+771,"Mohandessin, Pyramids Street, Building 935, Floor 8",3,2,2000,Room,333,777,2024-03-01,2024-06-23
+772,"Dokki, El Nil Street, Building 701, Floor 12",4,1,2800,Room,482,937,2024-03-01,2024-12-10
+773,"Dokki, Tahrir Street, Building 363, Floor 8",1,1,1800,House,128,645,2024-03-01,2025-02-26
+774,"Zamalek, El Nil Street, Building 198, Floor 5",3,2,2200,House,161,337,2024-03-01,2024-12-12
+775,"Maadi, Nile Corniche, Building 391, Floor 11",1,1,1800,House,202,296,2024-03-01,2024-06-14
+776,"Dokki, Tahrir Street, Building 151, Floor 9",2,1,3000,Room,995,682,2024-03-01,2024-08-14
+777,"Dokki, El Nil Street, Building 994, Floor 11",4,3,2200,House,903,901,2024-03-01,2024-07-10
+778,"Dokki, Tahrir Street, Building 411, Floor 3",4,2,2500,Room,673,736,2024-03-01,2024-11-16
+779,"Dokki, Pyramids Street, Building 450, Floor 5",2,3,2800,Room,924,46,2024-03-01,2024-06-23
+780,"Dokki, Nile Corniche, Building 596, Floor 11",4,2,2800,Room,1,882,2024-03-01,2024-09-26
+781,"Mohandessin, Tahrir Street, Building 342, Floor 10",1,3,2000,Room,56,940,2024-03-01,2024-07-27
+782,"Zamalek, El Nil Street, Building 764, Floor 4",3,3,1500,House,17,675,2024-03-01,2024-09-01
+783,"Maadi, Sphinx Street, Building 611, Floor 3",3,2,1500,Room,331,636,2024-03-01,2024-07-13
+784,"Maadi, El Nil Street, Building 25, Floor 13",1,1,2800,Flat,745,316,2024-03-01,2024-08-13
+785,"Maadi, Tahrir Street, Building 666, Floor 9",3,1,2000,Flat,193,609,2024-03-01,2024-08-10
+786,"Heliopolis, El Nil Street, Building 761, Floor 1",4,1,2000,Flat,463,492,2024-03-01,2024-12-18
+787,"Dokki, El Nil Street, Building 288, Floor 4",3,3,1500,House,822,142,2024-03-01,2025-01-20
+788,"Maadi, Nile Corniche, Building 45, Floor 3",1,1,2500,House,735,594,2024-03-01,2024-10-14
+789,"Dokki, Pyramids Street, Building 430, Floor 9",2,1,2000,Flat,422,51,2024-03-01,2024-12-18
+790,"Mohandessin, Tahrir Street, Building 163, Floor 13",4,1,1500,Room,762,554,2024-03-01,2024-10-06
+791,"Heliopolis, Tahrir Street, Building 935, Floor 10",3,1,2000,Room,648,981,2024-03-01,2024-10-04
+792,"Heliopolis, El Nil Street, Building 461, Floor 6",1,3,2000,House,688,747,2024-03-01,2024-07-27
+793,"Heliopolis, Nile Corniche, Building 365, Floor 13",2,1,3000,Room,940,992,2024-03-01,2025-02-03
+794,"Maadi, Sphinx Street, Building 772, Floor 3",3,3,1800,Room,260,170,2024-03-01,2024-07-06
+795,"Dokki, Pyramids Street, Building 944, Floor 12",3,1,1800,Room,426,638,2024-03-01,2025-01-05
+796,"Mohandessin, Nile Corniche, Building 5, Floor 1",2,3,1800,House,83,690,2024-03-01,2024-11-06
+797,"Heliopolis, Tahrir Street, Building 162, Floor 1",3,1,1800,House,596,500,2024-03-01,2024-10-23
+798,"Zamalek, Sphinx Street, Building 246, Floor 13",4,1,2200,Room,952,852,2024-03-01,2024-10-12
+799,"Heliopolis, El Nil Street, Building 338, Floor 9",4,1,2000,House,627,600,2024-03-01,2024-10-16
+800,"Dokki, Sphinx Street, Building 576, Floor 4",1,1,2000,House,562,998,2024-03-01,2024-10-16
+801,"Zamalek, Tahrir Street, Building 254, Floor 10",4,3,2000,Room,475,584,2024-03-01,2024-08-26
+802,"Dokki, Tahrir Street, Building 290, Floor 6",4,1,1500,Room,920,971,2024-03-01,2024-06-04
+803,"Maadi, Nile Corniche, Building 98, Floor 2",2,1,2800,Room,330,174,2024-03-01,2024-11-11
+804,"Maadi, Sphinx Street, Building 977, Floor 10",1,1,2500,Room,144,429,2024-03-01,2025-01-06
+805,"Dokki, El Nil Street, Building 894, Floor 1",4,3,3000,House,733,269,2024-03-01,2024-07-30
+806,"Mohandessin, Nile Corniche, Building 233, Floor 13",3,2,2500,House,806,991,2024-03-01,2024-12-22
+807,"Zamalek, Pyramids Street, Building 323, Floor 6",1,3,1800,House,413,826,2024-03-01,2024-06-16
+808,"Mohandessin, Sphinx Street, Building 15, Floor 11",1,2,1800,Flat,824,764,2024-03-01,2025-02-02
+809,"Heliopolis, Pyramids Street, Building 329, Floor 10",3,3,1800,Room,728,362,2024-03-01,2025-01-09
+810,"Dokki, Nile Corniche, Building 595, Floor 7",4,1,1500,Room,251,43,2024-03-01,2024-06-25
+811,"Dokki, Sphinx Street, Building 873, Floor 8",3,1,1500,House,617,401,2024-03-01,2024-11-23
+812,"Mohandessin, El Nil Street, Building 526, Floor 8",2,2,3000,House,229,286,2024-03-01,2024-05-30
+813,"Zamalek, Sphinx Street, Building 258, Floor 5",1,3,1800,Flat,152,392,2024-03-01,2024-06-12
+814,"Mohandessin, Sphinx Street, Building 60, Floor 1",3,1,2800,Flat,276,294,2024-03-01,2024-10-27
+815,"Heliopolis, Nile Corniche, Building 669, Floor 8",2,2,3000,House,47,189,2024-03-01,2025-01-10
+816,"Dokki, Nile Corniche, Building 850, Floor 11",1,2,2000,Room,238,943,2024-03-01,2024-07-16
+817,"Dokki, Pyramids Street, Building 539, Floor 2",4,2,2800,Room,116,635,2024-03-01,2024-11-08
+818,"Heliopolis, El Nil Street, Building 922, Floor 7",2,2,2000,Flat,113,324,2024-03-01,2024-06-28
+819,"Zamalek, El Nil Street, Building 685, Floor 9",1,2,3000,Room,115,752,2024-03-01,2024-08-07
+820,"Heliopolis, Pyramids Street, Building 156, Floor 11",2,1,2000,Flat,194,74,2024-03-01,2024-10-23
+821,"Heliopolis, El Nil Street, Building 930, Floor 8",1,2,2000,Flat,119,513,2024-03-01,2024-12-15
+822,"Zamalek, Pyramids Street, Building 836, Floor 8",2,1,3000,House,484,430,2024-03-01,2024-09-21
+823,"Zamalek, Tahrir Street, Building 625, Floor 3",4,2,1500,Room,851,49,2024-03-01,2025-01-25
+824,"Zamalek, Nile Corniche, Building 256, Floor 3",3,1,2800,House,751,979,2024-03-01,2024-06-29
+825,"Maadi, Pyramids Street, Building 343, Floor 1",4,1,2000,Room,162,596,2024-03-01,2024-09-18
+826,"Dokki, Nile Corniche, Building 216, Floor 10",4,2,2800,Room,377,879,2024-03-01,2024-07-10
+827,"Dokki, Tahrir Street, Building 355, Floor 6",2,1,1500,Room,816,696,2024-03-01,2024-11-05
+828,"Zamalek, Tahrir Street, Building 140, Floor 9",3,2,2500,Room,437,14,2024-03-01,2024-12-06
+829,"Mohandessin, Sphinx Street, Building 208, Floor 7",4,1,2200,House,854,176,2024-03-01,2024-10-17
+830,"Dokki, Pyramids Street, Building 554, Floor 11",3,2,2500,Room,971,6,2024-03-01,2024-11-08
+831,"Dokki, Tahrir Street, Building 525, Floor 3",2,1,3000,Flat,40,210,2024-03-01,2025-01-03
+832,"Heliopolis, Sphinx Street, Building 815, Floor 5",2,2,1500,Flat,666,516,2024-03-01,2024-08-03
+833,"Mohandessin, Tahrir Street, Building 614, Floor 3",1,1,2500,Flat,821,608,2024-03-01,2024-11-04
+834,"Maadi, Sphinx Street, Building 490, Floor 1",3,3,1800,House,798,555,2024-03-01,2024-10-12
+835,"Dokki, Nile Corniche, Building 862, Floor 3",2,3,2800,Flat,827,749,2024-03-01,2024-11-05
+836,"Heliopolis, El Nil Street, Building 599, Floor 3",4,1,3000,House,993,767,2024-03-01,2024-08-22
+837,"Maadi, Sphinx Street, Building 598, Floor 8",3,1,1800,Flat,901,550,2024-03-01,2024-10-01
+838,"Maadi, El Nil Street, Building 367, Floor 10",3,3,2200,House,311,439,2024-03-01,2024-07-17
+839,"Mohandessin, Sphinx Street, Building 180, Floor 1",4,1,1500,Room,839,778,2024-03-01,2025-01-25
+840,"Heliopolis, Sphinx Street, Building 262, Floor 1",4,3,2500,House,746,169,2024-03-01,2024-07-18
+841,"Mohandessin, El Nil Street, Building 660, Floor 1",3,3,2200,Flat,528,425,2024-03-01,2024-10-06
+842,"Maadi, El Nil Street, Building 591, Floor 10",4,1,1500,Room,807,630,2024-03-01,2024-09-08
+843,"Maadi, El Nil Street, Building 539, Floor 11",2,3,1500,House,744,376,2024-03-01,2024-05-30
+844,"Mohandessin, El Nil Street, Building 639, Floor 13",2,2,2800,House,451,482,2024-03-01,2024-06-18
+845,"Heliopolis, Pyramids Street, Building 70, Floor 10",1,3,2000,Room,43,100,2024-03-01,2024-12-17
+846,"Zamalek, Nile Corniche, Building 677, Floor 7",3,3,2800,House,699,407,2024-03-01,2024-12-29
+847,"Heliopolis, El Nil Street, Building 612, Floor 3",2,3,2500,Room,136,733,2024-03-01,2024-12-11
+848,"Maadi, El Nil Street, Building 772, Floor 13",3,2,1800,House,994,182,2024-03-01,2025-02-14
+849,"Mohandessin, Pyramids Street, Building 456, Floor 3",3,2,1800,Room,813,298,2024-03-01,2025-01-19
+850,"Maadi, Sphinx Street, Building 931, Floor 6",2,3,2800,House,640,478,2024-03-01,2024-10-27
+851,"Dokki, Tahrir Street, Building 397, Floor 3",2,2,2800,Flat,653,157,2024-03-01,2024-12-17
+852,"Dokki, Sphinx Street, Building 980, Floor 9",1,2,2800,House,849,344,2024-03-01,2025-01-12
+853,"Zamalek, Tahrir Street, Building 366, Floor 3",3,1,2000,Room,810,530,2024-03-01,2024-08-21
+854,"Heliopolis, Tahrir Street, Building 376, Floor 10",2,2,1800,Room,572,308,2024-03-01,2024-08-31
+855,"Mohandessin, Nile Corniche, Building 108, Floor 2",1,1,3000,House,976,871,2024-03-01,2024-06-12
+856,"Dokki, Pyramids Street, Building 316, Floor 10",3,2,2800,Room,917,931,2024-03-01,2024-08-07
+857,"Mohandessin, Pyramids Street, Building 513, Floor 12",1,1,2200,Flat,797,930,2024-03-01,2024-11-25
+858,"Heliopolis, Nile Corniche, Building 998, Floor 4",3,2,2000,Room,638,483,2024-03-01,2024-06-05
+859,"Zamalek, Pyramids Street, Building 278, Floor 13",2,2,3000,Room,259,835,2024-03-01,2024-07-16
+860,"Dokki, Nile Corniche, Building 864, Floor 9",2,1,1800,House,514,292,2024-03-01,2024-10-12
+861,"Heliopolis, Nile Corniche, Building 680, Floor 6",3,1,1500,Room,230,651,2024-03-01,2024-08-20
+862,"Heliopolis, El Nil Street, Building 65, Floor 1",4,3,2200,Flat,269,681,2024-03-01,2024-11-26
+863,"Zamalek, El Nil Street, Building 442, Floor 9",4,2,2200,Flat,412,355,2024-03-01,2024-08-20
+864,"Mohandessin, El Nil Street, Building 948, Floor 6",3,3,1800,House,242,802,2024-03-01,2024-08-17
+865,"Zamalek, El Nil Street, Building 870, Floor 10",4,1,2000,House,383,985,2024-03-01,2025-02-04
+866,"Mohandessin, El Nil Street, Building 911, Floor 8",4,2,1800,Flat,351,363,2024-03-01,2024-06-23
+867,"Maadi, Sphinx Street, Building 983, Floor 13",4,1,1800,Room,501,919,2024-03-01,2025-02-26
+868,"Mohandessin, Pyramids Street, Building 850, Floor 9",2,1,2500,House,978,894,2024-03-01,2025-02-06
+869,"Mohandessin, Tahrir Street, Building 700, Floor 4",2,3,2000,House,307,303,2024-03-01,2024-06-13
+870,"Maadi, Tahrir Street, Building 57, Floor 2",4,3,2000,Room,175,829,2024-03-01,2024-06-23
+871,"Maadi, Tahrir Street, Building 194, Floor 10",1,3,2800,Room,907,700,2024-03-01,2025-01-25
+872,"Mohandessin, Sphinx Street, Building 973, Floor 4",3,3,2500,Flat,141,321,2024-03-01,2024-10-05
+873,"Dokki, Nile Corniche, Building 550, Floor 11",1,1,2200,Room,817,661,2024-03-01,2024-12-08
+874,"Dokki, Sphinx Street, Building 668, Floor 12",4,3,3000,Room,199,410,2024-03-01,2024-09-16
+875,"Dokki, Tahrir Street, Building 618, Floor 1",1,3,2500,Flat,284,774,2024-03-01,2024-06-25
+876,"Mohandessin, Sphinx Street, Building 940, Floor 5",4,1,3000,Flat,927,211,2024-03-01,2024-09-27
+877,"Heliopolis, Tahrir Street, Building 258, Floor 12",1,2,2800,Flat,781,849,2024-03-01,2024-07-29
+878,"Maadi, Pyramids Street, Building 717, Floor 11",2,1,2800,Room,641,295,2024-03-01,2024-11-03
+879,"Maadi, Tahrir Street, Building 421, Floor 7",4,2,3000,House,504,567,2024-03-01,2024-10-10
+880,"Dokki, Tahrir Street, Building 941, Floor 7",3,3,2800,House,31,484,2024-03-01,2024-08-08
+881,"Zamalek, Sphinx Street, Building 839, Floor 13",2,3,3000,Room,757,305,2024-03-01,2024-11-23
+882,"Maadi, Tahrir Street, Building 629, Floor 11",4,2,3000,Room,33,405,2024-03-01,2024-10-29
+883,"Zamalek, El Nil Street, Building 876, Floor 4",1,3,2500,Room,488,214,2024-03-01,2024-08-13
+884,"Zamalek, Sphinx Street, Building 426, Floor 10",4,1,3000,House,293,180,2024-03-01,2024-07-11
+885,"Zamalek, Sphinx Street, Building 478, Floor 13",2,1,2000,Flat,741,399,2024-03-01,2025-02-01
+886,"Maadi, Nile Corniche, Building 278, Floor 8",3,3,2200,Flat,660,108,2024-03-01,2025-01-04
+887,"Maadi, Sphinx Street, Building 980, Floor 2",1,3,2800,Flat,630,854,2024-03-01,2024-07-23
+888,"Zamalek, Tahrir Street, Building 722, Floor 13",3,3,2000,Flat,642,838,2024-03-01,2025-01-04
+889,"Heliopolis, Pyramids Street, Building 458, Floor 3",2,1,2500,Room,363,317,2024-03-01,2024-10-28
+890,"Zamalek, Sphinx Street, Building 520, Floor 9",2,3,3000,House,541,11,2024-03-01,2024-06-13
+891,"Maadi, Nile Corniche, Building 63, Floor 1",4,3,2000,Flat,428,201,2024-03-01,2024-12-14
+892,"Heliopolis, El Nil Street, Building 932, Floor 5",2,1,1500,Room,594,300,2024-03-01,2025-02-18
+893,"Mohandessin, Pyramids Street, Building 133, Floor 5",4,3,2800,Flat,929,486,2024-03-01,2024-07-20
+894,"Maadi, Nile Corniche, Building 728, Floor 2",1,3,2000,Room,203,458,2024-03-01,2024-09-09
+895,"Heliopolis, Tahrir Street, Building 97, Floor 2",1,3,1800,Flat,380,639,2024-03-01,2024-10-11
+896,"Heliopolis, Nile Corniche, Building 341, Floor 3",4,2,1800,Flat,499,603,2024-03-01,2024-06-30
+897,"Zamalek, El Nil Street, Building 642, Floor 13",2,2,2000,Flat,818,357,2024-03-01,2024-11-30
+898,"Maadi, El Nil Street, Building 753, Floor 6",4,1,2200,Room,636,98,2024-03-01,2024-06-20
+899,"Mohandessin, Sphinx Street, Building 935, Floor 4",3,2,2800,Room,802,45,2024-03-01,2024-06-25
+900,"Dokki, Nile Corniche, Building 955, Floor 8",4,1,2500,Flat,114,244,2024-03-01,2024-08-29
+901,"Heliopolis, Tahrir Street, Building 855, Floor 2",3,1,2500,Flat,680,86,2024-03-01,2024-12-28
+902,"Mohandessin, Nile Corniche, Building 993, Floor 4",1,1,1800,Room,52,163,2024-03-01,2025-02-24
+903,"Maadi, Tahrir Street, Building 352, Floor 10",1,1,2800,Flat,568,796,2024-03-01,2024-06-11
+904,"Dokki, Sphinx Street, Building 434, Floor 6",1,3,2200,Flat,80,346,2024-03-01,2024-07-29
+905,"Zamalek, Nile Corniche, Building 929, Floor 7",4,3,2500,Room,671,573,2024-03-01,2024-08-25
+906,"Maadi, Nile Corniche, Building 957, Floor 2",1,1,2000,Flat,379,911,2024-03-01,2024-09-05
+907,"Zamalek, Sphinx Street, Building 232, Floor 5",2,2,1500,Flat,398,136,2024-03-01,2024-07-03
+908,"Mohandessin, Nile Corniche, Building 93, Floor 5",2,3,2200,House,882,787,2024-03-01,2025-01-07
+909,"Dokki, Pyramids Street, Building 981, Floor 5",2,1,1500,Flat,643,588,2024-03-01,2024-07-15
+910,"Zamalek, Tahrir Street, Building 4, Floor 4",4,2,2800,House,508,782,2024-03-01,2024-11-26
+911,"Mohandessin, El Nil Street, Building 300, Floor 6",3,2,3000,House,948,702,2024-03-01,2025-02-14
+912,"Mohandessin, Tahrir Street, Building 58, Floor 9",3,3,3000,House,704,644,2024-03-01,2024-06-14
+913,"Mohandessin, Nile Corniche, Building 198, Floor 8",4,2,2800,Flat,511,371,2024-03-01,2024-12-20
+914,"Mohandessin, Pyramids Street, Building 762, Floor 2",2,2,2200,House,38,884,2024-03-01,2024-08-29
+915,"Heliopolis, Pyramids Street, Building 40, Floor 6",4,1,2000,House,196,761,2024-03-01,2024-06-09
+916,"Dokki, Tahrir Street, Building 473, Floor 9",3,1,2000,House,490,79,2024-03-01,2024-08-14
+917,"Mohandessin, Nile Corniche, Building 755, Floor 12",2,1,2200,House,998,240,2024-03-01,2024-08-31
+918,"Maadi, Tahrir Street, Building 382, Floor 8",4,2,1800,Flat,679,69,2024-03-01,2024-09-02
+919,"Dokki, Tahrir Street, Building 944, Floor 2",2,1,2000,Room,710,658,2024-03-01,2024-09-10
+920,"Mohandessin, Tahrir Street, Building 64, Floor 4",1,2,1500,Flat,601,855,2024-03-01,2024-11-29
+921,"Heliopolis, Pyramids Street, Building 330, Floor 10",2,3,2000,Room,622,75,2024-03-01,2025-02-10
+922,"Mohandessin, Pyramids Street, Building 697, Floor 3",3,2,2000,Room,779,64,2024-03-01,2024-10-01
+923,"Mohandessin, Tahrir Street, Building 263, Floor 4",1,3,1800,Room,877,915,2024-03-01,2025-02-15
+924,"Zamalek, Tahrir Street, Building 907, Floor 11",4,1,2000,House,59,621,2024-03-01,2025-01-16
+925,"Heliopolis, Sphinx Street, Building 107, Floor 8",1,1,2200,House,599,987,2024-03-01,2024-10-18
+926,"Heliopolis, Nile Corniche, Building 329, Floor 10",3,3,2800,House,892,552,2024-03-01,2024-12-26
+927,"Maadi, Sphinx Street, Building 233, Floor 2",2,1,2200,House,582,599,2024-03-01,2024-06-06
+928,"Mohandessin, El Nil Street, Building 736, Floor 3",4,2,1500,Flat,566,231,2024-03-01,2025-02-06
+929,"Zamalek, Sphinx Street, Building 3, Floor 3",1,2,3000,Flat,255,860,2024-03-01,2025-02-26
+930,"Zamalek, Sphinx Street, Building 869, Floor 9",3,1,1800,Flat,975,209,2024-03-01,2024-08-07
+931,"Heliopolis, Sphinx Street, Building 508, Floor 13",4,2,1800,House,25,880,2024-03-01,2024-08-08
+932,"Heliopolis, Nile Corniche, Building 294, Floor 12",4,3,2200,Room,94,190,2024-03-01,2024-08-23
+933,"Dokki, Nile Corniche, Building 987, Floor 9",4,1,2200,House,692,202,2024-03-01,2024-08-15
+934,"Heliopolis, Tahrir Street, Building 684, Floor 2",1,3,3000,Flat,581,904,2024-03-01,2025-01-16
+935,"Mohandessin, Sphinx Street, Building 522, Floor 3",1,3,2800,House,173,20,2024-03-01,2024-12-24
+936,"Maadi, El Nil Street, Building 80, Floor 1",4,1,2000,Room,635,566,2024-03-01,2024-07-29
+937,"Maadi, Sphinx Street, Building 869, Floor 9",4,2,2800,House,140,248,2024-03-01,2024-08-14
+938,"Mohandessin, Nile Corniche, Building 368, Floor 11",1,3,2500,Room,205,353,2024-03-01,2024-11-15
+939,"Dokki, Tahrir Street, Building 348, Floor 2",1,1,1500,Flat,503,549,2024-03-01,2024-06-24
+940,"Zamalek, Nile Corniche, Building 470, Floor 13",3,3,2500,House,795,990,2024-03-01,2024-11-09
+941,"Mohandessin, Sphinx Street, Building 740, Floor 10",1,2,3000,Flat,431,450,2024-03-01,2024-09-08
+942,"Dokki, Pyramids Street, Building 902, Floor 7",1,3,1800,Room,768,491,2024-03-01,2024-12-13
+943,"Mohandessin, Sphinx Street, Building 70, Floor 7",1,1,2000,Flat,295,373,2024-03-01,2024-06-30
+944,"Zamalek, Pyramids Street, Building 662, Floor 7",3,2,2000,Room,464,416,2024-03-01,2024-12-01
+945,"Mohandessin, Pyramids Street, Building 679, Floor 11",3,2,1800,Flat,165,241,2024-03-01,2024-07-01
+946,"Zamalek, El Nil Street, Building 34, Floor 4",2,1,1500,Flat,250,691,2024-03-01,2025-02-24
+947,"Zamalek, Tahrir Street, Building 329, Floor 6",3,1,2500,Flat,799,553,2024-03-01,2025-01-26
+948,"Heliopolis, Nile Corniche, Building 296, Floor 8",1,1,1500,Flat,102,442,2024-03-01,2024-06-19
+949,"Zamalek, El Nil Street, Building 324, Floor 9",2,2,2800,House,329,666,2024-03-01,2025-02-03
+950,"Dokki, Nile Corniche, Building 994, Floor 10",1,1,1800,House,197,583,2024-03-01,2025-01-28
+951,"Heliopolis, Tahrir Street, Building 545, Floor 5",2,3,3000,House,796,572,2024-03-01,2024-08-15
+952,"Heliopolis, Pyramids Street, Building 715, Floor 6",2,2,3000,Room,69,932,2024-03-01,2024-08-01
+953,"Mohandessin, El Nil Street, Building 994, Floor 3",3,1,2500,House,571,611,2024-03-01,2024-06-11
+954,"Dokki, Nile Corniche, Building 885, Floor 9",2,1,1500,House,29,818,2024-03-01,2024-07-09
+955,"Heliopolis, Pyramids Street, Building 512, Floor 10",3,2,1500,House,531,347,2024-03-01,2024-12-30
+956,"Dokki, Nile Corniche, Building 277, Floor 13",4,2,2200,House,360,928,2024-03-01,2024-07-17
+957,"Zamalek, Tahrir Street, Building 597, Floor 13",1,1,2800,Room,154,659,2024-03-01,2025-01-18
+958,"Heliopolis, El Nil Street, Building 464, Floor 1",4,2,2500,Flat,876,496,2024-03-01,2024-09-21
+959,"Maadi, Pyramids Street, Building 503, Floor 7",4,1,3000,Flat,850,953,2024-03-01,2024-10-21
+960,"Dokki, Nile Corniche, Building 216, Floor 12",4,2,2200,House,200,811,2024-03-01,2024-07-25
+961,"Heliopolis, Tahrir Street, Building 450, Floor 8",4,2,2200,House,456,124,2024-03-01,2024-07-09
+962,"Heliopolis, Pyramids Street, Building 944, Floor 9",1,3,2500,House,334,273,2024-03-01,2024-11-02
+963,"Mohandessin, El Nil Street, Building 845, Floor 10",4,2,2000,Flat,103,107,2024-03-01,2025-02-10
+964,"Mohandessin, Nile Corniche, Building 554, Floor 11",2,3,2800,Room,608,997,2024-03-01,2024-11-16
+965,"Dokki, Tahrir Street, Building 520, Floor 8",4,1,2000,Flat,674,438,2024-03-01,2024-12-07
+966,"Mohandessin, Sphinx Street, Building 597, Floor 8",3,2,1800,House,823,130,2024-03-01,2024-12-28
+967,"Mohandessin, Sphinx Street, Building 979, Floor 7",3,2,2000,Room,517,404,2024-03-01,2024-07-15
+968,"Dokki, Tahrir Street, Building 196, Floor 7",2,2,1800,Room,988,916,2024-03-01,2024-10-14
+969,"Maadi, Tahrir Street, Building 66, Floor 10",1,2,2200,House,23,898,2024-03-01,2025-01-30
+970,"Heliopolis, Nile Corniche, Building 934, Floor 13",4,2,2000,Flat,476,538,2024-03-01,2024-06-28
+971,"Heliopolis, Nile Corniche, Building 84, Floor 10",1,1,2200,Flat,124,476,2024-03-01,2024-10-16
+972,"Maadi, El Nil Street, Building 730, Floor 4",2,3,3000,Flat,20,216,2024-03-01,2024-08-09
+973,"Heliopolis, El Nil Street, Building 281, Floor 12",4,2,2200,Flat,925,440,2024-03-01,2025-01-01
+974,"Zamalek, El Nil Street, Building 704, Floor 4",4,1,3000,Flat,748,951,2024-03-01,2024-08-15
+975,"Maadi, Nile Corniche, Building 639, Floor 11",1,1,2500,House,923,406,2024-03-01,2024-10-03
+976,"Dokki, Sphinx Street, Building 25, Floor 9",3,3,2800,House,987,408,2024-03-01,2024-07-06
+977,"Maadi, Pyramids Street, Building 67, Floor 11",4,3,1800,Room,921,633,2024-03-01,2024-10-06
+978,"Maadi, Tahrir Street, Building 561, Floor 9",4,3,1500,Flat,689,434,2024-03-01,2024-08-01
+979,"Dokki, El Nil Street, Building 900, Floor 7",3,1,2500,Room,711,819,2024-03-01,2024-07-14
+980,"Heliopolis, Pyramids Street, Building 391, Floor 3",3,3,1500,Flat,286,724,2024-03-01,2025-02-05
+981,"Heliopolis, Sphinx Street, Building 246, Floor 3",3,3,1800,House,862,18,2024-03-01,2024-09-18
+982,"Heliopolis, El Nil Street, Building 252, Floor 10",2,2,2000,Flat,990,546,2024-03-01,2025-01-27
+983,"Maadi, Tahrir Street, Building 409, Floor 4",1,1,2000,Room,76,878,2024-03-01,2024-11-05
+984,"Zamalek, Pyramids Street, Building 898, Floor 6",4,3,2500,Room,418,278,2024-03-01,2024-06-19
+985,"Zamalek, Nile Corniche, Building 246, Floor 8",2,3,2500,Room,292,899,2024-03-01,2024-10-21
+986,"Zamalek, Tahrir Street, Building 740, Floor 13",3,2,2200,House,244,578,2024-03-01,2025-01-16
+987,"Mohandessin, Pyramids Street, Building 144, Floor 6",1,2,2200,Flat,558,551,2024-03-01,2024-07-15
+988,"Heliopolis, Pyramids Street, Building 193, Floor 13",1,3,2500,Room,337,372,2024-03-01,2024-11-21
+989,"Dokki, Tahrir Street, Building 557, Floor 2",3,3,2800,Flat,580,24,2024-03-01,2024-10-24
+990,"Heliopolis, Tahrir Street, Building 635, Floor 6",1,3,2200,Flat,375,602,2024-03-01,2024-09-09
+991,"Zamalek, Tahrir Street, Building 930, Floor 1",1,3,2800,Flat,454,213,2024-03-01,2024-10-12
+992,"Zamalek, Sphinx Street, Building 637, Floor 2",4,1,2200,Flat,158,895,2024-03-01,2024-10-18
+993,"Heliopolis, El Nil Street, Building 362, Floor 9",2,2,1800,Room,405,671,2024-03-01,2024-08-01
+994,"Mohandessin, Tahrir Street, Building 895, Floor 7",4,2,2500,House,342,779,2024-03-01,2024-12-21
+995,"Mohandessin, El Nil Street, Building 970, Floor 8",1,2,1500,Room,709,207,2024-03-01,2024-10-20
+996,"Zamalek, Nile Corniche, Building 270, Floor 3",2,2,1800,Room,792,249,2024-03-01,2024-10-06
+997,"Zamalek, Nile Corniche, Building 719, Floor 13",2,2,2800,House,131,462,2024-03-01,2024-09-14
+998,"Maadi, El Nil Street, Building 779, Floor 2",2,3,1800,House,111,435,2024-03-01,2024-12-27
+999,"Mohandessin, Nile Corniche, Building 526, Floor 1",3,1,2500,House,215,256,2024-03-01,2024-11-28
+1000,"Mohandessin, Tahrir Street, Building 661, Floor 4",2,2,1800,House,761,969,2024-03-01,2025-02-01
