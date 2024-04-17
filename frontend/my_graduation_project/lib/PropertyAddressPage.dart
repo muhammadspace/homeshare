@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'RentalPricePage.dart';
+import 'dart:io';
 
 class PropertyAddressPage extends StatefulWidget {
+  final String selectedPropertyType;
+  final int numberofrooms;
+  final String numberofbeds;
+  final String size;
+  final List<File> images;
   @override
+  PropertyAddressPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images});
   _PropertyAddressPageState createState() => _PropertyAddressPageState();
 }
 
@@ -53,12 +60,12 @@ class _PropertyAddressPageState extends State<PropertyAddressPage> {
 
               if (fullAddress.isNotEmpty) {
                 print('Full Address: $fullAddress');
-
                 // Navigate to RentalPricePage
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RentalPricePage(),
+                    builder: (context) => RentalPricePage(selectedPropertyType: widget.selectedPropertyType,
+                        numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:widget.images,address:fullAddress),
                   ),
                 );
               } else {

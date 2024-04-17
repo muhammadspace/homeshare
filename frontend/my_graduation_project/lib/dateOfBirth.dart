@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'package:intl/intl.dart';
 import 'job.dart';
 
 class RegisterPage extends StatefulWidget {
+  String username , email , password;
+  File? image;
+  RegisterPage({Key? key,required this.username,required this.email,required this.password,required this.image}) : super(key: key);
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -49,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => JobSelectionPage()),
+                  MaterialPageRoute(builder: (context) => JobSelectionPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image ,dob:selectedDate)),
                 );
               },
               style: ElevatedButton.styleFrom(

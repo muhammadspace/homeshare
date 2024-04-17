@@ -5,7 +5,12 @@ import 'dart:io';
 import 'PropertyAddressPage.dart';
 
 class PropertyImagesPage extends StatefulWidget {
+  final String selectedPropertyType;
+  final int numberofrooms;
+  final String numberofbeds;
+  final String size;
   @override
+  PropertyImagesPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size});
   _PropertyImagesPageState createState() => _PropertyImagesPageState();
 }
 
@@ -78,7 +83,8 @@ class _PropertyImagesPageState extends State<PropertyImagesPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PropertyAddressPage(),
+                    builder: (context) => PropertyAddressPage(selectedPropertyType: widget.selectedPropertyType,
+                        numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:propertyImages),
                   ),
                 );
               },

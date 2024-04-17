@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'home.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'ChoseCharacterTraitsPage.dart';
 
 class ProfileCompletionPage extends StatefulWidget {
+  String username , email , password,job,gender;
+  DateTime? dob;
+  File? image;
+  ProfileCompletionPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender}) : super(key: key);
   @override
   _ProfileCompletionPageState createState() => _ProfileCompletionPageState();
 }
@@ -37,7 +42,7 @@ class _ProfileCompletionPageState extends State<ProfileCompletionPage> {
         
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => ChooseCharacterTraitsPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image , dob:widget.dob,job:widget.job,gender:widget.gender,type:userType)),
                     );
                   } else {
                     print('Please select your user type');

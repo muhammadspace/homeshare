@@ -1,6 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:my_graduation_project/config.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'userata.dart';
 
 class ProfilePage extends StatelessWidget {
+
+  String name = '';
+  String DOB = '';
+  String job = '';
+  List<String> interests = [];
+  String gender = '';
+  String type = '';
+  List<String> traits = [];
+
+
+
+  ProfilePage({required this.name, required this.DOB});
+
+  /*void loginUser(String userid) async {
+    final response = await http.post(
+      Uri.parse(profileuri),
+      body: json.encode({
+        'id': userid,
+      }),
+      headers: {'Content-Type': 'application/json'},
+    );
+    var jsonResponse = jsonDecode(response.body);
+    if(jsonResponse['status']){
+      var name = jsonResponse['name'];
+      var number = jsonResponse['number'];
+      var age = jsonResponse['age'];
+      //var name = jsonResponse['name'];
+    }
+  }*/
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -38,11 +72,11 @@ class ProfilePage extends StatelessWidget {
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    'Username',
+                    '$name',
                     style: TextStyle(fontSize: fontSizeTitle, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   SizedBox(height: 8.0),
-                  buildInfoRow(Icons.cake, 'Date of Birth: 01/01/1990', fontSizeInfo, Colors.white),
+                  buildInfoRow(Icons.cake, 'Date of Birth: $DOB', fontSizeInfo, Colors.white),
                   buildInfoRow(Icons.phone, 'Phone Number: 123-456-7890', fontSizeInfo, Colors.white),
                   buildInfoRow(Icons.email, 'Email: user@example.com', fontSizeInfo, Colors.white),
                 ],

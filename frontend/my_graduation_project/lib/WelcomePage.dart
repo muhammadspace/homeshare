@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:my_graduation_project/home.dart';
 import 'login.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -77,7 +78,7 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginPage(), // replace LoginPage() with your desired page
+                      builder: (context) => SignInPage(), // replace LoginPage() with your desired page
                     ),
                   );
                 },

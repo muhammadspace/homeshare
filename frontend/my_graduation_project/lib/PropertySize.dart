@@ -3,8 +3,9 @@ import 'PropertyImagesPage.dart';
 
 class PropertySizePage extends StatefulWidget {
   final String selectedPropertyType;
+  final int numberofrooms;
 
-  PropertySizePage({required this.selectedPropertyType});
+  PropertySizePage({required this.selectedPropertyType,required this.numberofrooms});
 
   @override
   _PropertySizePageState createState() => _PropertySizePageState();
@@ -77,7 +78,7 @@ class _PropertySizePageState extends State<PropertySizePage> {
               ElevatedButton(
                 onPressed: () {
                   // Validate and process the property size and number of beds
-                  String propertySize = sizeController.text;
+                  String propertySize = sizeController.text.toString();
                   String numberOfBeds = bedsController.text;
 
                   if (propertySize.isNotEmpty && numberOfBeds.isNotEmpty) {
@@ -88,7 +89,8 @@ class _PropertySizePageState extends State<PropertySizePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PropertyImagesPage(),
+                        builder: (context) => PropertyImagesPage(selectedPropertyType: widget.selectedPropertyType,
+                          numberofrooms: widget.numberofrooms,numberofbeds:numberOfBeds,size:propertySize),
                       ),
                     );
                   } else {

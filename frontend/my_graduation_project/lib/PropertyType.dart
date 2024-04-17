@@ -51,6 +51,7 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
                       MaterialPageRoute(
                         builder: (context) => PropertySizePage(
                           selectedPropertyType: selectedPropertyType,
+                          numberofrooms: numberOfRooms,
                         ),
                       ),
                     );

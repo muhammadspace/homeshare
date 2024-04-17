@@ -1,9 +1,46 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'sinup.dart';
+import 'package:my_graduation_project/sinup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'config.dart';
+import 'package:my_graduation_project/home.dart';
+import 'test.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+class SignInPage extends StatefulWidget {
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+class _SignInPageState extends State<SignInPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool _isNotValidate = false;
+  //late SharedPreferences prefs;
+  @override
+  /*void initState() {
+    // TODO: implement initState
+    super.initState();
+    initSharedPref();
+  }
+  void initSharedPref() async{
+    prefs = await SharedPreferences.getInstance();
+  }*/
+  //void login() async {
+    /*login() async{
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+      try {
+        final email = emailController.text;
+        final password =passwordController.text;
+        loginUser(email, password).then((result){
+          final token = result['token'];
+          final id = result['id'];
+        });
+        print('Token: $token');
+        return (JwtDecodeToken,id);
+      } catch (e) {
+        print('Error: $e');
+      }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +52,10 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _header(context),
-              _inputField(context),
-              _forgotPassword(context),
-              _signup(context),
+              _header(),
+              _inputField(),
+              _forgotPassword(),
+              _signup(),
             ],
           ),
         ),
@@ -26,8 +63,8 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _header(context) {
-    return const Column(
+  Widget _header() {
+    return Column(
       children: [
         Text(
           "Login",
@@ -38,13 +75,14 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _inputField(context) {
+  Widget _inputField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
+          controller: emailController,
           decoration: InputDecoration(
-            hintText: "Username",
+            hintText: "email",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide.none,
@@ -56,6 +94,7 @@ class LoginPage extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextField(
+          controller: passwordController,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -70,12 +109,24 @@ class LoginPage extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {
-
+          onPressed: () async {
+            //login();
+            loginUser(emailController.text, passwordController.text).then((result){
+              final token = result['token'];
+              final id = result['id'];
+              print('Token: $token');
+              print('User ID: ${id['user_id']}');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:id)),
+              );
+            });
+           /* var id = login("id");
+            var mytoken = token ;
             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen(Token:mytoken,id:id)),
+            );*/
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
@@ -91,10 +142,9 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _forgotPassword(context) {
+  Widget _forgotPassword() {
     return TextButton(
-      onPressed: () {
-      },
+      onPressed: () {},
       child: const Text(
         "Forgot password?",
         style: TextStyle(color: Colors.orange),
@@ -102,7 +152,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _signup(context) {
+  Widget _signup() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
