@@ -17,7 +17,7 @@ Future<Map<String, dynamic>> loginUser(String email, String password) async {
     final token = jsonResponse['token'];
     Map<String, dynamic> JwtDecodeToken = JwtDecoder.decode(token);
     Map<String, dynamic> id = {'id': JwtDecodeToken['id']};
-    return {'token': JwtDecodeToken, 'id': id};
+    return {'token': token, 'id': id};
   } else {
     throw Exception('Failed to login');
   }

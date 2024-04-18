@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_graduation_project/userata.dart';
@@ -7,79 +8,59 @@ import 'ProfilePage.dart'; // Import the ProfilePage
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'userata.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 //class HomeScreen extends StatefulWidget {
-  class HomeScreen extends StatelessWidget {
-    final Token;
-    final id;
-    String name = '';
-    String DOB = '';
-    String job = '';
-    List<String> interests = [];
-    String gender = '';
-    String type = '';
-    List<String> traits = [];
+class HomeScreen extends StatelessWidget {
+  final Token;
+  final id;
+  String name = '';
+  String DOB = '';
+  String job = '';
+  List<dynamic> interests = [];
+  String gender = '';
+  String type = '';
+  List<dynamic> traits = [];
 
 
 
-   HomeScreen({required this.Token, required this.id});
+  HomeScreen({required this.Token, required this.id});
 
-     /*data() async {
+  Future<void> userdata(String token, Map<String, dynamic> id) async {
+    //void userdata(String token, Map<String, dynamic> id) async {
 
-      try {
-        final String userData = await userdata(Token, id);
+    final String idt = id["id"] ;
+    //final String tokent = token["token"];
+    final apiUrl = 'http://192.168.1.95:3000/user/$idt' ; // Replace with your actual API URL
+    //final dataurl = userdataurl + '$idt' ;
+    final response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json',
+        'authorization':'Bearer $token'},
+      //body: jsonEncode({'email': email, 'password': password}),
+    );
 
-        // Split the userData string into individual parts
-        final List<String> userDataParts = userData.split(',');
+    if (response.statusCode == 200) {
+      final  result = response.body;
+      final jsonResponse = json.decode(result);
+       DOB = jsonResponse['dob'];
+       name = jsonResponse['username'] ;
+       job = jsonResponse['job'];
+       gender = jsonResponse['gender'];
+       type = jsonResponse['type'] ;
+      interests = jsonResponse['interests'];
+      traits = jsonResponse['traits'] ;
+      print('name:$name,DOB:$DOB,interests:$interests');
+      print(response.body);
 
-        // Declare variables
-
-        // Extract values from userDataParts and assign them to variables
-        for (var part in userDataParts) {
-          final List<String> keyValue = part.split(':');
-          final String key = keyValue[0].trim();
-          final String value = keyValue[1].trim();
-
-          if (key == 'name') {
-            name = value;
-          } else if (key == 'DOB') {
-            DOB = value;
-          } else if (key == 'job') {
-            job = value;
-          } else if (key == 'intrests') {
-            interests = value.split(';').map((e) => e.trim()).toList();
-          } else if (key == 'gender') {
-            gender = value;
-          } else if (key == 'type') {
-            type = value;
-          } else if (key == 'traits') {
-            traits = value.split(';').map((e) => e.trim()).toList();
-          }
-        }
-
-        // Use the assigned variables as needed
-        print('Name: $name');
-        print('DOB: $DOB');
-        print('Job: $job');
-        print('Interests: $interests');
-        print('Gender: $gender');
-        print('Type: $type');
-        print('Traits: $traits');
-      } catch (e) {
-        print('Error: $e');
-      }
+      //return result;
+      //,intrests:$intrests,traits:$traits
+    } else {
+      throw Exception('cant get the data');
     }
-*/
-  /*@override
-  State<HomeScreen> createState() => _HomeScreen();
-}
-class _HomeScreen extends State<HomeScreen>{
-  late String id;
-  void initState(){
-    super.initState();
-    Map<String,dynamic>JWTdecodertoken=JwtDecoder.decode(widget.token);
-    id = JWTdecodertoken['_id'];
-  }*/
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,41 +78,14 @@ class _HomeScreen extends State<HomeScreen>{
         actions: [
           IconButton(
             icon: Icon(Icons.person),
-            onPressed: () {
-              /*// Handle "Profile" button click
-              //var (name,DOB,job,intrests,gender,type,traits)=
-              data();
-              //userdata(Token,id);
-              //final username = name;
-              //final String username= await userdata(Token, id);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(name:name,DOB:DOB)),
-                );*/
-             /* userdata(Token, id).then((result){
-                name = result['name'];
-                DOB = result['DOB'];
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(name:name,DOB:DOB)),
-                );
-              });*/
-              /*userdata(Token, id).then((result) {
-                final Map<String, dynamic> jsonResponse = JwtDecoder.decode(result);
+            onPressed: () async{
+              await userdata(Token, id);
 
-                name = jsonResponse['name'];
-                DOB = jsonResponse['DOB'];
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(name: name, DOB: DOB)),
-                );
-              });*/
-              userdata(Token, id);
               Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(name: name, DOB: DOB)),
+                context ,
+                MaterialPageRoute(builder: (context) => ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,interests: interests,traits:traits )),
               );
+
             },
           ),
         ],

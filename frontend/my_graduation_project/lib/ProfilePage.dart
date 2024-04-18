@@ -6,17 +6,12 @@ import 'userata.dart';
 
 class ProfilePage extends StatelessWidget {
 
-  String name = '';
-  String DOB = '';
-  String job = '';
-  List<String> interests = [];
-  String gender = '';
-  String type = '';
-  List<String> traits = [];
+  String name ,DOB ,job,gender ,type ;
+  List<dynamic> interests , traits ;
 
 
 
-  ProfilePage({required this.name, required this.DOB});
+  ProfilePage({required this.name, required this.DOB , required this.job,required this.type,required this.traits,required this.gender,required this.interests});
 
   /*void loginUser(String userid) async {
     final response = await http.post(
