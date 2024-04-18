@@ -16,7 +16,7 @@ const tokenExtractor = (req, res, next) => {
 const userExtractor = (req, res, next) => {
     const decodedToken = jwt.decode(req.token, process.env.JWTSecret_Key)
     if (!decodedToken)
-        return res.status(401).json({ success: false, message: "Invalid token" })
+        return res.status(401).json({ success: false, message: "Invalid or missing token" })
 
     req.user = decodedToken
     console.log(req.user)
