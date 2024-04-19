@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'owner.dart';
 
 class GenderSelectionPage extends StatefulWidget {
+  String username , email , password,job;
+  DateTime? dob;
+  File? image;
+  GenderSelectionPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job}) : super(key: key);
   @override
   _GenderSelectionPageState createState() => _GenderSelectionPageState();
 }
@@ -34,7 +39,7 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfileCompletionPage()),
+                  MaterialPageRoute(builder: (context) => ProfileCompletionPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image , dob:widget.dob,job:widget.job,gender:selectedGender)),
                 );
               },
               style: ElevatedButton.styleFrom(

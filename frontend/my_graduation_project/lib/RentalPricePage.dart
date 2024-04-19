@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'RentAvailabilityPage.dart';
+import 'dart:io';
 
 class RentalPricePage extends StatefulWidget {
+  final String selectedPropertyType;
+  final int numberofrooms;
+  final String numberofbeds;
+  final String size;
+  final List<File> images;
+  final String address;
   @override
+  RentalPricePage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address});
   _RentalPricePageState createState() => _RentalPricePageState();
 }
 
@@ -48,12 +56,14 @@ class _RentalPricePageState extends State<RentalPricePage> {
                 if (rentType.isNotEmpty && priceController.text.isNotEmpty) {
                   print('Selected Rent Type: $rentType');
                   print('Entered Price: ${priceController.text}');
+                  String price = priceController.text;
 
                   // Navigate to RentPropertyPage
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RentPropertyPage(),
+                      builder: (context) => RentPropertyPage(selectedPropertyType: widget.selectedPropertyType,
+                          numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:widget.images,address:widget.address,rentType:rentType,price:price),
                     ),
                   );
                 } else {

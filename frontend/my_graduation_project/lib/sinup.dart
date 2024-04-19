@@ -1,9 +1,43 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'config.dart';
 import 'login.dart';
 import 'profilePhoto.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
+
+  @override
+  _SignupPageState createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
+
+  /*Future<Map<String, dynamic>> _registerUser(
+      String email, String password, String username, String confirmPassword) async {
+    final response = await http.post(
+      Uri.parse(registration),
+      body: json.encode({
+        'username': username,
+        'email': email,
+        'password': password,
+      }),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return {'status': true, 'message': data['message']};
+    } else {
+      final data = json.decode(response.body);
+      return {'status': false, 'message': data['message']};
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -40,70 +74,49 @@ class SignupPage extends StatelessWidget {
                 ),
                 Column(
                   children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Username",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none,
-                        ),
-                        fillColor: Colors.purple.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.person),
-                      ),
-                    ),
+                    _buildTextField(_usernameController, "Username", Icons.person),
                     const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Email",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none,
-                        ),
-                        fillColor: Colors.purple.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.email),
-                      ),
-                    ),
+                    _buildTextField(_emailController, "Email", Icons.email),
                     const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none,
-                        ),
-                        fillColor: Colors.purple.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.password),
-                      ),
-                      obscureText: true,
-                    ),
+                    _buildTextField(_passwordController, "Password", Icons.password, obscureText: true),
                     const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none,
-                        ),
-                        fillColor: Colors.purple.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.password),
-                      ),
-                      obscureText: true,
-                    ),
+                    _buildTextField(_confirmPasswordController, "Confirm Password", Icons.password, obscureText: true),
                   ],
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 3, left: 3),
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      final username = _usernameController.text;
+                      final email = _emailController.text;
+                      final password = _passwordController.text;
+                      final confirmPassword = _confirmPasswordController.text;
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ProfilePicturePage()),
-                      );
+                      if (password == confirmPassword) {
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              ProfilePicturePage(username: username, email: email, password: password)),
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            title: const Text('Sign Up Error'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+
+
                     },
                     child: const Text(
                       "Sign up",
@@ -124,7 +137,7 @@ class SignupPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => SignInPage()),
                         );
                       },
                       child: const Text(
@@ -139,6 +152,23 @@ class SignupPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String hintText, IconData prefixIcon, {bool obscureText = false}) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide.none,
+        ),
+        fillColor: Colors.purple.withOpacity(0.1),
+        filled: true,
+        prefixIcon: Icon(prefixIcon),
+      ),
+      obscureText: obscureText,
     );
   }
 }

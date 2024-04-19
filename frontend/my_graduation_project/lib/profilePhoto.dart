@@ -4,13 +4,14 @@ import 'package:image_picker/image_picker.dart';
 import 'dateOfBirth.dart';
 
 class ProfilePicturePage extends StatefulWidget {
+  String username , email , password;
+  ProfilePicturePage({Key? key,required this.username,required this.email,required this.password}) : super(key: key);
   @override
   _ProfilePicturePageState createState() => _ProfilePicturePageState();
 }
 
 class _ProfilePicturePageState extends State<ProfilePicturePage> {
   File? selectedImage;
-
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -45,7 +46,8 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
+                    MaterialPageRoute(builder: (context) =>
+                        RegisterPage(username: widget.username, email: widget.email, password: widget.password,image:selectedImage)),
                   );
                 },
                 style: ElevatedButton.styleFrom(
