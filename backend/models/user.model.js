@@ -1,6 +1,7 @@
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const Apt = require('./apt.model');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -53,6 +54,14 @@ const userSchema = new Schema({
   }],
   interests: [String],
   traits: [String],
+  owned_apts: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "apt",
+  },
+  resident_apt: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "apt",
+  }
 }, { timestamps: true });
 
 userSchema.pre('save', async function () {
@@ -63,6 +72,9 @@ userSchema.pre('save', async function () {
   try {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(user.password, salt);
+
+    user.owned_apts = Apt.find({ owner: this._id })
+    user.resident_apt = Apt.find({ residents: this._id })
 
     user.password = hash;
   } catch (err) {

@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken")
 
 const tokenExtractor = (req, res, next) => {
     const authorization = req.get("Authorization")
-    console.log(authorization)
     if (authorization && authorization.startsWith("Bearer"))
     {
         const token = authorization.replace("Bearer ", "")
@@ -19,7 +18,6 @@ const userExtractor = (req, res, next) => {
         return res.status(401).json({ success: false, message: "Invalid or missing token" })
 
     req.user = decodedToken
-    console.log(req.user)
 
     next()
 }
