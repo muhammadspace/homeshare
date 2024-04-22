@@ -29,23 +29,11 @@ router.get('/user/:identifier', async (req, res) => {
         // is username
         user = await User.findOne({ username: req.params.identifier })
 
-    // const { username, picture, dob, job, gender, move_in_date, type, interests, traits, owned_apts, resident_apt } = user
-    // const publicUserData = { username, picture, dob, job, gender, move_in_date, type, interests, traits, owned_apts, resident_apt }
-
-    // console.log("All data of this user, before sending only the user's public data:", user)
     await user.save()
     console.log(user)
-    // res.status(200).json(publicUserData);
     res.status(200).json(user);
 })
-router.get('/profile', userExtractor, async (req, res) => {
-    /* Get the information of the logged-in user */
 
-    const user = await User.findById(req.user.id)
-    user.password = "cannot display this information"
-
-    res.status(200).json(user);
-})
 router.post('/profile', userExtractor, async (req, res) => {
     /* Update the information of the logged-in user */
 
@@ -57,10 +45,6 @@ router.post('/profile', userExtractor, async (req, res) => {
         user[key] = newInfo[key]
 
     await user.save()
-
-    // for (key of Object.keys(newInfo))
-    //     console.log("old:", Object.entries(oldInfo).filter( ([k, v]) => k === key ))
-    // console.log("new:", newInfo)
 
     console.log("Successfully updated user information:", newInfo)
     res.status(200).json(user);

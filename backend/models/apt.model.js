@@ -30,10 +30,6 @@ const aptSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    furnished: {
-        type: Boolean,
-        required: true,
-    },
     available: {
         type: Boolean,
         required: true,

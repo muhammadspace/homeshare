@@ -52,10 +52,25 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "invite",
   }],
-  interests: [String],
-  traits: [String],
-  owned_apts: {
-    type: [mongoose.Schema.Types.ObjectId],
+//   interests: [String],
+  hobbies_pastimes: {
+    type: String,
+    required: true
+  },
+  sports_activities: {
+    type: String,
+    required: true
+  },
+  cultural_artistic: {
+    type: String,
+    required: true
+  },
+  intellectual_academic: {
+    type: String,
+    required: true
+  },
+  owned_apt: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: "apt",
   },
   resident_apt: {

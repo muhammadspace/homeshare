@@ -10,9 +10,7 @@ router.post("/", async (req, res) => {
         const { to, from, apt } = req.body
 
         // if (req.headers.authorization)
-        const tmpInvite = new Invite({ to, from, apt, rejected: false, accepted: false })
-
-        const invite = await tmpInvite.save()
+        const invite = new Invite({ to, from, apt, rejected: false, accepted: false })
 
         const recepient = await User.findById(invite.to)
         if (!recepient.invites)
@@ -46,7 +44,8 @@ router.post("/", async (req, res) => {
 
         res.json({ id: invite._id, to: invite.to, from: invite.from, apt: invite.apt }).status(201)
     } catch (err) {
-        console.log("Whoops! An error occured when trying to POST this invite:")
+        console.log(`
+    🔴 An error occured when trying to POST this invite:`)
         console.log(err)
         res.json({ error: err, success: false }).status(500)
     }
@@ -63,7 +62,7 @@ router.get("/:inviteid", async (req, res) => {
         // else
         //  res.json({ error: "unauthorized access to invite" }).status(401)
     } catch (err) {
-        console.log("Whoops! An error occured when trying to GET this invite:")
+        console.log("An error occured when trying to GET this invite:")
         console.log(err)
         res.json({ error: err, success: false }).status(500)
     }

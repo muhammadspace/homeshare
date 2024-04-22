@@ -7,7 +7,7 @@ const { userExtractor } = require("../utils/middleware")
 router.post("/", async (req, res) => {
     try
     {
-        const properties = { location, residents, owner, price, rooms, bathrooms, furnished, invites } = req.body
+        const properties = { location, residents, owner, price, rooms, bathrooms, invites } = req.body
         const tmpApt = new Apt({ ...properties, available: true })
         const apt = await tmpApt.save()
 
