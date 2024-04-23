@@ -1,12 +1,22 @@
 #da 2a5er version
+import pprint
 import pandas as pd
+import db
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from owner_class import Owner, Apt
 
 # Load seeker, owner, and rental listings datasets
-seekers_df = pd.read_csv('seekers_large.csv')     # Update with your seeker dataset path
-owners_df = pd.read_csv('interests_large.csv')        # Update with your owner dataset path
-modified_rental_listings_df = pd.read_csv('modified_rental_listings.csv')  # Update with your rental listings dataset path
+owners_coll = db.users_collection.find({"type": "owner"})
+seekers_coll = db.users_collection.find({"type": "seeker"})
+apts_coll = db.db.apts.find()
+owners_df = pd.DataFrame(list(owners_coll))
+seekers_df = pd.DataFrame(list(seekers_coll))
+apts_df = pd.DataFrame(list(apts_coll))
+
+# print(owners_df)
+# print(seekers_df)
+# print(apts_df)
 
 # Combine interests from all four columns into a single column
 seekers_df['All Interests'] = seekers_df[['hobbies_pastimes', 'sports_activities', 'cultural_artistic', 'intellectual_academic']].apply(lambda x: ', '.join(x.dropna()), axis=1)
@@ -22,12 +32,12 @@ owners_interests_tfidf = tfidf_vectorizer.transform(owners_df['All Interests'])
 # Compute cosine similarity between seeker and owner interest vectors
 similarity_matrix = cosine_similarity(seekers_interests_tfidf, owners_interests_tfidf)
 
-def recommend_owners_and_apartments(seeker_id):
+def recommend_owners(seeker_id):
     # Find the index of the current seeker in the seekers DataFrame
-    seeker_index = seekers_df.index[seekers_df['seeker_id'] == seeker_id]
+    seeker = seekers_df.loc[seekers_df._id.astype("string") == seeker_id]
     
-    if not seeker_index.empty:
-        seeker_index = seeker_index[0]  # Extract the index value
+    if not seeker.index.empty:
+        seeker_index = seeker.index.item()
         
         # Get similarity scores between the seeker and potential owners
         similarity_scores = similarity_matrix[seeker_index]
@@ -39,36 +49,42 @@ def recommend_owners_and_apartments(seeker_id):
         recommendations_found = False
         
         # Print recommendations
-        print(f"Recommendations for Seeker {seeker_id}:")
+        # print(f"Recommendations for Seeker {seeker_id}:")
         for idx in sorted_indices:
-            owner_id = owners_df.at[idx, 'owner_id']
+            owner_id = owners_df.at[idx, '_id']
             
             # Count the number of common interests
             common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Interests'].split(', ') if interest in owners_df.iloc[idx]['All Interests'].split(', '))
             
             # If common interests are non-zero, print recommendation
+            recommendations = []
             if common_interests > 0:
                 recommendations_found = True
-                print(f"Owner ID: {owner_id}, Common Interests: {common_interests}")
+
+                owner_apartment = apts_df[apts_df.owner == owner_id]
+                owner = Owner(owner_id, common_interests, Apt(owner_apartment))
                 
+                recommendations.append(owner)
+
                 # Find apartments owned by the recommended owner
-                owner_apartments = modified_rental_listings_df[modified_rental_listings_df['owner_id'] == owner_id]
-                for _, apartment_row in owner_apartments.iterrows():
-                    print(f"Property ID: {apartment_row['property_id']}")
-                    print(f"Location: {apartment_row['Location']}")
-                    print(f"Bedrooms: {apartment_row['Bedrooms']}, Bathrooms: {apartment_row['Bathrooms']}")
-                    print(f"Price (USD): {apartment_row['price(USD)']}")
-                    print(f"Start Date: {apartment_row['Start Date']}, End Date: {apartment_row['End Date']}")
-                    print(f"Max Occupancy: {apartment_row['max']}, Number of Occupiers: {apartment_row['no_of_occupiers']}")
-                    print(f"Seeker ID: {apartment_row['seeker_id']}")
+                # owner_apartments = apts_df[apts_df.owner == owner_id]
+                # for _, apartment_row in owner_apartments.iterrows():
+                #     print(f"Property ID: {apartment_row['_id']}")
+                #     print(f"Location: {apartment_row['location']}")
+                #     print(f"Bedrooms: {apartment_row['bedrooms']}, Bathrooms: {apartment_row['bathrooms']}")
+                #     print(f"Price (USD): {apartment_row['price']}")
+                #     print(f"Start Date: {apartment_row['start_date']}, End Date: {apartment_row['end_date']}")
+                #     print(f"Max Occupancy: {apartment_row['max']}, Number of Occupiers: {len(apartment_row['residents'])}")
+                #     print(f"Residents: {apartment_row['residents']}")
                 
-                print()  # Add a newline for readability
+                # print()  # Add a newline for readability
+            return recommendations
         
         if not recommendations_found:
-            print("No recommendations found for the seeker.")
+            return {"success": False, "message": "No recommendations found for the seeker."}
     else:
-        print(f"Seeker with seeker ID {seeker_id} not found.")
+        return {"success": False, "message": f"No seekers with ID {seeker_id} were found."}
 
 # Example usage:
-current_seeker_id = 40
-recommend_owners_and_apartments(current_seeker_id)
+# current_seeker_id = "662711bf0942111626be5d6b"
+# print(recommend_owners(current_seeker_id))
