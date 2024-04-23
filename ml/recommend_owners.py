@@ -1,5 +1,4 @@
 #da 2a5er version
-import pprint
 import pandas as pd
 import db
 from sklearn.feature_extraction.text import TfidfVectorizer

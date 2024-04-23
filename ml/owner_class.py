@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 
 class Owner:
     def __init__(self, id, common_interests, apt):
