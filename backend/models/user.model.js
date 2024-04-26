@@ -40,10 +40,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  move_in_date: {
-    type: Date,
-    required: true
-  },
+//   move_in_date: {
+//     type: Date,
+//     required: true
+//   },
   type: {
     type: String,
     required: true
@@ -106,5 +106,5 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
-const UserModel = db.model('user', userSchema);
+const UserModel = db.model('users2', userSchema);
 module.exports = UserModel;

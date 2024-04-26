@@ -22,7 +22,7 @@ const aptSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    rooms: {
+    bedrooms: {
         type: Number,
         required: true,
     },
@@ -30,8 +30,17 @@ const aptSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    available: {
-        type: Boolean,
+    property_type:
+    {
+        type: String,
+        required: true
+    },
+    start_date: {
+        type: Date,
+        required: true,
+    },
+    end_date: {
+        type: Date,
         required: true,
     },
     invites: [{
