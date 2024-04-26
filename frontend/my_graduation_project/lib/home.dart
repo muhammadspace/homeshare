@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
 
     final String idt = id["id"] ;
     //final String tokent = token["token"];
-    final apiUrl = 'http://192.168.1.95:3000/user/$idt' ; // Replace with your actual API URL
+    final apiUrl = 'http://192.168.1.8:3000/user/$idt' ; // Replace with your actual API URL
     //final dataurl = userdataurl + '$idt' ;
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -80,10 +80,9 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.person),
             onPressed: () async{
               await userdata(Token, id);
-
               Navigator.push(
                 context ,
-                MaterialPageRoute(builder: (context) => ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,interests: interests,traits:traits )),
+                MaterialPageRoute(builder: (context) => ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,interests: interests,traits:traits,token:Token )),
               );
 
             },

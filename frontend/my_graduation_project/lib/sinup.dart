@@ -5,6 +5,7 @@ import 'config.dart';
 import 'login.dart';
 import 'profilePhoto.dart';
 
+
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
 
@@ -18,26 +19,7 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
-  /*Future<Map<String, dynamic>> _registerUser(
-      String email, String password, String username, String confirmPassword) async {
-    final response = await http.post(
-      Uri.parse(registration),
-      body: json.encode({
-        'username': username,
-        'email': email,
-        'password': password,
-      }),
-      headers: {'Content-Type': 'application/json'},
-    );
 
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return {'status': true, 'message': data['message']};
-    } else {
-      final data = json.decode(response.body);
-      return {'status': false, 'message': data['message']};
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
