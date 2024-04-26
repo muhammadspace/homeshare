@@ -3,15 +3,17 @@ import 'package:my_graduation_project/config.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'userata.dart';
+import 'editprofile.dart';
 
 class ProfilePage extends StatelessWidget {
 
   String name ,DOB ,job,gender ,type ;
   List<dynamic> interests , traits ;
+  final token;
 
 
 
-  ProfilePage({required this.name, required this.DOB , required this.job,required this.type,required this.traits,required this.gender,required this.interests});
+  ProfilePage({required this.name, required this.DOB , required this.job,required this.type,required this.traits,required this.gender,required this.interests,required this.token});
 
   /*void loginUser(String userid) async {
     final response = await http.post(
@@ -85,8 +87,8 @@ class ProfilePage extends StatelessWidget {
         height: buttonHeight,
         child: ElevatedButton(
           onPressed: () {
-            // Handle "Edit Profile" button click
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilePage()));
+
+            Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilePage()));
           },
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),

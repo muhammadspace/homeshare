@@ -9,7 +9,7 @@ import 'package:my_graduation_project/config.dart';
 Future<String> userdata(String token, Map<String, dynamic> id) async {
    final String idt = id["id"] ;
    //final String tokent = token["token"];
-  final apiUrl = 'http://192.168.1.95:3000/user/$idt' ; // Replace with your actual API URL
+  final apiUrl = 'http://192.168.1.8:3000/user/$idt' ; // Replace with your actual API URL
   //final dataurl = userdataurl + '$idt' ;
   final response = await http.get(
     Uri.parse(apiUrl),

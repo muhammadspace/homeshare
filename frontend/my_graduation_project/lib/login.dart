@@ -7,6 +7,7 @@ import 'config.dart';
 import 'package:my_graduation_project/home.dart';
 import 'test.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'forgetpassword.dart';
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -15,32 +16,7 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool _isNotValidate = false;
-  //late SharedPreferences prefs;
-  @override
-  /*void initState() {
-    // TODO: implement initState
-    super.initState();
-    initSharedPref();
-  }
-  void initSharedPref() async{
-    prefs = await SharedPreferences.getInstance();
-  }*/
-  //void login() async {
-    /*login() async{
 
-      try {
-        final email = emailController.text;
-        final password =passwordController.text;
-        loginUser(email, password).then((result){
-          final token = result['token'];
-          final id = result['id'];
-        });
-        print('Token: $token');
-        return (JwtDecodeToken,id);
-      } catch (e) {
-        print('Error: $e');
-      }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +97,6 @@ class _SignInPageState extends State<SignInPage> {
                 MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:id)),
               );
             });
-           /* var id = login("id");
-            var mytoken = token ;
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen(Token:mytoken,id:id)),
-            );*/
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
@@ -144,7 +114,12 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _forgotPassword() {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+        );
+      },
       child: const Text(
         "Forgot password?",
         style: TextStyle(color: Colors.orange),
