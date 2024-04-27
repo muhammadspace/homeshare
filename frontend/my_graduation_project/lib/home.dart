@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_graduation_project/userata.dart';
@@ -17,10 +19,12 @@ class HomeScreen extends StatelessWidget {
   String name = '';
   String DOB = '';
   String job = '';
-  List<dynamic> interests = [];
   String gender = '';
   String type = '';
-  List<dynamic> traits = [];
+  String hobbies ='';
+  String sports ='' ;
+  String cultural ='';
+  String intellectual ='' ;
 
 
 
@@ -48,9 +52,11 @@ class HomeScreen extends StatelessWidget {
        job = jsonResponse['job'];
        gender = jsonResponse['gender'];
        type = jsonResponse['type'] ;
-      interests = jsonResponse['interests'];
-      traits = jsonResponse['traits'] ;
-      print('name:$name,DOB:$DOB,interests:$interests');
+      hobbies = jsonResponse['hobbies_pastimes'];
+      sports= jsonResponse['sports_activities'];
+      cultural=jsonResponse['cultural_artistic'];
+      intellectual=jsonResponse['intellectual_academic'];
+      print('name:$name,DOB:$DOB');
       print(response.body);
 
       //return result;
@@ -78,11 +84,11 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.person),
-            onPressed: () async{
-              await userdata(Token, id);
+            onPressed: () {
+              //await userdata(Token, id);
               Navigator.push(
                 context ,
-                MaterialPageRoute(builder: (context) => ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,interests: interests,traits:traits,token:Token )),
+                MaterialPageRoute(builder: (context) => ProfilePage(id: id, token: Token)),//ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,sports: sports,hobbies:hobbies,intellectual:intellectual ,cultural:cultural ,token:Token )),
               );
 
             },

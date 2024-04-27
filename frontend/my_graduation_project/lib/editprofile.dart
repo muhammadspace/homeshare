@@ -7,6 +7,8 @@ import 'config.dart';
 import 'dart:convert';
 import 'package:jwt_decoder/jwt_decoder.dart';
 class EditBirthdayPage extends StatefulWidget {
+  final token;
+  EditBirthdayPage({required this.token});
   @override
   _EditBirthdayPageState createState() => _EditBirthdayPageState();
 }
@@ -14,7 +16,7 @@ class EditBirthdayPage extends StatefulWidget {
 class _EditBirthdayPageState extends State<EditBirthdayPage> {
 
   late String username;
-  Future<void> userdata(String token) async {
+  Future<void> edit(String token) async {
     //void userdata(String token, Map<String, dynamic> id) async {
     final response = await http.post(
       Uri.parse(updprourl),
@@ -90,6 +92,8 @@ class _EditBirthdayPageState extends State<EditBirthdayPage> {
 }
 
 class EditPhoneNumberPage extends StatefulWidget {
+  final token;
+  EditPhoneNumberPage({required this.token});
   @override
   _EditPhoneNumberPageState createState() => _EditPhoneNumberPageState();
 }
@@ -132,6 +136,8 @@ class _EditPhoneNumberPageState extends State<EditPhoneNumberPage> {
 }
 
 class EditEmailPage extends StatefulWidget {
+  final token;
+  EditEmailPage({required this.token});
   @override
   _EditEmailPageState createState() => _EditEmailPageState();
 }
@@ -159,9 +165,21 @@ class _EditEmailPageState extends State<EditEmailPage> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
                 String newEmail = _emailController.text;
-                print('New Email Address: $newEmail');
+                final String Token = widget.token;
+                final response = await http.post(
+                  Uri.parse(updprourl),
+                  headers: {'Content-Type': 'application/json','authorization':'Bearer $Token'},
+                  body: jsonEncode({'email': newEmail}),
+                );
+                if (response.statusCode == 200) {
+                  final jsonResponse = json.decode(response.body);
+                  final email = jsonResponse['email'];
+                  print('New Email Address: $email');
+                } else {
+                  throw Exception('cant get the data');
+                }
                 Navigator.pop(context);
               },
               child: Text('Save'),
@@ -174,6 +192,8 @@ class _EditEmailPageState extends State<EditEmailPage> {
 }
 
 class EditUserNamePage extends StatefulWidget {
+  final token;
+  EditUserNamePage({required this.token});
   @override
   _EditUserNamePageState createState() => _EditUserNamePageState();
 }
@@ -201,9 +221,21 @@ class _EditUserNamePageState extends State<EditUserNamePage> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
                 String newUsername = _usernameController.text;
-                print('New User Name: $newUsername');
+                final String Token = widget.token;
+                final response = await http.post(
+               Uri.parse(updprourl),
+               headers: {'Content-Type': 'application/json','authorization':'Bearer $Token'},
+               body: jsonEncode({'username': newUsername}),
+             );
+             if (response.statusCode == 200) {
+               final jsonResponse = json.decode(response.body);
+               final username = jsonResponse['username'];
+               print('New User Name: $username');
+             } else {
+               throw Exception('cant get the data');
+             }
                 Navigator.pop(context);
               },
               child: Text('Save'),
@@ -216,6 +248,8 @@ class _EditUserNamePageState extends State<EditUserNamePage> {
 }
 
 class EditProfilePage extends StatelessWidget {
+  final token;
+  EditProfilePage({required this.token});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -231,7 +265,7 @@ class EditProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditProfilePhotoPage()),
+                  MaterialPageRoute(builder: (context) => EditProfilePhotoPage(token:token)),
                 );
               },
               child: Text('Edit Profile Photo'),
@@ -245,7 +279,7 @@ class EditProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditUserNamePage()),
+                  MaterialPageRoute(builder: (context) => EditUserNamePage(token:token)),
                 );
               },
               child: Text('Edit User Name', style: TextStyle(fontSize: 18)),
@@ -259,7 +293,7 @@ class EditProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditBirthdayPage()),
+                  MaterialPageRoute(builder: (context) => EditBirthdayPage(token:token)),
                 );
               },
               child: Text('Edit Date of Birth', style: TextStyle(fontSize: 18)),
@@ -273,7 +307,7 @@ class EditProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditPhoneNumberPage()),
+                  MaterialPageRoute(builder: (context) => EditPhoneNumberPage(token:token)),
                 );
               },
               child: Text('Edit Phone Number', style: TextStyle(fontSize: 18)),
@@ -287,7 +321,7 @@ class EditProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditEmailPage()),
+                  MaterialPageRoute(builder: (context) => EditEmailPage(token:token)),
                 );
               },
               child: Text('Edit Email', style: TextStyle(fontSize: 18)),
@@ -315,6 +349,8 @@ class EditProfilePage extends StatelessWidget {
 }
 
 class EditProfilePhotoPage extends StatefulWidget {
+  final token;
+  EditProfilePhotoPage({required this.token});
   @override
   _EditProfilePhotoPageState createState() => _EditProfilePhotoPageState();
 }

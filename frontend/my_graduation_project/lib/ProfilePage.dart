@@ -5,32 +5,72 @@ import 'package:http/http.dart' as http;
 import 'userata.dart';
 import 'editprofile.dart';
 
-class ProfilePage extends StatelessWidget {
 
-  String name ,DOB ,job,gender ,type ;
-  List<dynamic> interests , traits ;
-  final token;
+class ProfilePage extends StatefulWidget {
+  final dynamic token;
+  final Map<String, dynamic> id;
 
+  ProfilePage({required this.id, required this.token});
 
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
-  ProfilePage({required this.name, required this.DOB , required this.job,required this.type,required this.traits,required this.gender,required this.interests,required this.token});
+class _ProfilePageState extends State<ProfilePage> {
 
-  /*void loginUser(String userid) async {
-    final response = await http.post(
-      Uri.parse(profileuri),
-      body: json.encode({
-        'id': userid,
-      }),
-      headers: {'Content-Type': 'application/json'},
+  String name = '';
+  String DOB = '';
+  String job = '';
+  String gender = '';
+  String type = '';
+  String hobbies ='';
+  String sports ='' ;
+  String cultural ='';
+  String intellectual ='' ;
+
+  Future<void> fetchUserData() async {
+    final String idt = widget.id["id"];
+    final apiUrl = 'http://192.168.1.8:3000/user/$idt'; // Replace with your actual API URL
+
+    final response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ${widget.token}',
+      },
     );
-    var jsonResponse = jsonDecode(response.body);
-    if(jsonResponse['status']){
-      var name = jsonResponse['name'];
-      var number = jsonResponse['number'];
-      var age = jsonResponse['age'];
-      //var name = jsonResponse['name'];
+
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      setState(() {
+        DOB = jsonResponse['dob'];
+        name = jsonResponse['username'];
+      });
+      print('name: $name, DOB: $DOB');
+      print(response.body);
+    } else {
+      throw Exception('Failed to fetch user data');
     }
-  }*/
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
+
+  Future<void> navigateToEditProfile() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EditProfilePage(token: widget.token)),
+    );
+
+    // Handle the result returned from the edit page
+    if (result == true) {
+      // Refresh the user data
+      fetchUserData();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,10 +126,7 @@ class ProfilePage extends StatelessWidget {
         width: screenWidth,
         height: buttonHeight,
         child: ElevatedButton(
-          onPressed: () {
-
-            Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilePage()));
-          },
+          onPressed: navigateToEditProfile,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
             backgroundColor: Colors.orange,
