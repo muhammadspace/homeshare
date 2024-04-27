@@ -20,7 +20,7 @@
 | ------------------- | --------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------: | --------- |
 | `/invite/:inviteid` | Gets information of invite with ID `inviteid` |                  | `id`: invite ID, `to`: recepient ID, `from`: sender ID, `apt`: apartment ID, `rejeceted`: boolean, `accepted`: boolean                                                    |             ✔              |           |
 | `/user/:id`         | Gets information of user                      |                  | `username`, `picture`, `dob`, `job`, `gender`, `type`, `hobbies_pastimes`, `sports_activities`, `cultural_artistic`, `intellectual_academic`, `owned_apt`, `resident_apt` |                            |           |
-| `/apt/:aptid`       | Gets information of apartment with `aptid`    |                  |                                                                                                                                                                           |                            |           |
+| `/apt/<apt id or owner id>`       | Gets information of apartment with `aptid`    |                  |                                                                                                                                                                           |                            |           |
 
 ---
 <br>
