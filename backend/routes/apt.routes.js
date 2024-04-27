@@ -102,9 +102,18 @@ router.post("/kick/", userExtractor, async (req, res) => {
     res.status(200).json({ success: true, message: `Successfully removed ${resident.username} - ${resident._id} from this apartment.` })
 })
 
-router.get("/:id", async (req, res) => {
-    const apt = await Apt.findById(req.params.id)
-    res.status(200).json(apt)
+router.get("/:identifier", async (req, res) => {
+    // Get apt by :identifier or get the apt owned by user with :identifier
+    let apt = await Apt.findById(req.params.identifier)
+    if (apt)
+        res.status(200).json(apt)
+    else
+    {
+        const user = await User.findById(req.params.identifier)
+        console.log(user)
+        apt = await Apt.findById(user.owned_apt)
+        res.status(200).json(apt)
+    }
 })
 
 module.exports = router 
