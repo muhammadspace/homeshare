@@ -14,8 +14,9 @@ class RentPropertyPage extends StatefulWidget {
   final String address;
   final String rentType;
   final String price;
+  final id;
   @override
-  RentPropertyPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address,required this.rentType,required this.price});
+  RentPropertyPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address,required this.rentType,required this.price,required this.id});
   _RentPropertyPageState createState() => _RentPropertyPageState();
 }
 
@@ -111,8 +112,9 @@ class _RentPropertyPageState extends State<RentPropertyPage> {
                     // Your logic for the Continue button
                     final int rentprice = int.parse(widget.price);
                     final int numbeds = int.parse(widget.numberofbeds);
+
                     //createapt(id,widget.address, rentprice, max:numbeds, rooms:widget.numberofrooms, bedrooms:numbeds, bathrooms'2','true',true);
-                    createapt('661e130eba33d86fd2793ca0',widget.address,rentprice,numbeds,widget.numberofrooms,numbeds,2, true, true);
+                    createapt(widget.id,widget.address,rentprice,numbeds,widget.numberofrooms,2,'$startDate','$endDate',widget.selectedPropertyType);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

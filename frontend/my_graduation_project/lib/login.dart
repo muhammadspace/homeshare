@@ -90,11 +90,13 @@ class _SignInPageState extends State<SignInPage> {
             loginUser(emailController.text, passwordController.text).then((result){
               final token = result['token'];
               final id = result['id'];
+              String lastid = id['id'];
               print('Token: $token');
-              print('User ID: ${id['user_id']}');
+              print('User ID: ${id['id']}');
+              print('$lastid');
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:id)),
+                MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:lastid)),
               );
             });
           },
