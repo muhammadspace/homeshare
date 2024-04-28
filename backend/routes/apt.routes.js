@@ -7,28 +7,32 @@ const { userExtractor } = require("../utils/middleware")
 router.post("/", async (req, res) => {
     try
     {
-        const properties = { location, residents, owner, price, rooms, bathrooms, invites } = req.body
-        const tmpApt = new Apt({ ...properties, available: true })
+        const properties = { location, owner, max, residents, price, bedrooms, bathrooms, property_type, start_date, end_date, invites } = req.body
+        const tmpApt = new Apt({ ...properties })
         const apt = await tmpApt.save()
 
         const ownerUser = await User.findById(apt.owner)
-        ownerUser.owned_apts.push(apt._id)
+        ownerUser.owned_apt = apt._id
         await ownerUser.save()
 
+        console.log(apt)
         const residentsUsers = []
-        await new Promise( (resolve, reject) => {
-            residents.forEach( async resident => {
-                const user = await User.findById(resident)
-                residentsUsers.push(user) 
+        if (residents)
+        {
+            await new Promise( (resolve, reject) => {
+                residents.forEach( async resident => {
+                    const user = await User.findById(resident)
+                    residentsUsers.push(user) 
 
-                if (residentsUsers.length == residents.length)
-                    resolve()
+                    if (residentsUsers.length == residents.length)
+                        resolve()
+                })
             })
-        })
-        residentsUsers.forEach( async user => {
-            user.resident_apt = apt._id
-            await user.save()
-        })
+            residentsUsers.forEach( async user => {
+                user.resident_apt = apt._id
+                await user.save()
+            })
+        }
 
         console.log(`
     ✅ Successfully created a new apartment!
