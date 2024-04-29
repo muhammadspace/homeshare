@@ -69,6 +69,22 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  personality_trait: {
+    type: String,
+    // required: true
+  },
+  value_belief: {
+    type: String,
+    // required: true
+  },
+  interpersonal_skill: {
+    type: String,
+    // required: true
+  },
+  work_ethic: {
+    type: String,
+    // required: true
+  },
   owned_apt: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "apt",
