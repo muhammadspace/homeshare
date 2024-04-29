@@ -10,11 +10,10 @@ import 'test.dart';
 
 
 class ChooseInterestsPage extends StatefulWidget {
-  String username , email , password,job,gender,type;
+  String username , email , password,job,gender,type,Personality,Value_and_Belief,Work_Ethic,Interpersonal_Skill;
   DateTime? dob;
   File? image;
-  List<String> traitsarray;
-  ChooseInterestsPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender,required this.type,required this.traitsarray}) : super(key: key);
+  ChooseInterestsPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender,required this.type,required this.Interpersonal_Skill,required this.Personality,required this.Value_and_Belief,required this.Work_Ethic}) : super(key: key);
   @override
   _ChooseInterestsPageState createState() => _ChooseInterestsPageState();
 }
@@ -75,6 +74,10 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
         "sports_activities":sports,
         "cultural_artistic":cultural,
         "intellectual_academic":intellectual,
+        /*"personality_trait":widget.Personality,
+        "work_ethic":widget.Work_Ethic,
+        "value_belief":widget.Value_and_Belief,
+        "interpersonal_skill":widget.Interpersonal_Skill,*/
         //"traits": widget.traitsarray,
         //"interests":interets,
         //"move_in_date":'11/11/2020',
@@ -186,12 +189,12 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
               MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:id)),
             );
           });*/
-          /*Navigator.push(
+          Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => SignInPage(), //Homescreen(),
             ),
-          );*/
+          );
         }
             : null,
         label: Text('View Recommendations'),

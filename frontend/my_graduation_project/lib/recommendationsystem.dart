@@ -10,20 +10,22 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:decimal/decimal.dart';
+import 'config.dart';
 
 
 
-Future<void> searchowner(int idsend) async {
-  int idres;
-  List<dynamic> apts = [];
-  String common_interests ;
+Future <List<dynamic>> searchowner(String sidsend) async {
+  String idown = '';
+  String apts = '';
+  int common_interests = 0;
+  List<dynamic> dataowner = [];
 
-  final apiUrl = 'http://192.168.1.95:3000/flask/recommend/owner' ;
+  final ownerUrl = 'https://homeshare-o76b.onrender.com/flask/recommend/owners' ;
 
   final response = await http.post(
-    Uri.parse(apiUrl),
+    Uri.parse(ownerUrl),
     body: json.encode({
-      "id": idsend,
+      "seeker_id": sidsend,
     }),
     headers: {'Content-Type': 'application/json'},
   );
@@ -31,11 +33,14 @@ Future<void> searchowner(int idsend) async {
   if (response.statusCode == 200) {
     final  result = response.body;
     final jsonResponse = json.decode(result);
-    idres = jsonResponse['id'];
-    common_interests = jsonResponse['common_interests'];
-    apts = jsonResponse['apts'];
-    print('id:$idres,common interests:$common_interests,apts:$apts');
+    dataowner = jsonResponse;
+    idown = jsonResponse[0]['owner_id'];
+    common_interests = jsonResponse[0]['common_interests'];
+    apts = jsonResponse[0]['apt'];
     print(response.body);
+    print(dataowner);
+    print('id:$idown,common interests:$common_interests,apts:$apts');
+    return dataowner;
   } else {
     throw Exception('cant get the data');
   }
@@ -44,18 +49,18 @@ Future<void> searchowner(int idsend) async {
 
 
 
-Future<void> searchseeker(int idsend) async {
-  final Token;
-  int idres;
-  List<dynamic> apts = [];
-  var similarity ;
+Future <List<dynamic>> searchseeker(String oidsend) async {
+  String idsek;
+  int common_interests ;
+  Decimal similarity ;
+  List<dynamic> dataseeker = [];
 
-  final apiUrl = 'http://192.168.1.95:3000/flask/recommend/seeker' ;
+  final seekersurl = 'https://homeshare-o76b.onrender.com/flask/recommend/seekers' ;
 
   final response = await http.post(
-    Uri.parse(apiUrl),
+    Uri.parse(seekersurl),
     body: json.encode({
-      "id": idsend,
+      "owner_id": oidsend,
     }),
     headers: {'Content-Type': 'application/json'},
   );
@@ -63,11 +68,13 @@ Future<void> searchseeker(int idsend) async {
   if (response.statusCode == 200) {
     final  result = response.body;
     final jsonResponse = json.decode(result);
-    idres = jsonResponse['id'];
+    dataseeker = jsonResponse;
+    /*idsek = jsonResponse['seeker_id'];
     similarity = jsonResponse['similarity'];
-    apts = jsonResponse['apts'];
-    print('id:$idres,common interests:$similarity,apts:$apts');
+    common_interests = jsonResponse['common_interests'];
+    print('id:$idsek,common interests:$common_interests,similarity:$similarity');*/
     print(response.body);
+    return dataseeker;
   } else {
     throw Exception('cant get the data');
   }

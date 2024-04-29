@@ -1,6 +1,6 @@
 
 import 'dart:async';
-
+import 'recommendationsystem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_graduation_project/userata.dart';
@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({required this.Token, required this.id});
 
-  Future<void> userdata(String token, Map<String, dynamic> id) async {
+  /*Future<void> userdata(String token, Map<String, dynamic> id) async {
     //void userdata(String token, Map<String, dynamic> id) async {
 
     final String idt = id["id"] ;
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
       throw Exception('cant get the data');
     }
   }
-
+*/
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'Elghool',
+          'Home Harmony',
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'Billabong',
@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
               // Handle "Add" button click
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PropertyTypePage()),
+                MaterialPageRoute(builder: (context) => PropertyTypePage(id:id)),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -129,12 +129,22 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async{
+              //final String idt = id["id"] ;
+             /* final String seekerid = '662711c10942111626be5d78' ;
+              final List<dynamic> ownersdata = await searchowner(seekerid);
+                print('$ownersdata');*/
+                //print('common_interests: $common_interests');
+                //print('User ID: ${id['user_id']}');
+                final String ownerid = '662bfe61a249dfa7276ba7d7' ;
+                final List<dynamic> seekersdata = await searchseeker(ownerid);
+                print(seekersdata);
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PreferencePage()),);
+
               // Handle "Search" button click
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PreferencePage()),
-              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,

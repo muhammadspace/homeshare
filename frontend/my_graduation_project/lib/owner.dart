@@ -75,8 +75,8 @@ class _ProfileCompletionPageState extends State<ProfileCompletionPage> {
         ),
         SizedBox(height: 20.0),
         // User Type RadioButtons with Icons
-        buildUserTypeRadioButton('Property Owner', Icons.home),
-        buildUserTypeRadioButton('Home Seeker', Icons.search),
+        buildUserTypeRadioButton('owner', Icons.home),
+        buildUserTypeRadioButton('seeker', Icons.search),
       ],
     );
   }

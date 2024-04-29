@@ -9,8 +9,9 @@ class PropertyImagesPage extends StatefulWidget {
   final int numberofrooms;
   final String numberofbeds;
   final String size;
+  final id;
   @override
-  PropertyImagesPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size});
+  PropertyImagesPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.id});
   _PropertyImagesPageState createState() => _PropertyImagesPageState();
 }
 
@@ -84,7 +85,7 @@ class _PropertyImagesPageState extends State<PropertyImagesPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => PropertyAddressPage(selectedPropertyType: widget.selectedPropertyType,
-                        numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:propertyImages),
+                        numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:propertyImages,id:widget.id),
                   ),
                 );
               },

@@ -119,7 +119,7 @@ class _ChooseCharacterTraitsPageState extends State<ChooseCharacterTraitsPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChooseInterestsPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image , dob:widget.dob,job:widget.job,gender:widget.gender,type:widget.type,traitsarray:characterTraits),
+              builder: (context) => ChooseInterestsPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image , dob:widget.dob,job:widget.job,gender:widget.gender,type:widget.type, Interpersonal_Skill: '$selectedInterpersonalSkill', Personality: '$selectedPersonalityTrait', Value_and_Belief: '$selectedValueBelief', Work_Ethic: '$selectedWorkEthic',),
             ),
           );
         }
