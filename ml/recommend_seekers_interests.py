@@ -25,7 +25,7 @@ seekers_interests_tfidf = tfidf_vectorizer.transform(seekers_df['All Interests']
 # Compute cosine similarity between owner and seeker interest vectors
 similarity_matrix = cosine_similarity(owners_interests_tfidf, seekers_interests_tfidf)
 
-def recommend_seekers(owner_id):
+def recommend_seekers_interests(owner_id):
     # Find the index of the current owner in the owners DataFrame
     owner = owners_df.loc[owners_df._id.astype("string") == owner_id]
     

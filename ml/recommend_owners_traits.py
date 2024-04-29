@@ -18,20 +18,20 @@ apts_df = pd.DataFrame(list(apts_coll))
 # print(apts_df)
 
 # Combine interests from all four columns into a single column
-seekers_df['All Interests'] = seekers_df[['hobbies_pastimes', 'sports_activities', 'cultural_artistic', 'intellectual_academic']].apply(lambda x: ', '.join(x.dropna()), axis=1)
-owners_df['All Interests'] = owners_df[['hobbies_pastimes', 'sports_activities', 'cultural_artistic', 'intellectual_academic']].apply(lambda x: ', '.join(x.dropna()), axis=1)
+owners_df['All Traits'] = owners_df[['personality_trait','value_belief','interpersonal_skill','work_ethic']].apply(lambda x: ', '.join(x.dropna()), axis=1)
+seekers_df['All Traits'] = seekers_df[['personality_trait','value_belief','interpersonal_skill','work_ethic']].apply(lambda x: ', '.join(x.dropna()), axis=1)
 
 # TF-IDF encoding for seeker interests
 tfidf_vectorizer = TfidfVectorizer()
-seekers_interests_tfidf = tfidf_vectorizer.fit_transform(seekers_df['All Interests'])
+seekers_interests_tfidf = tfidf_vectorizer.fit_transform(seekers_df['All Traits'])
 
 # TF-IDF encoding for owner interests
-owners_interests_tfidf = tfidf_vectorizer.transform(owners_df['All Interests'])
+owners_interests_tfidf = tfidf_vectorizer.transform(owners_df['All Traits'])
 
 # Compute cosine similarity between seeker and owner interest vectors
 similarity_matrix = cosine_similarity(seekers_interests_tfidf, owners_interests_tfidf)
 
-def recommend_owners(seeker_id):
+def recommend_owners_traits(seeker_id):
     # Find the index of the current seeker in the seekers DataFrame
     seeker = seekers_df.loc[seekers_df._id.astype("string") == seeker_id]
     
@@ -53,7 +53,7 @@ def recommend_owners(seeker_id):
             owner_id = owners_df.at[idx, '_id']
             
             # Count the number of common interests
-            common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Interests'].split(', ') if interest in owners_df.iloc[idx]['All Interests'].split(', '))
+            common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Traits'].split(', ') if interest in owners_df.iloc[idx]['All Traits'].split(', '))
             
             # If common interests are non-zero, print recommendation
             recommendations = []
