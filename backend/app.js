@@ -13,8 +13,6 @@ const Invite = require("./models/invite.model.js")
 const User = require("./models/user.model.js")
 const Apt = require('./models/apt.model.js');
 
-const p = require("./mailer.js")
-
 app.use(bodyParser.json());
 app.use(cors());
 app.use(middleware.tokenExtractor)
