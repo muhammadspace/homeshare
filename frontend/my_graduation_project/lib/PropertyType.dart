@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'PropertySize.dart';
 
 class PropertyTypePage extends StatefulWidget {
-  final id;
-  PropertyTypePage({required this.id});
+  final id,token;
+  PropertyTypePage({required this.id,required this.token});
   @override
   _PropertyTypePageState createState() => _PropertyTypePageState();
 }
@@ -52,7 +52,7 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
                       MaterialPageRoute(
                         builder: (context) => PropertySizePage(
                           selectedPropertyType: selectedPropertyType,
-                          numberofrooms: numberOfRooms,id:widget.id
+                          numberofrooms: numberOfRooms,id:widget.id,token:widget.token
                         ),
                       ),
                     );

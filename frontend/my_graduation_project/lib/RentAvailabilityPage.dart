@@ -4,6 +4,7 @@ import 'package:intl/number_symbols_data.dart';
 import 'package:my_graduation_project/aptmodel.dart';
 import 'RoommatePreferencePage.dart';
 import 'dart:io';
+import 'home.dart';
 
 class RentPropertyPage extends StatefulWidget {
   final String selectedPropertyType;
@@ -14,9 +15,9 @@ class RentPropertyPage extends StatefulWidget {
   final String address;
   final String rentType;
   final String price;
-  final id;
+  final id,token;
   @override
-  RentPropertyPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address,required this.rentType,required this.price,required this.id});
+  RentPropertyPage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address,required this.rentType,required this.price,required this.id,required this.token});
   _RentPropertyPageState createState() => _RentPropertyPageState();
 }
 
@@ -118,7 +119,7 @@ class _RentPropertyPageState extends State<RentPropertyPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RoommatePreferencePage(),
+                        builder: (context) => HomeScreen(id: widget.id,Token: widget.token),
                       ),
                     );
                   },

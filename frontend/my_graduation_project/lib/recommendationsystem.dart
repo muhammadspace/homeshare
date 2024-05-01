@@ -14,16 +14,15 @@ import 'config.dart';
 
 
 
-Future <List<dynamic>> searchowner(String sidsend) async {
-  String idown = '';
-  String apts = '';
-  int common_interests = 0;
+
+Future <List<dynamic>> searchownerinterest(String sidsend) async {
+
   List<dynamic> dataowner = [];
 
-  final ownerUrl = 'https://homeshare-o76b.onrender.com/flask/recommend/owners' ;
+  final ownerintUrl = 'https://homeshare-o76b.onrender.com/flask/recommend/owners_interests' ;
 
   final response = await http.post(
-    Uri.parse(ownerUrl),
+    Uri.parse(ownerintUrl),
     body: json.encode({
       "seeker_id": sidsend,
     }),
@@ -34,12 +33,32 @@ Future <List<dynamic>> searchowner(String sidsend) async {
     final  result = response.body;
     final jsonResponse = json.decode(result);
     dataowner = jsonResponse;
-    idown = jsonResponse[0]['owner_id'];
-    common_interests = jsonResponse[0]['common_interests'];
-    apts = jsonResponse[0]['apt'];
     print(response.body);
     print(dataowner);
-    print('id:$idown,common interests:$common_interests,apts:$apts');
+    return dataowner;
+  } else {
+    throw Exception('cant get the data');
+  }
+}
+Future <List<dynamic>> searchownertraits(String sidsend) async {
+  List<dynamic> dataowner = [];
+
+  final ownertraUrl = 'https://homeshare-o76b.onrender.com/flask/recommend/owners_traits' ;
+
+  final response = await http.post(
+    Uri.parse(ownertraUrl),
+    body: json.encode({
+      "seeker_id": sidsend,
+    }),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode == 200) {
+    final  result = response.body;
+    final jsonResponse = json.decode(result);
+    dataowner = jsonResponse;
+    print(response.body);
+    print(dataowner);
     return dataowner;
   } else {
     throw Exception('cant get the data');
@@ -48,17 +67,13 @@ Future <List<dynamic>> searchowner(String sidsend) async {
 
 
 
-
-Future <List<dynamic>> searchseeker(String oidsend) async {
-  String idsek;
-  int common_interests ;
-  Decimal similarity ;
+Future <List<dynamic>> searchseekerinterest(String oidsend) async {
   List<dynamic> dataseeker = [];
 
-  final seekersurl = 'https://homeshare-o76b.onrender.com/flask/recommend/seekers' ;
+  final seekersinturl = 'https://homeshare-o76b.onrender.com/flask/recommend/seekers_interests' ;
 
   final response = await http.post(
-    Uri.parse(seekersurl),
+    Uri.parse(seekersinturl),
     body: json.encode({
       "owner_id": oidsend,
     }),
@@ -69,11 +84,32 @@ Future <List<dynamic>> searchseeker(String oidsend) async {
     final  result = response.body;
     final jsonResponse = json.decode(result);
     dataseeker = jsonResponse;
-    /*idsek = jsonResponse['seeker_id'];
-    similarity = jsonResponse['similarity'];
-    common_interests = jsonResponse['common_interests'];
-    print('id:$idsek,common interests:$common_interests,similarity:$similarity');*/
     print(response.body);
+    print(dataseeker);
+    return dataseeker;
+  } else {
+    throw Exception('cant get the data');
+  }
+}
+Future <List<dynamic>> searchseekertraits(String oidsend) async {
+  List<dynamic> dataseeker = [];
+
+  final seekerstraurl = 'https://homeshare-o76b.onrender.com/flask/recommend/seekers_traits' ;
+
+  final response = await http.post(
+    Uri.parse(seekerstraurl),
+    body: json.encode({
+      "owner_id": oidsend,
+    }),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode == 200) {
+    final  result = response.body;
+    final jsonResponse = json.decode(result);
+    dataseeker = jsonResponse;
+    print(response.body);
+    print(dataseeker);
     return dataseeker;
   } else {
     throw Exception('cant get the data');

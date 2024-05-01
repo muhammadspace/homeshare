@@ -9,9 +9,9 @@ class RentalPricePage extends StatefulWidget {
   final String size;
   final List<File> images;
   final String address;
-  final id;
+  final id,token;
   @override
-  RentalPricePage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address,required this.id});
+  RentalPricePage({required this.selectedPropertyType,required this.numberofrooms,required this.numberofbeds,required this.size,required this.images,required this.address,required this.id,required this.token});
   _RentalPricePageState createState() => _RentalPricePageState();
 }
 
@@ -64,7 +64,7 @@ class _RentalPricePageState extends State<RentalPricePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => RentPropertyPage(selectedPropertyType: widget.selectedPropertyType,
-                          numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:widget.images,address:widget.address,rentType:rentType,price:price,id:widget.id),
+                          numberofrooms: widget.numberofrooms,numberofbeds:widget.numberofbeds,size:widget.size,images:widget.images,address:widget.address,rentType:rentType,price:price,id:widget.id,token:widget.token),
                     ),
                   );
                 } else {

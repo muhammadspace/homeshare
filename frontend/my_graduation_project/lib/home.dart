@@ -1,71 +1,60 @@
-
-import 'dart:async';
-import 'recommendationsystem.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:my_graduation_project/recommendation%20search.dart';
+import 'dart:convert';
 import 'package:my_graduation_project/userata.dart';
 import 'PropertyType.dart';
 import 'preference.dart';
-import 'ProfilePage.dart'; // Import the ProfilePage
-import 'package:jwt_decoder/jwt_decoder.dart';
-import 'userata.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-//class HomeScreen extends StatefulWidget {
-class HomeScreen extends StatelessWidget {
-  final Token;
-  final id;
-  String name = '';
-  String DOB = '';
-  String job = '';
-  String gender = '';
-  String type = '';
-  String hobbies ='';
-  String sports ='' ;
-  String cultural ='';
-  String intellectual ='' ;
+import 'ProfilePage.dart';
+import 'TopRecommendationsPage.dart';
+import 'notification.dart';
+import 'saved.dart';
+import 'recommendationsystem.dart';
 
-
+class HomeScreen extends StatefulWidget {
+  final String Token;
+  final String id;
 
   HomeScreen({required this.Token, required this.id});
 
-  /*Future<void> userdata(String token, Map<String, dynamic> id) async {
-    //void userdata(String token, Map<String, dynamic> id) async {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-    final String idt = id["id"] ;
-    //final String tokent = token["token"];
-    final apiUrl = 'http://192.168.1.8:3000/user/$idt' ; // Replace with your actual API URL
-    //final dataurl = userdataurl + '$idt' ;
-    final response = await http.get(
-      Uri.parse(apiUrl),
-      headers: {'Content-Type': 'application/json',
-        'authorization':'Bearer $token'},
-      //body: jsonEncode({'email': email, 'password': password}),
-    );
+class _HomeScreenState extends State<HomeScreen> {
+  String type = '';
 
-    if (response.statusCode == 200) {
-      final  result = response.body;
-      final jsonResponse = json.decode(result);
-       DOB = jsonResponse['dob'];
-       name = jsonResponse['username'] ;
-       job = jsonResponse['job'];
-       gender = jsonResponse['gender'];
-       type = jsonResponse['type'] ;
-      hobbies = jsonResponse['hobbies_pastimes'];
-      sports= jsonResponse['sports_activities'];
-      cultural=jsonResponse['cultural_artistic'];
-      intellectual=jsonResponse['intellectual_academic'];
-      print('name:$name,DOB:$DOB');
-      print(response.body);
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
 
-      //return result;
-      //,intrests:$intrests,traits:$traits
-    } else {
-      throw Exception('cant get the data');
+  Future<void> fetchData() async {
+    final String idt = widget.id;
+    final typeurl = 'https://homeshare-o76b.onrender.com/user/$idt';
+    try {
+      final response = await http.get(
+        Uri.parse(typeurl),
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': 'Bearer ${widget.Token}',
+        },
+      );
+      if (response.statusCode == 200) {
+        final result = response.body;
+        final jsonResponse = json.decode(result);
+        setState(() {
+          type = jsonResponse['type'];
+        });
+        print(type);
+      } else {
+        throw Exception('Cannot get the data');
+      }
+    } catch (error) {
+      print('Error fetching data: $error');
     }
   }
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -85,88 +74,86 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
-              //await userdata(Token, id);
               Navigator.push(
-                context ,
-                MaterialPageRoute(builder: (context) => ProfilePage(id: id, token: Token)),//ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,sports: sports,hobbies:hobbies,intellectual:intellectual ,cultural:cultural ,token:Token )),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(id: widget.id, token: widget.Token),
+                ),
               );
-
             },
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              // Handle "Add" button click
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PropertyTypePage(id:id)),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.orange,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              minimumSize: Size(double.infinity, 0), // Set the width to the screen width
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.add, size: 24, color: Colors.white),
-                SizedBox(width: 8),
-                Text(
-                  'Post Your Advertisement',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              ],
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage('https://www.mobilesmspk.net/user/images/upload_images/2020/05/7/mobilesmspk.net_home-image-1.jpg'),
+            fit: BoxFit.cover,
           ),
-          SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () async{
-              //final String idt = id["id"] ;
-             /* final String seekerid = '662711c10942111626be5d78' ;
-              final List<dynamic> ownersdata = await searchowner(seekerid);
-                print('$ownersdata');*/
-                //print('common_interests: $common_interests');
-                //print('User ID: ${id['user_id']}');
-                final String ownerid = '662bfe61a249dfa7276ba7d7' ;
-                final List<dynamic> seekersdata = await searchseeker(ownerid);
-                print(seekersdata);
-
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (type == 'owner') ...[
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PropertyTypePage(id: widget.id,token: widget.Token)),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                  minimumSize: Size(double.infinity, 0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add, size: 24, color: Colors.white),
+                    SizedBox(width: 8),
+                    Text(
+                      'Create an apartment',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16.0),
+            ],
+            ElevatedButton(
+              onPressed: () async {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PreferencePage()),);
-
-              // Handle "Search" button click
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              minimumSize: Size(double.infinity, 0), // Set the width to the screen width
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.search, size: 24, color: Colors.white),
-                SizedBox(width: 8),
-                Text(
-                  'Search for Property',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  MaterialPageRoute(builder: (context) => SearchPage(type: type, senderid: widget.id, token: widget.Token)),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-              ],
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                minimumSize: Size(double.infinity, 0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.search, size: 24, color: Colors.white),
+                  SizedBox(width: 8),
+                  Text(
+                    'Search for Property',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -185,8 +172,16 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
         onTap: (int index) {
-          if (index == 2) {
-            // Handle notifications tab click
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SavedPage()),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NotificationsPage()),
+            );
           }
         },
       ),

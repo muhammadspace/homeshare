@@ -74,13 +74,10 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
         "sports_activities":sports,
         "cultural_artistic":cultural,
         "intellectual_academic":intellectual,
-        /*"personality_trait":widget.Personality,
+        "personality_trait":widget.Personality,
         "work_ethic":widget.Work_Ethic,
         "value_belief":widget.Value_and_Belief,
-        "interpersonal_skill":widget.Interpersonal_Skill,*/
-        //"traits": widget.traitsarray,
-        //"interests":interets,
-        //"move_in_date":'11/11/2020',
+        "interpersonal_skill":widget.Interpersonal_Skill,
       }),
       headers: {'Content-Type': 'application/json'},
     );

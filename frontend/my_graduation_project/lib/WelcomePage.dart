@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:my_graduation_project/home.dart';
 import 'login.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -8,9 +7,9 @@ class WelcomePage extends StatefulWidget {
   _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin {
+class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<double> _animation;
+  late Animation<Offset> _animation;
 
   @override
   void dispose() {
@@ -31,7 +30,7 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
         }
       });
 
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+    _animation = Tween<Offset>(begin: Offset.zero, end: Offset(-1.0, 0.0)).animate(_animationController);
 
     _animationController.forward();
     super.initState();
@@ -40,59 +39,69 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: CachedNetworkImageProvider(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8wY5jTziGmUJOljWgIy-TebpMygDeOZ_B-KERtHeiog&s',
-            ),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(_animation.value), BlendMode.darken),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Welcome to Our App!',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Explore amazing features and content.',
-                style: TextStyle(fontSize: 18, color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to the next page (you can replace this with the desired page)
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignInPage(), // replace LoginPage() with your desired page
+      body: ClipRect(
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: AnimatedBuilder(
+                animation: _animationController,
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(MediaQuery.of(context).size.width * _animation.value.dx, 0.0),
+                    child: CachedNetworkImage(
+                      imageUrl: 'https://i.pinimg.com/736x/6a/bf/43/6abf430393f744b97461ca5f81a2f220.jpg',
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width * 2,
+                      height: MediaQuery.of(context).size.height,
                     ),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.orange,
-                ),
-                child: Text(
-                  'Get Started',
-                  style: TextStyle(fontSize: 18),
-                ),
               ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'Welcome to Our App!',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Explore amazing features and content.',
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInPage(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: Colors.orange,
+                    ),
+                    child: Text(
+                      'Get Started',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
