@@ -213,13 +213,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   buildInfoRow(Icons.label, 'value belief: $value_belief', fontSizeInfo, Colors.white),
                   buildInfoRow(Icons.label, 'interpersonal skill: $interpersonal_skill', fontSizeInfo, Colors.white),
 
+                  if(type == 'owner')...[
+                    buildInfoRow(
+                        Icons.label, 'aprtment bathrooms: $apt_bathrooms',
+                        fontSizeInfo, Colors.white),
+                    buildInfoRow(
+                        Icons.label, 'apt_bedrooms: $apt_bedrooms', fontSizeInfo,
+                        Colors.white),
+                    buildInfoRow(Icons.label, 'apt_max: $apt_max', fontSizeInfo,
+                        Colors.white),
+                    buildInfoRow(Icons.label, 'apt_type: $apt_type', fontSizeInfo,
+                        Colors.white),
 
-                  buildInfoRow(Icons.label, 'aprtment bathrooms: $apt_bathrooms', fontSizeInfo, Colors.white),
-                  buildInfoRow(Icons.label, 'apt_bedrooms: $apt_bedrooms', fontSizeInfo, Colors.white),
-                  buildInfoRow(Icons.label, 'apt_max: $apt_max', fontSizeInfo, Colors.white),
-                  buildInfoRow(Icons.label, 'apt_type: $apt_type', fontSizeInfo, Colors.white),
-
-                  buildInfoRow(Icons.label, 'apt_location: $apt_location', fontSizeInfo, Colors.white),
+                    buildInfoRow(
+                        Icons.label, 'apt_location: $apt_location', fontSizeInfo,
+                        Colors.white),
+                  ],
                   // buildInfoRow(Icons.label, 'Sports Activities: $apt_residents', fontSizeInfo, Colors.white),
                   //buildInfoRow(Icons.label, 'Cultural Artistic: $apt_invites', fontSizeInfo, Colors.white),
                 ],
@@ -269,5 +278,4 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ],
     );
-  }
-}
+  }}

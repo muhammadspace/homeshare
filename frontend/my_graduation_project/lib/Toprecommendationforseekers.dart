@@ -10,34 +10,34 @@ class TopRecommendationseekers extends StatefulWidget {
   TopRecommendationseekers({required this.recommendations, required this.senderid, required this.token});
 
   @override
-  _TopRecommendationseekers createState() => _TopRecommendationseekers();
+  _TopRecommendationseekersState createState() => _TopRecommendationseekersState();
 }
 
-class _TopRecommendationseekers extends State<TopRecommendationseekers> {
-  var formatter = DateFormat('yyyy-MM-dd');
+class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
+  final DateFormat _formatter = DateFormat('yyyy-MM-dd');
 
-  Future<Map<String, dynamic>> fetchUserData(String dataownerid) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$dataownerid';
+  Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
+    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$dataOwnerId';
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Failed to fetch user data');
+      throw Exception('Failed to fetch user data: ${response.reasonPhrase}');
     }
   }
 
-  Future<Map<String, dynamic>> fetchAptData(String dataaptid) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$dataaptid';
+  Future<Map<String, dynamic>> _fetchAptData(String dataAptId) async {
+    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$dataAptId';
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Failed to fetch apartment data');
+      throw Exception('Failed to fetch apartment data: ${response.reasonPhrase}');
     }
   }
 
-  Future<Map<String, dynamic>> joinsomeone(String aptid, String reciverid) async {
-    final inviteUrl = 'https://homeshare-o76b.onrender.com/apt/join/$aptid';
+  Future<Map<String, dynamic>> _joinSomeone(String aptId, String ownerId) async {
+    final inviteUrl = 'https://homeshare-o76b.onrender.com/apt/join/$aptId';
     final response = await http.post(
       Uri.parse(inviteUrl),
       headers: {'Content-Type': 'application/json', 'authorization': 'Bearer ${widget.token}'},
@@ -45,7 +45,7 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Failed to send invitation');
+      throw Exception('Failed to send invitation: ${response.reasonPhrase}');
     }
   }
 
@@ -59,11 +59,11 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
         itemCount: widget.recommendations.length,
         itemBuilder: (context, index) {
           final recommendation = widget.recommendations[index];
-          final dataownerid = '${recommendation['owner_id']}';
-          final dataaptid = '${recommendation['apt']}';
+          final dataOwnerId = '${recommendation['owner_id']}';
+          final dataAptId = '${recommendation['apt']}';
 
           return FutureBuilder<Map<String, dynamic>>(
-            future: fetchUserData(dataownerid),
+            future: _fetchUserData(dataOwnerId),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
@@ -76,7 +76,7 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
               } else {
                 final userData = snapshot.data!;
                 return FutureBuilder<Map<String, dynamic>>(
-                  future: fetchAptData(dataaptid),
+                  future: _fetchAptData(dataAptId),
                   builder: (context, aptSnapshot) {
                     if (aptSnapshot.connectionState == ConnectionState.waiting) {
                       return Center(
@@ -88,6 +88,7 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
                       );
                     } else {
                       final aptData = aptSnapshot.data!;
+                      List<dynamic> residents = aptData['residents'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                         child: Container(
@@ -106,17 +107,19 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
                           child: ListTile(
                             title: Text('Name: ${userData['username']}'),
                             subtitle: Text('Job: ${userData['job']}'),
-                            trailing: ElevatedButton(
+                            trailing: (aptData['max'] < residents.length)
+                                ? ElevatedButton(
                               onPressed: () {
-                                _showInviteDialog(context, userData['username'], dataaptid, dataownerid);
+                                _showInviteDialog(context, userData['username'], dataAptId, dataOwnerId);
                               },
-                              child: Text('Invite'),
-                            ),
+                              child: Text('Join'),
+                            )
+                                : Text('Fulled'),
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => RecommendationDetailPage(userdetails: userData, aptdata: aptData),
+                                  builder: (context) => RecommendationDetailPage(userDetails: userData, aptData: aptData),
                                 ),
                               );
                             },
@@ -134,7 +137,7 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
     );
   }
 
-  Future<void> _showInviteDialog(BuildContext context, String username, String aptid, String recid) async {
+  Future<void> _showInviteDialog(BuildContext context, String username, String aptId, String ownerId) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -159,7 +162,7 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
               child: Text('Join'),
               onPressed: () async {
                 try {
-                  await joinsomeone(aptid, recid);
+                  await _joinSomeone(aptId, ownerId);
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -172,7 +175,7 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Failed to send invitation'),
+                      content: Text('Failed to send invitation: $e'),
                       duration: Duration(seconds: 2),
                     ),
                   );
@@ -187,15 +190,13 @@ class _TopRecommendationseekers extends State<TopRecommendationseekers> {
 }
 
 class RecommendationDetailPage extends StatelessWidget {
-  final userdetails;
-  final aptdata;
+  final userDetails;
+  final aptData;
 
-  RecommendationDetailPage({required this.userdetails, required this.aptdata});
+  RecommendationDetailPage({required this.userDetails, required this.aptData});
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Recommendation Detail'),
@@ -215,30 +216,30 @@ class RecommendationDetailPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
-            ...userDetailsWidgets(),
+            ..._userDetailsWidgets(),
             SizedBox(height: 16),
-            ...aptDetailsWidgets(),
+            ..._aptDetailsWidgets(),
           ],
         ),
       ),
     );
   }
 
-  List<Widget> userDetailsWidgets() {
+  List<Widget> _userDetailsWidgets() {
     var formatter = DateFormat('yyyy-MM-dd');
     DateTime date;
-    String formattedDate = '', Stringdate;
-    Stringdate = userdetails['dob'];
-    date = DateTime.parse(Stringdate);
+    String formattedDate = '', stringDate;
+    stringDate = userDetails['dob'];
+    date = DateTime.parse(stringDate);
     formattedDate = formatter.format(date);
     return [
       Text(
-        'Name: ${userdetails['username']}',
+        'Name: ${userDetails['username']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Job: ${userdetails['job']}',
+        'Job: ${userDetails['job']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
@@ -248,86 +249,86 @@ class RecommendationDetailPage extends StatelessWidget {
       ),
       SizedBox(height: 8),
       Text(
-        'Gender: ${userdetails['gender']}',
+        'Gender: ${userDetails['gender']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Type: ${userdetails['type']}',
+        'Type: ${userDetails['type']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Hobbies Pastimes: ${userdetails['hobbies_pastimes']}',
+        'Hobbies Pastimes: ${userDetails['hobbies_pastimes']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Sports Activities: ${userdetails['sports_activities']}',
+        'Sports Activities: ${userDetails['sports_activities']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Cultural Artistic: ${userdetails['cultural_artistic']}',
+        'Cultural Artistic: ${userDetails['cultural_artistic']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Intellectual Academic: ${userdetails['intellectual_academic']}',
+        'Intellectual Academic: ${userDetails['intellectual_academic']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Personality Trait: ${userdetails['personality_trait']}',
+        'Personality Trait: ${userDetails['personality_trait']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Value Belief: ${userdetails['value_belief']}',
+        'Value Belief: ${userDetails['value_belief']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Interpersonal Skill: ${userdetails['interpersonal_skill']}',
+        'Interpersonal Skill: ${userDetails['interpersonal_skill']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Work Ethic: ${userdetails['work_ethic']}',
+        'Work Ethic: ${userDetails['work_ethic']}',
         style: TextStyle(fontSize: 18),
       ),
     ];
   }
 
-  List<Widget> aptDetailsWidgets() {
+  List<Widget> _aptDetailsWidgets() {
     return [
       Text(
-        'Location: ${aptdata['location']}',
+        'Location: ${aptData['location']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Max Occupants: ${aptdata['max']}',
+        'Max Occupants: ${aptData['max']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Price: ${aptdata['price']}',
+        'Price: ${aptData['price']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Bedrooms: ${aptdata['bedrooms']}',
+        'Bedrooms: ${aptData['bedrooms']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Bathrooms: ${aptdata['bathrooms']}',
+        'Bathrooms: ${aptData['bathrooms']}',
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 8),
       Text(
-        'Property Type: ${aptdata['property_type']}',
+        'Property Type: ${aptData['property_type']}',
         style: TextStyle(fontSize: 18),
       ),
     ];

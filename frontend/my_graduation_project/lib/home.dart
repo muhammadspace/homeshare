@@ -37,8 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final response = await http.get(
         Uri.parse(typeurl),
         headers: {
-          'Content-Type': 'application/json',
-          'authorization': 'Bearer ${widget.Token}',
+          'Content-Type': 'application/json'
         },
       );
       if (response.statusCode == 200) {
@@ -175,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SavedPage()),
+              MaterialPageRoute(builder: (context) => SavedPage(id:widget.id,type:type,token: widget.Token,)),
             );
           } else if (index == 2) {
             Navigator.push(

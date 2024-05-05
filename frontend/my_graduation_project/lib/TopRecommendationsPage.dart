@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 
 class TopRecommendationsPage extends StatefulWidget {
   final List<dynamic> recommendations;
-  final String senderid;
+  final String senderid,token;
 
-  TopRecommendationsPage({required this.recommendations, required this.senderid});
+  TopRecommendationsPage({required this.recommendations, required this.senderid,required this.token});
 
   @override
   _TopRecommendationsPageState createState() => _TopRecommendationsPageState();
@@ -15,7 +15,7 @@ class TopRecommendationsPage extends StatefulWidget {
 
 class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   var formatter = DateFormat('yyyy-MM-dd');
-
+  Map<String, dynamic> ownerdata = {} ;
   Future<Map<String, dynamic>> fetchUserData(String dataid) async {
     final apiUrl = 'https://homeshare-o76b.onrender.com/user/$dataid';
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
@@ -27,12 +27,13 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
     }
   }
 
-  Future<Map<String, dynamic>> invitesomeone(String senderid, String reciverid) async {
+  Future<Map<String, dynamic>> invitesomeone(String senderid, String reciverid, String aptid) async {
     final inviteUrl = 'https://homeshare-o76b.onrender.com/invite';
     final response = await http.post(
       Uri.parse(inviteUrl),
-      body: json.encode({"to": reciverid, "from": senderid}),
-      headers: {'Content-Type': 'application/json'},
+      body: json.encode({"to": reciverid, "from": senderid,"apt":aptid}),
+      headers: {'Content-Type': 'application/json',
+      'Authorization':'Bearer ${widget.token}'},
     );
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -42,6 +43,7 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -74,8 +76,9 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
                       title: Text('Name: ${userData['username']}'),
                       subtitle: Text('Job: ${userData['job']}'),
                       trailing: ElevatedButton(
-                        onPressed: () {
-                          _showInviteDialog(context, userData['username'], widget.senderid, dataid);
+                        onPressed: () async{
+                          ownerdata = await fetchUserData(widget.senderid);
+                          _showInviteDialog(context, userData['username'], widget.senderid, dataid,ownerdata['owned_apt']);
                         },
                         child: Text('Invite'),
                         style: ElevatedButton.styleFrom(
@@ -86,6 +89,7 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
                         ),
                       ),
                       onTap: () {
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -104,7 +108,7 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
     );
   }
 
-  Future<void> _showInviteDialog(BuildContext context, String username, String sendid, String recid) async {
+  Future<void> _showInviteDialog(BuildContext context, String username, String sendid, String recid,aptid) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -128,7 +132,7 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
             TextButton(
               child: Text('Invite'),
               onPressed: () {
-                //invitesomeone(sendid, recid);
+                invitesomeone(sendid, recid,aptid);
                 // Perform action to invite the user here
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(

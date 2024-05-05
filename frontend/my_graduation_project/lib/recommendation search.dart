@@ -48,6 +48,7 @@ class _SearchPageState extends State<SearchPage> {
                         builder: (context) => TopRecommendationsPage(
                           recommendations: seekersdata,
                           senderid: widget.senderid,
+                          token: widget.token,
                         ),
                       ),
                     );
@@ -88,6 +89,7 @@ class _SearchPageState extends State<SearchPage> {
                         builder: (context) => TopRecommendationsPage(
                           recommendations: seekersdata,
                           senderid: widget.senderid,
+                          token: widget.token,
                         ),
                       ),
                     );

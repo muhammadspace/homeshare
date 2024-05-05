@@ -1,100 +1,322 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
-class SavedPage extends StatelessWidget {
+class SavedPage extends StatefulWidget {
+  final String id,type,token;
+
+  SavedPage({required this.id,required this.type,required this.token});
+
+  @override
+  _SavedPageState createState() => _SavedPageState();
+}
+
+class _SavedPageState extends State<SavedPage> {
+  String apt_location = '',
+      apt_end = '',
+      apt_start = '',
+      apt_type = '',
+      formattedendDate = '',
+      formattedstartDate = '',
+      usertype = '',
+      apt_id_resident = '';
+  int apt_bathrooms = 0,
+      apt_bedrooms = 0,
+      apt_max = 0,
+      apt_price = 0,
+      count = 0,
+      count2 = 0;
+  List<dynamic> apt_residents = [];
+
+  Future<Map<String, dynamic>> fetchUserownerData(String idt) async {
+    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$idt';
+    final response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to fetch user data');
+    }
+  }
+  Future<Map<String, dynamic>> fetchUserresidentData(String idt) async {
+    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$idt';
+    final response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      setState(() {
+        apt_id_resident = jsonResponse['resident_apt'];
+      });
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to fetch user data');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> fetchResidentsData() async {
+    List<Map<String, dynamic>> residentsData = [];
+    count = 0;
+    while (count < apt_residents.length) {
+      final residentData = await fetchUserownerData(apt_residents[count]);
+      residentsData.add(residentData);
+      count++;
+    }
+    return residentsData;
+  }
+
+  Future<void> fetchAptData(String idget) async {
+    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$idget';
+
+    final response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      setState(() {
+        apt_location = jsonResponse['location'];
+        apt_bathrooms = jsonResponse['bathrooms'];
+        apt_bedrooms = jsonResponse['bedrooms'];
+        apt_end = jsonResponse['end_date'];
+        apt_start = jsonResponse['start_date'];
+        DateTime enddate = DateTime.parse(apt_end);
+        DateTime startdate = DateTime.parse(apt_end);
+        var formatter = DateFormat('yyyy-MM-dd');
+        formattedendDate = formatter.format(enddate);
+        formattedstartDate = formatter.format(startdate);
+        apt_max = jsonResponse['max'];
+        apt_price = jsonResponse['price'];
+        apt_residents = jsonResponse['residents'];
+        apt_type = jsonResponse['property_type'];
+      });
+    } else {
+      throw Exception('Failed to fetch apartment data');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.type =='owner') {
+      fetchUserownerData(widget.id).then((_) {
+        fetchAptData(widget.id);
+      });
+    } else if(widget.type == 'seeker') {
+      fetchUserresidentData(widget.id).then((_) {
+        fetchAptData(apt_id_resident);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> savedProperties = [
-      {
-        'image': 'https://images.skynewsarabia.com/images/v1/2019/07/31/1272390/1200/630/1-1272390.jpg',
-        'title': 'giza',
-        'beds': 3,
-      },
-      {
-        'image': 'https://images.skynewsarabia.com/images/v1/2019/07/31/1272390/1200/630/1-1272390.jpg',
-        'title': 'nasir city',
-        'beds': 2,
-      },
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Saved Properties'),
         backgroundColor: Colors.blue,
       ),
-      body: ListView.builder(
-        itemCount: savedProperties.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-
+      body: Center(
+        child: Card(
+          elevation: 3,
+          margin: EdgeInsets.all(16),
+          child: InkWell(
+            onTap: () async {
+              List<Map<String, dynamic>> residents_data = await fetchResidentsData();
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PropertyDetailsPage(
-                    property: savedProperties[index],
+                  builder: (context) => ApartmentDetailsPage(
+                    location: apt_location,
+                    maxOccupants: apt_max,
+                    price: apt_price,
+                    bedrooms: apt_bedrooms,
+                    bathrooms: apt_bathrooms,
+                    propertyType: apt_type,
+                    startDate: formattedstartDate,
+                    endDate: formattedendDate,
+                    residentsData: residents_data,
+                    type:widget.type,
+                    token: widget.token,
+                    id:widget.id
                   ),
                 ),
               );
             },
-            child: Card(
-              elevation: 3,
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16), // تعديل هوامش البطاقة
-              child: ListTile(
-                leading: Image.network(
-                  savedProperties[index]['image'],
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
-                ),
-                title: Text(
-                  savedProperties[index]['title'],
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), // تكبير النص وجعله بالخط العريض
-                ),
-                subtitle: Text(
-                  'Available Beds: ${savedProperties[index]['beds']}',
-                  style: TextStyle(fontSize: 16),
-                ),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Location: $apt_location',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text('Max Occupants: $apt_max'),
+                  Text('Number of Residents: ${apt_residents.length}'),
+                  // Add more details as needed
+                ],
               ),
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
 }
 
-// صفحة عرض تفاصيل العقار
-class PropertyDetailsPage extends StatelessWidget {
-  final Map<String, dynamic> property;
+class ApartmentDetailsPage extends StatelessWidget {
+  final String location;
+  final int maxOccupants;
+  final int price;
+  final int bedrooms;
+  final int bathrooms;
+  final String propertyType;
+  final String startDate;
+  final String endDate;
+  final List<Map<String, dynamic>> residentsData;
+  final String type;
+  final String token;
+  final String id;
 
-  PropertyDetailsPage({required this.property});
+  ApartmentDetailsPage({
+    required this.location,
+    required this.maxOccupants,
+    required this.price,
+    required this.bedrooms,
+    required this.bathrooms,
+    required this.propertyType,
+    required this.startDate,
+    required this.endDate,
+    required this.residentsData,
+    required this.type,
+    required this.token,
+    required this.id
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Property Details'),
+        title: Text('Apartment Details'),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              property['image'],
-              width: 200,
-              height: 200,
-              fit: BoxFit.cover,
-            ),
+            Text('Location: $location'),
+            Text('Max Occupants: $maxOccupants'),
+            Text('Price: $price'),
+            Text('Bedrooms: $bedrooms'),
+            Text('Bathrooms: $bathrooms'),
+            Text('Property Type: $propertyType'),
+            Text('Start Date: $startDate'),
+            Text('End Date: $endDate'),
             SizedBox(height: 20),
-            Text(
-              property['title'],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black), // تكبير النص وجعله بالخط العريض وتغيير لونه
-            ),
+            Text('Residents Details:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
-            Text(
-              'Available Beds: ${property['beds']}',
-              style: TextStyle(fontSize: 20),
+            for (int i = 0; i < residentsData.length; i++)
+              ListTile(
+                title: Text('Resident ${i + 1}'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResidentDetailsPage(
+                        residentData: residentsData[i],
+                        type: type,
+                        token: token,
+                        id:id
+                      ),
+                    ),
+                  );
+                },
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ResidentDetailsPage extends StatelessWidget {
+  final Map<String, dynamic> residentData;
+  final String type;
+  final String token;
+  final String id;
+
+  ResidentDetailsPage({required this.residentData, required this.type,required this.token,required this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Resident Details'),
+        backgroundColor: Colors.blue,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Name: ${residentData['username']}'),
+            Text('Email: ${residentData['email']}'),
+            Text('Gender: ${residentData['gender']}'),
+            Text('Job: ${residentData['job']}'),
+            Text('Hobbies & Pastimes: ${residentData['hobbies_pastimes']}'),
+            Text('Sports & Activities: ${residentData['sports_activities']}'),
+            Text('Cultural & Artistic: ${residentData['cultural_artistic']}'),
+            Text('Intellectual & Academic: ${residentData['intellectual_academic']}'),
+            Text('Value & Belief: ${residentData['value_belief']}'),
+            Text('Interpersonal Skills: ${residentData['interpersonal_skill']}'),
+            Text('Work Ethic: ${residentData['work_ethic']}'),
+            Text('Personality Trait: ${residentData['personality_trait']}'),
+            Text('id: ${residentData['id']}'),
+            Text('aptid: ${residentData['resident_apt']}'),
+            Visibility(
+              visible: type == 'owner',
+              child: ElevatedButton(
+                onPressed: () async{
+                  final apiUrl = 'https://homeshare-o76b.onrender.com/apt/kick';
+                  final response = await http.post(
+                    Uri.parse(apiUrl),
+                    headers: {'Content-Type': 'application/json', 'authorization': 'Bearer $token'},
+                    body: jsonEncode({'resident': residentData['_id'], 'apt': residentData['resident_apt']}),
+                  );
+                  if (response.statusCode == 200) {
+                    print(json.decode(response.body)) ;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SavedPage(
+                          type: type,
+                          token: token, id: id,
+                        ),
+                      ),
+                    );
+                  } else {
+                    throw Exception('Failed to fetch user data');
+                  }
+                  // Your button's action here
+                },
+                child: Text('Remove'),
+              ),
             ),
           ],
         ),
