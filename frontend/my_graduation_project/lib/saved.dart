@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SavedPage extends StatefulWidget {
-  final String id,type,token;
+  final String id, type, token;
 
-  SavedPage({required this.id,required this.type,required this.token});
+  SavedPage({required this.id, required this.type, required this.token});
 
   @override
   _SavedPageState createState() => _SavedPageState();
@@ -21,7 +21,8 @@ class _SavedPageState extends State<SavedPage> {
       formattedendDate = '',
       formattedstartDate = '',
       usertype = '',
-      apt_id_resident = '';
+      apt_id_resident = '',
+      owned_apt = '';
   int apt_bathrooms = 0,
       apt_bedrooms = 0,
       apt_max = 0,
@@ -40,11 +41,16 @@ class _SavedPageState extends State<SavedPage> {
     );
 
     if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      setState(() {
+        owned_apt = jsonResponse['owned_apt'];
+      });
       return json.decode(response.body);
     } else {
       throw Exception('Failed to fetch user data');
     }
   }
+
   Future<Map<String, dynamic>> fetchUserresidentData(String idt) async {
     final apiUrl = 'https://homeshare-o76b.onrender.com/user/$idt';
     final response = await http.get(
@@ -56,9 +62,11 @@ class _SavedPageState extends State<SavedPage> {
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      setState(() {
-        apt_id_resident = jsonResponse['resident_apt'];
-      });
+      if (jsonResponse['resident_apt'] != null) {
+        setState(() {
+          apt_id_resident = jsonResponse['resident_apt'];
+        });
+      }
       return json.decode(response.body);
     } else {
       throw Exception('Failed to fetch user data');
@@ -69,7 +77,7 @@ class _SavedPageState extends State<SavedPage> {
     List<Map<String, dynamic>> residentsData = [];
     count = 0;
     while (count < apt_residents.length) {
-      final residentData = await fetchUserownerData(apt_residents[count]);
+      final residentData = await fetchUserresidentData(apt_residents[count]);
       residentsData.add(residentData);
       count++;
     }
@@ -112,13 +120,17 @@ class _SavedPageState extends State<SavedPage> {
   @override
   void initState() {
     super.initState();
-    if(widget.type =='owner') {
+    if (widget.type == 'owner') {
       fetchUserownerData(widget.id).then((_) {
-        fetchAptData(widget.id);
+        if (owned_apt != '') {
+          fetchAptData(widget.id);
+        }
       });
-    } else if(widget.type == 'seeker') {
+    } else if (widget.type == 'seeker') {
       fetchUserresidentData(widget.id).then((_) {
-        fetchAptData(apt_id_resident);
+        if (apt_id_resident != '') {
+          fetchAptData(apt_id_resident);
+        }
       });
     }
   }
@@ -131,45 +143,48 @@ class _SavedPageState extends State<SavedPage> {
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: Card(
-          elevation: 3,
-          margin: EdgeInsets.all(16),
-          child: InkWell(
-            onTap: () async {
-              List<Map<String, dynamic>> residents_data = await fetchResidentsData();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ApartmentDetailsPage(
-                    location: apt_location,
-                    maxOccupants: apt_max,
-                    price: apt_price,
-                    bedrooms: apt_bedrooms,
-                    bathrooms: apt_bathrooms,
-                    propertyType: apt_type,
-                    startDate: formattedstartDate,
-                    endDate: formattedendDate,
-                    residentsData: residents_data,
-                    type:widget.type,
-                    token: widget.token,
-                    id:widget.id
+        child: Visibility(
+          visible: apt_id_resident != '' || owned_apt != '',
+          child: Card(
+            elevation: 3,
+            margin: EdgeInsets.all(16),
+            child: InkWell(
+              onTap: () async {
+                List<Map<String, dynamic>> residents_data = await fetchResidentsData();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ApartmentDetailsPage(
+                      location: apt_location,
+                      maxOccupants: apt_max,
+                      price: apt_price,
+                      bedrooms: apt_bedrooms,
+                      bathrooms: apt_bathrooms,
+                      propertyType: apt_type,
+                      startDate: formattedstartDate,
+                      endDate: formattedendDate,
+                      residentsData: residents_data,
+                      type: widget.type,
+                      token: widget.token,
+                      id: widget.id,
+                    ),
                   ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                        Text(
+                          'Location: $apt_location',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text('Max Occupants: $apt_max'),
+                        Text('Number of Residents: ${apt_residents.length}')
+                      ],
+                    // Add more details as needed
                 ),
-              );
-            },
-            child: Container(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Location: $apt_location',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Text('Max Occupants: $apt_max'),
-                  Text('Number of Residents: ${apt_residents.length}'),
-                  // Add more details as needed
-                ],
               ),
             ),
           ),
@@ -179,7 +194,9 @@ class _SavedPageState extends State<SavedPage> {
   }
 }
 
-class ApartmentDetailsPage extends StatelessWidget {
+
+
+  class ApartmentDetailsPage extends StatelessWidget {
   final String location;
   final int maxOccupants;
   final int price;
