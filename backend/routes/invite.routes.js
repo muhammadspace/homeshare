@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
         else 
             aptObj.invites.push(invite._id)
 
+        await invite.save();
         await recepient.save()
         await sender.save()
         await aptObj.save()
