@@ -49,6 +49,7 @@ def recommend_owners_traits(seeker_id):
         
         # Print recommendations
         # print(f"Recommendations for Seeker {seeker_id}:")
+        recommendations = []
         for idx in sorted_indices:
             owner_id = owners_df.at[idx, '_id']
             
@@ -56,7 +57,6 @@ def recommend_owners_traits(seeker_id):
             common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Traits'].split(', ') if interest in owners_df.iloc[idx]['All Traits'].split(', '))
             
             # If common interests are non-zero, print recommendation
-            recommendations = []
             if common_interests > 0:
                 recommendations_found = True
 
@@ -77,7 +77,7 @@ def recommend_owners_traits(seeker_id):
                 #     print(f"Residents: {apartment_row['residents']}")
                 
                 # print()  # Add a newline for readability
-            return recommendations
+        return recommendations
         
         if not recommendations_found:
             return {"success": False, "message": "No recommendations found for the seeker."}

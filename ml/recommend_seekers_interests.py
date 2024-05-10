@@ -44,6 +44,7 @@ def recommend_seekers_interests(owner_id):
         if len(sorted_indices) > 0:
             # Store recommendations
             for idx in sorted_indices:
+                print(idx)
                 seeker_id = seekers_df.at[idx, '_id']
                 similarity = similarity_scores[idx]
                 
