@@ -8,7 +8,7 @@ const aptSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: true
+        // required: true
     },
     max: {
         type: Number,
@@ -46,7 +46,9 @@ const aptSchema = new mongoose.Schema({
     invites: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "invite"
-    }]
+    }],
+    contract: String,
+    approved_by_admin: String, 
 })
 
 const Apt = mongoose.model("apt", aptSchema)

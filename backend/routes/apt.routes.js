@@ -7,11 +7,20 @@ const { userExtractor } = require("../utils/middleware")
 router.post("/", async (req, res) => {
     try
     {
-        const properties = { location, owner, max, residents, price, bedrooms, bathrooms, property_type, start_date, end_date, invites } = req.body
-        const tmpApt = new Apt({ ...properties })
-        const apt = await tmpApt.save()
+        const properties = { location, owner, max, residents, price, bedrooms, bathrooms, property_type, start_date, end_date, invites, contract } = req.body
+        const apt = new Apt({ ...properties, approved_by_admin: "pending" })
+        apt.save()
 
         const ownerUser = await User.findById(apt.owner)
+
+        if (ownerUser.owned_apt)
+        {
+            const oldApt = await Apt.findById(ownerUser.owned_apt)
+            oldApt.owner = null
+            oldApt.save()
+            console.log("removed owner from the old apartment")
+        }
+
         ownerUser.owned_apt = apt._id
         await ownerUser.save()
 
@@ -36,6 +45,7 @@ router.post("/", async (req, res) => {
 
         console.log(`
     ✅ Successfully created a new apartment!
+         ├ admin approval: ${apt.approved_by_admin}
          ├ location: ${location}
          ├ owner: ${owner}
          └ id: ${apt._id}

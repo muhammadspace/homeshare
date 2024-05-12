@@ -59,7 +59,7 @@ router.get("/:inviteid", async (req, res) => {
         const invite = await Invite.findById(req.params.inviteid)
 
         // if (invite.to === auth.user_id)
-            res.json({ invite_id: invite._id, from: invite.from, apt: invite.apt }).status(200)
+            res.json({ invite_id: invite._id, from: invite.from, to: invite.to, apt: invite.apt, accepted: invite.accepted, rejected: invite.rejected }).status(200)
         // else
         //  res.json({ error: "unauthorized access to invite" }).status(401)
     } catch (err) {

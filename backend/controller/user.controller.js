@@ -9,7 +9,7 @@ exports.register = async (req, res, next) => {
     console.log("User registered successfully")
   } catch (error) {
     console.error("Error in registration:", error);
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

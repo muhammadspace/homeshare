@@ -42,6 +42,14 @@ router.post('/profile', userExtractor, async (req, res) => {
     const oldInfo = user.toObject()
     const newInfo = { ...req.body }
 
+    if (oldInfo.owned_apt)
+    {
+        const old_apt = await Apt.findById(oldInfo.owned_apt)
+        old_apt.owner = null
+        await old_apt.save()
+        console.log("removed owner from the old apartment")
+    }
+
     for (key of Object.keys(newInfo))
         user[key] = newInfo[key]
 

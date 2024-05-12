@@ -1,11 +1,21 @@
 // user.service.js
 const UserModel = require('../models/user.model');
+const AdminModel = require('../models/admin.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require("dotenv").config()
 
 const registerUser = async (userData) => {
     try {
+        if (userData.type.toLowerCase() === "admin")
+        {
+            if (!userData.email.endsWith("@fci.helwan.edu.eg"))
+                throw new Error("The email address is not a valid administrator address")
+
+            const adminUser = new AdminModel(userData)
+            return await adminUser.save();
+        }
+
         const createUser = new UserModel({ ...userData });
         return await createUser.save();
     } catch (err) {
