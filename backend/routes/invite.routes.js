@@ -57,9 +57,24 @@ router.get("/:inviteid", async (req, res) => {
     try
     {
         const invite = await Invite.findById(req.params.inviteid)
+        
+        // update seeker
+        const seeker = await User.findById(invite.to)
+
+        if (seeker.resident_apt)
+        {
+            const oldApt = await Apt.findById(seeker.resident_apt)
+            oldApt.residents = oldApt.residents.filter( userid => userid != seeker._id.toString() )
+            oldApt.save()
+        }
+
+        seeker.resident_apt = invite.apt
+        await seeker.save()
+
 
         // if (invite.to === auth.user_id)
             res.json({ invite_id: invite._id, from: invite.from, to: invite.to, apt: invite.apt, accepted: invite.accepted, rejected: invite.rejected }).status(200)
+            
         // else
         //  res.json({ error: "unauthorized access to invite" }).status(401)
     } catch (err) {
