@@ -23,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String type = '';
+  List<dynamic> invitesids = [];
 
   @override
   void initState() {
@@ -45,7 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
         final jsonResponse = json.decode(result);
         setState(() {
           type = jsonResponse['type'];
+          invitesids = jsonResponse['invites'];
         });
+        print(invitesids);
         print(type);
       } else {
         throw Exception('Cannot get the data');
@@ -179,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NotificationsPage()),
+              MaterialPageRoute(builder: (context) => NotificationsPage(token: widget.Token,invitesids:invitesids,type: type)),
             );
           }
         },

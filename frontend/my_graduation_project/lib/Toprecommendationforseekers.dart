@@ -88,7 +88,7 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
                       );
                     } else {
                       final aptData = aptSnapshot.data!;
-                      List<dynamic> residents = aptData['residents'];
+                      List<dynamic>? residents = aptData['residents']; // Declare residents as nullable
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                         child: Container(
@@ -105,9 +105,15 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
                             ],
                           ),
                           child: ListTile(
+                            leading: CircleAvatar(
+                              radius: 30,
+                              backgroundImage: userData['picture'] != null
+                                  ? NetworkImage(userData['picture'])
+                                  : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+                            ),
                             title: Text('Name: ${userData['username']}'),
                             subtitle: Text('Job: ${userData['job']}'),
-                            trailing: (aptData['max'] < residents.length)
+                            trailing: (aptData['max'] > (residents?.length ?? 0)) // Use null-aware operator to handle null residents
                                 ? ElevatedButton(
                               onPressed: () {
                                 _showInviteDialog(context, userData['username'], dataAptId, dataOwnerId);
@@ -209,6 +215,13 @@ class RecommendationDetailPage extends StatelessWidget {
             Text(
               'User Details',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: userDetails['picture'] != null
+                  ? NetworkImage(userDetails['picture'])
+                  : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
             ),
             SizedBox(height: 16),
             Text(

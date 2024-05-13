@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> fetchaptData() async {
     final String idt = widget.id;
-    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$idt'; // Replace with your actual API URL
+    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$idt'; // Corrected API URL
 
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -112,16 +112,19 @@ class _ProfilePageState extends State<ProfilePage> {
       print('apt_id: $apt_id, location: $apt_location');
       print(response.body);
     } else {
-      throw Exception('Failed to fetch user data');
+      throw Exception('Failed to fetch apartment data');
     }
   }
+
 
   @override
 
   void initState() {
     super.initState();
-    fetchUserData();
-    fetchaptData();
+    fetchUserData();//.then((_) {
+      /*if(type=='owner')
+        fetchaptData();
+    });*/
   }
 
   Future<void> navigateToEditProfile() async {
@@ -150,8 +153,10 @@ class _ProfilePageState extends State<ProfilePage> {
     // Handle the result returned from the edit page
     if (result == true) {
       // Refresh the user data
-      fetchUserData();
-      fetchaptData();
+      fetchUserData();//.then((_) {
+       /* if(type=='owner')
+          fetchaptData();
+      });*/
     }
   }
 
