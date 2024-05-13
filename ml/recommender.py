@@ -3,6 +3,7 @@ from recommend_seekers_interests import recommend_seekers_interests
 from recommend_owners_interests import recommend_owners_interests
 from recommend_seekers_traits import recommend_seekers_traits
 from recommend_owners_traits import recommend_owners_traits
+from customer_segmentation import GetClusterCounts
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -78,6 +79,11 @@ def recommend_seekers_traits_endpoint():
         return jsonify(recommendatonsAsDicts)    
     else:
         return {"success": False, "message": "Could not recommend any seekers"}
+
+@app.route("/admin/clusters", methods=["GET"])
+def get_customer_clusters_counts():
+    # Returns cluster counts (sorted by index)
+    return jsonify(list(GetClusterCounts()))
 
 if __name__ == "__main__":
     app.run(debug=True)

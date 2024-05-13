@@ -51,7 +51,6 @@ def recommend_owners_interests(seeker_id):
         # print(f"Recommendations for Seeker {seeker_id}:")
         recommendations = []
         for idx in sorted_indices:
-            print(idx)
             owner_id = owners_df.at[idx, '_id']
             
             # Count the number of common interests
@@ -59,6 +58,7 @@ def recommend_owners_interests(seeker_id):
             
             # If common interests are non-zero, print recommendation
             if common_interests > 0:
+                print(owner_id)
                 recommendations_found = True
 
                 owner_apartment = apts_df[apts_df.owner == owner_id]
