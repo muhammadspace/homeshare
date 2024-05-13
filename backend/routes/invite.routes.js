@@ -69,7 +69,9 @@ router.get("/:inviteid", async (req, res) => {
         }
 
         const newApt = await Apt.findById(invite.apt)
-        newApt.residents.push(seeker._id)
+        residents = newApt.residents
+        residents.push(seeker._id)
+        newApt.residents = residents
         seeker.resident_apt = invite.apt
         await seeker.save()
         await newApt.save()
