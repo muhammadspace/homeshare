@@ -40,8 +40,9 @@ Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
 class NotificationsPage extends StatefulWidget {
   final String token;
   final List<dynamic> invitesids;
+  final String type;
 
-  NotificationsPage({required this.invitesids, required this.token});
+  NotificationsPage({required this.invitesids, required this.token,required this.type});
 
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
@@ -116,62 +117,121 @@ class _NotificationsPageState extends State<NotificationsPage> {
           final invite = invitesData[index];
           final bool accepted = invite['accepted'] ?? false;
           final bool rejected = invite['rejected'] ?? false;
-          if (!accepted && !rejected) {
-            return Card(
-              elevation: 3, // Adding elevation to the card
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Adjusting card margins
-              child: ListTile(
-                leading: Icon(Icons.notifications), // Notification icon
-                title: FutureBuilder(
-                  future: _fetchUserData(invite['from']),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text('Loading...');
-                    }
-                    final ownerData = snapshot.data as Map<String, dynamic>;
-                    return Text(
-                      'You have been invited by ${ownerData['username']}',
-                      style: TextStyle(fontSize: 18), // Increasing text size
-                    );
-                  },
-                ),
-                /*subtitle: Text(
+          if(widget.type == 'seeker') {
+            if (!accepted && !rejected) {
+              return Card(
+                elevation: 3,
+                // Adding elevation to the card
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                // Adjusting card margins
+                child: ListTile(
+                  leading: Icon(Icons.notifications), // Notification icon
+                  title: FutureBuilder(
+                    future: _fetchUserData(invite['from']),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text('Loading...');
+                      }
+                      final ownerData = snapshot.data as Map<String, dynamic>;
+                      return Text(
+                        'You have been invited by ${ownerData['username']}',
+                        style: TextStyle(fontSize: 18), // Increasing text size
+                      );
+                    },
+                  ),
+                  /*subtitle: Text(
                   'Apartment: ${invite['apt']}',
                   style: TextStyle(fontSize: 16), // Increasing text size
                 ),*/
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        _acceptInvitation(invite['invite_id']);
-                      },
-                      child: Text('Accept'),
-                    ),
-                    SizedBox(width: 8),
-                    TextButton(
-                      onPressed: () {
-                        _rejectInvitation(invite['invite_id']);
-                      },
-                      child: Text('Reject'),
-                    ),
-                  ],
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          _acceptInvitation(invite['invite_id']);
+                        },
+                        child: Text('Accept'),
+                      ),
+                      SizedBox(width: 8),
+                      TextButton(
+                        onPressed: () {
+                          _rejectInvitation(invite['invite_id']);
+                        },
+                        child: Text('Reject'),
+                      ),
+                    ],
+                  ),
+                  onTap: () async {
+                    final ownerData = await _fetchUserData(invite['from']);
+                    final aptData = await _fetchAptData(invite['apt']);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailsPage(ownerData: ownerData, aptData: aptData),
+                      ),
+                    );
+                  },
                 ),
-                onTap: () async {
-                  final ownerData = await _fetchUserData(invite['from']);
-                  final aptData = await _fetchAptData(invite['apt']);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailsPage(ownerData: ownerData, aptData: aptData),
-                    ),
-                  );
-                },
-              ),
-            );
-          } else {
-            // If invite has been accepted or rejected, return an empty container
-            return Container();
+              );
+            } else {
+              // If invite has been accepted or rejected, return an empty container
+              return Container();
+            }
+          }else if(widget.type == 'owner') {
+            if (accepted || rejected) {
+              return Card(
+                elevation: 3,
+                // Adding elevation to the card
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                // Adjusting card margins
+                child: ListTile(
+                  leading: Icon(Icons.notifications), // Notification icon
+                  title: FutureBuilder(
+                    future: _fetchUserData(invite['to']),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text('Loading...');
+                      }
+                      final seekerData = snapshot.data as Map<String, dynamic>;
+                      if(accepted) {
+                        return Text(
+                          'your invite has been accepted by ${seekerData['username']}',
+                          style: TextStyle(
+                              fontSize: 18), // Increasing text size
+                        );
+                      }else{
+                        return Text(
+                          'your invite has been rejected by ${seekerData['username']}',
+                          style: TextStyle(
+                              fontSize: 18), // Increasing text size
+                        );
+                      }
+                    },
+                  ),
+                  /*subtitle: Text(
+                  'Apartment: ${invite['apt']}',
+                  style: TextStyle(fontSize: 16), // Increasing text size
+                ),*/
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          _fetchInviteData();
+                        },
+                        child: Text('mark as read'),
+                      ),
+                      SizedBox(width: 8),
+                    ],
+                  ),
+                ),
+              );
+            }
+            else {
+              // If invite hasn't been accepted or rejected yet, return an empty container
+              return Container();
+            }
           }
         },
       ),

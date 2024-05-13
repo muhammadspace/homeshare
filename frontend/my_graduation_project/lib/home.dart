@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NotificationsPage(token: widget.Token,invitesids:invitesids )),
+              MaterialPageRoute(builder: (context) => NotificationsPage(token: widget.Token,invitesids:invitesids,type: type)),
             );
           }
         },
