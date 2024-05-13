@@ -1,7 +1,12 @@
+const router = require("express").Router()
+const axios = require("axios")
+
 const User = require("../models/user.model.js")
 const Admin = require("../models/admin.model.js")
 const Apt = require("../models/apt.model.js")
-const router = require("express").Router()
+
+// const flaskAPILink = "http://localhost:5000"
+const flaskAPILink = "https://homeshare-flask.onrender.com"
 
 router.post("/apt/approve", async (req, res) => {
     const loggedInUser = await Admin.findById(req.user.id)
@@ -50,6 +55,22 @@ router.post("/apt/reject", async (req, res) => {
         🔴 An error occured: ${err}
         `)
         res.json({ success: false, message: err.message }).status(500)
+    }
+})
+
+router.get("/clusters", async (req, res) => {
+    // Returns customer clusters (sorted by index)
+    try
+    {
+        const request = await axios.get(`${flaskAPILink}/admin/clusters`)
+        res.json({ clusters: request.data}).status(200)
+    }
+    catch (err)
+    {
+        console.log(`
+        🔴 Error while getting customer clusters from Flask: ${err.message}
+        `)
+        res.json({ success: false, message: err.message })
     }
 })
 
