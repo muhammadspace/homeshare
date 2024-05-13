@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
             └ From user ID: ${invite.from}
             `)
 
-        res.json({ id: invite._id, to: invite.to, from: invite.from, apt: invite.apt }).status(201)
+        res.json({ invite_id: invite._id, to: invite.to, from: invite.from, apt: invite.apt }).status(201)
     } catch (err) {
         console.log(`
     🔴 An error occured when trying to POST this invite:`)
@@ -57,25 +57,6 @@ router.get("/:inviteid", async (req, res) => {
     try
     {
         const invite = await Invite.findById(req.params.inviteid)
-        
-        // update seeker
-        const seeker = await User.findById(invite.to)
-
-        if (seeker.resident_apt)
-        {
-            const oldApt = await Apt.findById(seeker.resident_apt)
-            oldApt.residents = oldApt.residents.filter( userid => userid != seeker._id.toString() )
-            oldApt.save()
-        }
-
-        const newApt = await Apt.findById(invite.apt)
-        residents = newApt.residents
-        residents.push(seeker._id)
-        newApt.residents = residents
-        seeker.resident_apt = invite.apt
-        await seeker.save()
-        await newApt.save()
-
 
         // if (invite.to === auth.user_id)
             res.json({ invite_id: invite._id, from: invite.from, to: invite.to, apt: invite.apt, accepted: invite.accepted, rejected: invite.rejected }).status(200)
@@ -138,6 +119,26 @@ router.post(("/:inviteid/accept"), async (req, res) => {
         else
         {
             invite.accepted = true
+
+            // update seeker
+            const seeker = await User.findById(invite.to)
+
+            if (seeker.resident_apt)
+            {
+                const oldApt = await Apt.findById(seeker.resident_apt)
+                oldApt.residents = oldApt.residents.filter( userid => userid != seeker._id.toString() )
+                oldApt.save()
+            }
+
+            const newApt = await Apt.findById(invite.apt)
+            residents = newApt.residents
+            residents.push(seeker._id)
+            newApt.residents = residents
+            seeker.resident_apt = invite.apt
+
+            await seeker.save()
+            await newApt.save()
+
             await invite.save()
             console.log(`Accepted invite ${req.params.inviteid}`)
             res.json({ success: true, message: `Successfully accepted invite ${req.params.inviteid}` }).status(200)
