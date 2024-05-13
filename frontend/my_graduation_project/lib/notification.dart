@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Map<String, dynamic>> inviteinfo(String inviteid, String token) async {
   final apiUrl = 'https://homeshare-o76b.onrender.com/invite/$inviteid';
@@ -16,7 +17,6 @@ Future<Map<String, dynamic>> inviteinfo(String inviteid, String token) async {
     throw Exception('could not find the invite info');
   }
 }
-
 
 Future<Map<String, dynamic>> _fetchAptData(String dataAptId) async {
   final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$dataAptId';
@@ -37,12 +37,13 @@ Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
     throw Exception('Failed to fetch user data: ${response.reasonPhrase}');
   }
 }
+
 class NotificationsPage extends StatefulWidget {
   final String token;
   final List<dynamic> invitesids;
   final String type;
 
-  NotificationsPage({required this.invitesids, required this.token,required this.type});
+  NotificationsPage({required this.invitesids, required this.token, required this.type});
 
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
@@ -50,11 +51,15 @@ class NotificationsPage extends StatefulWidget {
 
 class _NotificationsPageState extends State<NotificationsPage> {
   List<Map<String, dynamic>> invitesData = []; // Initialize as empty list
+  late SharedPreferences prefs; // Declare SharedPreferences object
 
   @override
   void initState() {
     super.initState();
-    _fetchInviteData();
+    SharedPreferences.getInstance().then((value) {
+      prefs = value; // Initialize SharedPreferences instance
+      _fetchInviteData();
+    });
   }
 
   Future<void> _fetchInviteData() async {
@@ -68,8 +73,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     });
   }
 
-  void _acceptInvitation(String inviteId) async {
-    // Implement accept invitation functionality
+  Future<void> _acceptInvitation(String inviteId) async {
     final apiUrl = 'https://homeshare-o76b.onrender.com/invite/$inviteId/accept';
     final response = await http.post(
       Uri.parse(apiUrl),
@@ -84,8 +88,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     }
   }
 
-  void _rejectInvitation(String inviteId) async {
-    // Implement reject invitation functionality
+  Future<void> _rejectInvitation(String inviteId) async {
     final apiUrl = 'https://homeshare-o76b.onrender.com/invite/$inviteId/reject';
     final response = await http.post(
       Uri.parse(apiUrl),
@@ -98,6 +101,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
     } else {
       throw Exception('error in rejecting the invite');
     }
+  }
+
+  Future<void> _markAsRead(String inviteId) async {
+    // Save the inviteId to local storage
+    await prefs.setString(inviteId, 'read');
+    // Refresh the page to reflect changes
+    setState(() {
+      invitesData.removeWhere((element) => element['invite_id'] == inviteId);
+    });
   }
 
   @override
@@ -117,7 +129,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
           final invite = invitesData[index];
           final bool accepted = invite['accepted'] ?? false;
           final bool rejected = invite['rejected'] ?? false;
-          if(widget.type == 'seeker') {
+          final bool markedAsRead = prefs.getString(invite['invite_id']) == 'read'; // Check if invitation is marked as read
+          if (widget.type == 'seeker') {
             if (!accepted && !rejected) {
               return Card(
                 elevation: 3,
@@ -139,10 +152,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       );
                     },
                   ),
-                  /*subtitle: Text(
-                  'Apartment: ${invite['apt']}',
-                  style: TextStyle(fontSize: 16), // Increasing text size
-                ),*/
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -167,18 +176,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            DetailsPage(ownerData: ownerData, aptData: aptData),
+                        builder: (context) => DetailsPage(ownerData: ownerData, aptData: aptData),
                       ),
                     );
                   },
                 ),
               );
             } else {
-              // If invite has been accepted or rejected, return an empty container
               return Container();
             }
-          }else if(widget.type == 'owner') {
+          } else if (widget.type == 'owner' && !markedAsRead) { // Check if owner and not marked as read
             if (accepted || rejected) {
               return Card(
                 elevation: 3,
@@ -194,52 +201,46 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         return Text('Loading...');
                       }
                       final seekerData = snapshot.data as Map<String, dynamic>;
-                      if(accepted) {
+                      if (accepted) {
                         return Text(
-                          'your invite has been accepted by ${seekerData['username']}',
-                          style: TextStyle(
-                              fontSize: 18), // Increasing text size
+                          'Your invite has been accepted by ${seekerData['username']}',
+                          style: TextStyle(fontSize: 18), // Increasing text size
                         );
-                      }else{
+                      } else {
                         return Text(
-                          'your invite has been rejected by ${seekerData['username']}',
-                          style: TextStyle(
-                              fontSize: 18), // Increasing text size
+                          'Your invite has been rejected by ${seekerData['username']}',
+                          style: TextStyle(fontSize: 18), // Increasing text size
                         );
                       }
                     },
                   ),
-                  /*subtitle: Text(
-                  'Apartment: ${invite['apt']}',
-                  style: TextStyle(fontSize: 16), // Increasing text size
-                ),*/
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextButton(
                         onPressed: () {
-                          _fetchInviteData();
+                          _markAsRead(invite['invite_id']).then((_) {
+                            _fetchInviteData(); // Refresh page after marking as read
+                          });
                         },
-                        child: Text('mark as read'),
+                        child: Text('Mark as read'),
                       ),
                       SizedBox(width: 8),
                     ],
                   ),
                 ),
               );
-            }
-            else {
-              // If invite hasn't been accepted or rejected yet, return an empty container
+            } else {
               return Container();
             }
+          } else {
+            return Container(); // Handle other cases if necessary
           }
         },
       ),
     );
   }
 }
-
-
 
 class DetailsPage extends StatelessWidget {
   final Map<String, dynamic> ownerData;
