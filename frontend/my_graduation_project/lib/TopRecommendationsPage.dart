@@ -73,6 +73,12 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
                   child: Card(
                     elevation: 4,
                     child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: userData['picture'] != null
+                            ? NetworkImage(userData['picture'])
+                            : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+                      ),
                       title: Text('Name: ${userData['username']}'),
                       subtitle: Text('Job: ${userData['job']}'),
                       trailing: ElevatedButton(
@@ -173,6 +179,13 @@ class RecommendationDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: userdetails['picture'] != null
+                  ? NetworkImage(userdetails['picture'])
+                  : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+            ),
+            SizedBox(height: 16),
             Text(
               'Name: ${userdetails['username']}',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
