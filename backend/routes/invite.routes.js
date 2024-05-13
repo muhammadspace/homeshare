@@ -68,8 +68,11 @@ router.get("/:inviteid", async (req, res) => {
             oldApt.save()
         }
 
+        const newApt = await Apt.findById(invite.apt)
+        newApt.residents.push(seeker._id)
         seeker.resident_apt = invite.apt
         await seeker.save()
+        await newApt.save()
 
 
         // if (invite.to === auth.user_id)
