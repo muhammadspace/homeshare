@@ -26,8 +26,12 @@ const registerUser = async (userData) => {
 
 const loginUser = async (email, password) => {
     try {
-        const user = await UserModel.findOne({ email });
-        if (!user) throw new Error('User not found');
+        let user = await UserModel.findOne({ email });
+        if (!user) 
+        {
+            user = await AdminModel.findOne({ email })
+            if (!user) throw new Error('User not found');
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) throw new Error('Invalid password');

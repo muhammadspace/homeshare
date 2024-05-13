@@ -8,8 +8,7 @@ router.post("/", async (req, res) => {
     try
     {
         const properties = { location, owner, max, residents, price, bedrooms, bathrooms, property_type, start_date, end_date, invites, contract } = req.body
-        const apt = new Apt({ ...properties, approved_by_admin: "pending" })
-        apt.save()
+        const apt = new Apt({ ...properties, admin_approval: "pending" })
 
         const ownerUser = await User.findById(apt.owner)
 
@@ -22,6 +21,8 @@ router.post("/", async (req, res) => {
         }
 
         ownerUser.owned_apt = apt._id
+
+        await apt.save()
         await ownerUser.save()
 
         console.log(apt)
@@ -57,7 +58,7 @@ router.post("/", async (req, res) => {
     🔴 Whoops! An error occured while trying to create a new apartment:
         `)
         console.log(err)
-        res.json({ error: err, success: false }).status(500).end()
+        res.json({ message: err.message, success: false }).status(500).end()
     }
 })
 

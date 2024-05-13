@@ -48,7 +48,7 @@ const aptSchema = new mongoose.Schema({
         ref: "invite"
     }],
     contract: String,
-    approved_by_admin: String, 
+    admin_approval: String, 
 })
 
 const Apt = mongoose.model("apt", aptSchema)
