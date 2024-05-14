@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controller/user.controller');
 const User = require("../models/user.model");
+const Apt = require("../models/apt.model.js")
 const RecoveryCode = require("../models/recovery_code.model.js")
 const { userExtractor } = require('../utils/middleware');
 const mailer = require("../mailer.js")
