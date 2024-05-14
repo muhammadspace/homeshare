@@ -95,15 +95,14 @@ router.post("/kick/", userExtractor, async (req, res) => {
     const user = await User.findById(req.user.id)
     const apt = await Apt.findById(req.body.apt)
 
-    if (apt.owner)
-        if (!apt.owner.equals(user._id))
-        {
-            console.log(`
-        🔴 Could not remove ${resident.username} - ${resident._id} from this apartment. You are not the owner of this apartment.
-            `)
-            res.status(401).json({ success: false, message: "You are not the owner of this apartment." })
-            return
-        }
+    if (!apt.owner?.equals(user._id))
+    {
+        console.log(`
+    🔴 Could not remove ${resident.username} - ${resident._id} from this apartment. You are not the owner of this apartment.
+        `)
+        res.status(401).json({ success: false, message: "You are not the owner of this apartment." })
+        return
+    }
 
     const resident = await User.findById(req.body.resident)
 

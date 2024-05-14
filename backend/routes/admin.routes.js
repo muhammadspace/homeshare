@@ -58,6 +58,12 @@ router.post("/apt/reject", async (req, res) => {
     }
 })
 
+router.get("/apt/pending", async (req, res) => {
+    const pendingApts = await Apt.find({ admin_approval: "pending" })
+
+    res.status(200).json(pendingApts)
+})
+
 router.get("/clusters", async (req, res) => {
     // Returns customer clusters (sorted by index)
     try
