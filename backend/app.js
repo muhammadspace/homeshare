@@ -7,7 +7,8 @@ const UserRoute = require('./routes/user.routes');
 const AdminRoute = require('./routes/admin.routes');
 const FlaskRoute = require("./routes/flask.routes.js")
 const InviteRoute = require("./routes/invite.routes.js")
-const AptRoute = require("./routes/apt.routes")
+const AptRoute = require("./routes/apt.routes.js")
+const ChatRoute = require("./routes/chat.routes.js")
 const app = express();
 
 app.use(bodyParser.json());
@@ -20,5 +21,6 @@ app.use("/flask/", FlaskRoute);
 app.use("/invite/", middleware.userExtractor, InviteRoute)
 app.use("/apt", AptRoute)
 app.use("/admin", middleware.userExtractor, AdminRoute);
+app.use("/chat", ChatRoute)
 
 module.exports = app;

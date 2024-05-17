@@ -3,8 +3,9 @@ from recommend_seekers_interests import recommend_seekers_interests
 from recommend_owners_interests import recommend_owners_interests
 from recommend_seekers_traits import recommend_seekers_traits
 from recommend_owners_traits import recommend_owners_traits
-from customer_segmentation import GetClusterCounts
+from customer_segmentation import GetClusterCounts, GetPlots
 from flask import Flask, jsonify, request
+from chatbot_latest_version.chatbot import sendMessage
 
 app = Flask(__name__)
 
@@ -84,6 +85,12 @@ def recommend_seekers_traits_endpoint():
 def get_customer_clusters_counts():
     # Returns cluster counts (sorted by index)
     return jsonify(list(GetClusterCounts()))
+
+@app.route("/chat", methods={"POST"})
+def chat():
+    data = request.json
+    message = data['message']
+    return sendMessage(message)
 
 if __name__ == "__main__":
     app.run(debug=True)
