@@ -1,0 +1,333 @@
+{
+   "intents":[
+      {
+         "tag":"greetings",
+         "patterns":[
+            "Hello",
+            "Hi there",
+            "Hey",
+            "Greetings",
+            "Good day"
+         ],
+         "responses":[
+            "Hello! How can I assist you?",
+            "Hi! What can I do for you?",
+            "Hey! How may I help you today?",
+            "Greetings! What brings you here?",
+            "Good day! How can I be of service?"
+         ],
+         "context":[
+            ""
+         ]
+      },     
+      {
+         "tag":"farewells",
+         "patterns":[
+            "Goodbye",
+            "Bye",
+            "See you later",
+            "Take care",
+            "Farewell"
+         ],
+         "responses":[
+            "Goodbye! Have a great day!",
+            "Bye! Take care!",
+            "See you later! Don't hesitate to come back if you need assistance.",
+            "Take care! Goodbye!",
+            "Farewell! Until we meet again."
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"how_are_u",
+         "patterns":[
+            "how are you?",
+            "how do you do?"
+            
+         ],
+         "responses":[
+            "fine,hope you too"
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"home_harmony_intro",
+         "patterns":[
+            "What is Home Harmony about?",
+            "How does Home Harmony work?",
+            "What makes Home Harmony different from other platforms?",
+            "what do you do",
+            "tell me about yourself",
+            "tell me about you",
+            "what are you"
+         ],
+         "responses":[
+            "Home Harmony is a community-driven platform designed to alleviate the challenges associated with finding compatible roommates.",
+            "Home Harmony facilitates meaningful connections between apartment seekers and owners based on shared interests and compatible character traits.",
+            "Home Harmony aims to revolutionize the way people find and share living spaces by prioritizing compatibility in the roommate matching process.",
+            "Home Harmony is a community-driven platform designed to alleviate the challenges associated with finding compatible roommates."
+         ],
+
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"search",
+         "patterns":[           
+            "Can I search for roommates based on specific criteria?"                    
+         ],
+         "responses":[
+            "Yes, you can search for roommates based on specific criteria such as interests or lifestyle preferences."                 
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"profile_management",
+         "patterns":[
+            "How do I create a profile on Home Harmony?",                    
+            "how can i sign up"
+         ],
+         "responses":[
+            "To create a profile on Home Harmony, simply sign up with your email and complete your profile details."                            
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"view",
+         "patterns":[                 
+            "Can I view profiles of other users before connecting?"
+         ],
+         "responses":[                    
+            "Yes, you can view profiles of other users on Home Harmony before deciding to connect with them."
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"privacy_and_security",
+         "patterns":[
+            "Are there any privacy settings?",
+            "How secure is my personal information?",
+            "are you secure"
+         ],
+         "responses":[
+            "Yes, Home Harmony provides privacy settings to control who can view your profile.",
+            "Home Harmony takes the security of personal information seriously and implements measures to protect user data."
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"matching_process",
+         "patterns":[
+            "How does Home Harmony match users with compatible roommates?",
+            "What factors are considered in the matching process?",
+            "How accurate are the matching algorithms?"                  
+         ],
+         "responses":[
+            "Home Harmony matches users with compatible roommates based on shared interests and compatible character traits.",
+            "Factors considered in the matching process include common interests and character traits.",
+            "The matching algorithms in Home Harmony are designed to be accurate in finding compatible roommates.",
+            "add your apartement and once it's accpted ypu can serach for flatmates based on common interests/traits",
+            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits",
+            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits"
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"owners",
+         "patterns":[
+            
+            "how can i find flatmates",
+            "how can i find seekers",
+            "how can i search for seekers",
+            "my apartement got accepeted what to do then"
+          
+         ],
+         "responses":[                                  
+            "add your apartement and once it's accepted ypu can serach for flatmates based on common interests/traits"                 
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"flatmates_apartement",
+         "patterns":[
+            "how can i find owners",           
+            "how can i find apartement",
+            "how can i search for owners"
+         ],
+         "responses":[
+            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits",           
+            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits",
+            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits"
+         ],
+         "context":[
+            ""
+         ]
+      },
+      
+      
+      {
+         "tag":"apartment_management",
+         "patterns":[
+            "What happens after I upload an apartment?"                       
+         ],
+         "responses":[
+            "After you upload an apartment, it will be reviewed by the admin for approval."            
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"time_approval",
+         "patterns":[         
+            "How long does it take for my uploaded apartment to be approved?"            
+         ],
+         "responses":[           
+           "The time taken for your uploaded apartment to be approved may vary, but you will be notified once it's approved."           
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"edit",
+         "patterns":[
+            "can i edit my apartement after upload",
+            "i want to edit my apartement advertisement"            
+         ],
+         "responses":[
+            "no you can't after upload ,add new one and wait for approval "
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"apartment",
+         "patterns":[
+            "how can i add apartment",
+            "how can i upload apartment" ,
+            "how can i make an an advertisment",
+            "how can i upload my apartement advertisment" ,
+            "how to add apartement",
+            "how to upload apartment",
+            "how to upload an advertisment for my apartment" , 
+            "how to upload Apartment",
+            "i want to add apartemnt",
+            "i want to uplaod apartement advertisement",
+            "i want to add advertisment" ,
+            "i want to upload advertisment"
+         ],
+         "responses":[
+            "click on create an apartement then add your apartement details and wait for approval"           
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"general_thanks",
+         "patterns":[
+            "Thanks",
+            "Thank you",
+            "That's helpful",
+            "Awesome, thanks",
+            "Thanks for helping me"
+         ],
+         "responses":[
+            "Happy to help!",
+            "Any time!",
+            "My pleasure"
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"who_created_you",
+         "patterns":[
+            "Who created you?",
+            "Who is your creator?",
+            "What's the name of your developer?"
+         ],
+         "responses":[
+            "I was created by a team of developers at OpenAI.",
+            "My creators are the talented engineers at OpenAI.",
+            "My developers are the brilliant minds behind OpenAI's research and engineering teams."
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"whats_your_name",
+         "patterns":[
+            "What's your name?",
+            "Who are you?",
+            "What should I call you?",
+            "what is you name"
+         ],
+         "responses":[
+            "You can call me ZEE.",
+            "My name is ZEE.",
+            "I go by the name ZEE."
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag":"noanswer",
+         "patterns":[ "        ",
+         ".......",
+         "?",
+         "."
+      
+         ],
+         "responses":[
+            "Sorry, can't understand you",
+            "Please give me more info",
+            "Not sure I understand"
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
+         "tag": "contact_us",
+         "patterns": [
+           "How do I contact support?",
+           "I need help from a human.",
+           "Can I speak to a real person?",
+           "How can I get in touch with you?",
+           "I don't understand.",
+           "What are you saying?",
+           "This doesn't make sense.",
+           "i need more help"
+         ],
+         "responses": [
+           "Sorry, I can't help you with that directly. For further assistance, please contact us directly at support@example.com."
+         ],
+         "context": ""
+       }
+       
+   ]
+}
+
