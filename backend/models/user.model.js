@@ -122,5 +122,12 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
+userSchema.set("toJSON", {
+    transform: (document, returnedDocument) => {
+        delete returnedDocument.password
+        delete returnedDocument._v
+    }
+})
+
 const UserModel = db.model('users2', userSchema);
 module.exports = UserModel;

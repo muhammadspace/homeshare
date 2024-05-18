@@ -49,4 +49,11 @@ schema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
+schema.set("toJSON", {
+    transform: (document, returnedDocument) => {
+        delete returnedDocument.password
+        delete returnedDocument.__v
+    }
+})
+
 module.exports = mongoose.model("admins", schema, "users2")

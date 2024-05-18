@@ -6,7 +6,8 @@ const User = require("../models/user.model");
 const Apt = require("../models/apt.model.js")
 const RecoveryCode = require("../models/recovery_code.model.js")
 const { userExtractor } = require('../utils/middleware');
-const mailer = require("../mailer.js")
+const mailer = require("../mailer.js");
+const Admin = require("../models/admin.model.js");
 
 router.use(express.json());
 
@@ -23,15 +24,25 @@ router.get('/user/:identifier', async (req, res) => {
         if (identifierToObjectId.toString() === req.params.identifier)
             // is id
             user = await User.findById(req.params.identifier)
+            if (!user)
+                user = await Admin.findById(req.params.identifier)
         else
+        {
             // is username
             user = await User.findOne({ username: req.params.identifier })
+            if (!user)
+                user = await Admin.findById(req.params.identifier)
+        }
     }
     else
+    {
         // is username
         user = await User.findOne({ username: req.params.identifier })
+        if (!user)
+            user = await Admin.findById(req.params.identifier)
+    }
 
-    await user.save()
+    // await user.save()
     console.log(user)
     res.status(200).json(user);
 })
