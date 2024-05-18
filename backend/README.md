@@ -35,11 +35,11 @@
 # TODO
 - [x] implement user update endpoint
 - [x] implement user get information endpoint
-- [ ] fix the Flask implementation of seeker recommendations such that it includes `apts` | EDIT: if each owner can only own one apartment, then this is easily fixed by returning the apt id instead of an array.
-- [ ] replace the local datasets with MongoDB 
-- [ ] implement jwt token authorization for invites
+- [x] fix the Flask implementation of seeker recommendations such that it includes `apts` | EDIT: if each owner can only own one apartment, then this is easily fixed by returning the apt id instead of an array.
+- [x] replace the local datasets with MongoDB 
+- [x] implement jwt token authorization for invites
 - [x] remove `furnished` field from apts
-- [ ] based on the questions below, refactor the owned_apts field so that it's not an array
+- [x] based on the questions below, refactor the owned_apts field so that it's not an array
 
 # Questions
 - Are owners considered residents of the apartments they own?

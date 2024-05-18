@@ -3,3 +3,5 @@ Gunicorn
 pandas
 scikit-learn
 pymongo[srv]
+tensorflow
+matplotlib

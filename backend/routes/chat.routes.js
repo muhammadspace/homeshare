@@ -1,8 +1,8 @@
 const router = require("express").Router()
 const axios = require("axios")
 
-const flaskAPILink = "http://localhost:5000"
-// const flaskAPILink = "https://homeshare-flask.onrender.com"
+// const flaskAPILink = "http://localhost:5000"
+const flaskAPILink = "https://homeshare-flask.onrender.com"
 
 router.post("/", async (req, res) => {
     const message = req.body.message
