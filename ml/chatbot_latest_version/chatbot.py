@@ -8,6 +8,7 @@ import pickle
 import random
 
 nltk.download('punkt')
+nltk.download('wordnet')
 
 basePath = "./chatbot_latest_version/"
 
