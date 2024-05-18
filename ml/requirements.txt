@@ -5,3 +5,4 @@ scikit-learn
 pymongo[srv]
 tensorflow
 matplotlib
+nltk

@@ -7,6 +7,8 @@ from nltk.stem import WordNetLemmatizer
 import pickle
 import random
 
+nltk.download('punkt')
+
 basePath = "./chatbot_latest_version/"
 
 # Load the trained model and other necessary files
