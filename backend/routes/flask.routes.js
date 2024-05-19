@@ -74,8 +74,5 @@ router.post("/recommend/owners_traits", async (req, res, next) => {
         res.json(err)
     }
 })
+
 module.exports = router
-
-
-
-

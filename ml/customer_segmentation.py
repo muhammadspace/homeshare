@@ -33,7 +33,7 @@ for num_clusters in range(2, 11):
 
 # Find the number of clusters with the highest silhouette score
 optimal_num_clusters = max(silhouette_scores, key=lambda x: x[1])[0]
-print("Optimal number of clusters:", optimal_num_clusters)
+# print("Optimal number of clusters:", optimal_num_clusters)
 
 # Build the K-means model with the optimal number of clusters
 kmeans = KMeans(n_clusters=optimal_num_clusters, init='k-means++', max_iter=300, n_init=10, random_state=0)
@@ -44,9 +44,9 @@ users_interests_df['cluster'] = cluster_labels
 
 # Analyze the clusters
 cluster_counts = users_interests_df['cluster'].value_counts()
-print("Cluster counts:")
-print(cluster_counts)
-print(type(cluster_counts))
+# print("Cluster counts:")
+# print(cluster_counts)
+# print(type(cluster_counts))
 
 def GetClusterCounts():
     return cluster_counts.sort_index()
