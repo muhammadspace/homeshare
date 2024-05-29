@@ -9,6 +9,7 @@ const FlaskRoute = require("./routes/flask.routes.js")
 const InviteRoute = require("./routes/invite.routes.js")
 const AptRoute = require("./routes/apt.routes.js")
 const ChatRoute = require("./routes/chat.routes.js")
+const ImageRoute = require("./routes/image.routes.js")
 const app = express();
 
 app.use(bodyParser.json());
@@ -22,5 +23,6 @@ app.use("/invite/", middleware.userExtractor, InviteRoute)
 app.use("/apt", AptRoute)
 app.use("/admin", middleware.userExtractor, AdminRoute);
 app.use("/chat", ChatRoute)
+app.use("/uploads", ImageRoute)
 
 module.exports = app;
