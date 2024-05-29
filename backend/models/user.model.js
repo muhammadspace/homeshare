@@ -92,7 +92,8 @@ const userSchema = new Schema({
   resident_apt: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "apt",
-  }
+  },
+  notification: String
 }, { timestamps: true });
 
 userSchema.pre('save', async function () {
