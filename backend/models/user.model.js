@@ -93,7 +93,11 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "apt",
   },
-  notification: String
+  notification: String,
+  picture: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "image"
+  }
 }, { timestamps: true });
 
 userSchema.pre('save', async function () {

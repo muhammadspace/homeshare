@@ -61,7 +61,11 @@ def recommend_owners_interests(seeker_id):
                 recommendations_found = True
 
                 owner_apartment = apts_df[apts_df.owner == owner_id]
+                print("===========================================================")
+                print(owner_apartment.head())
+                print(owner_id)
                 print("apartment status: " + owner_apartment.admin_approval.item())
+                print("===========================================================")
                 if owner_apartment.admin_approval.item() == "pending":
                     print("skipped")
                     continue
