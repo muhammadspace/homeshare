@@ -12,7 +12,7 @@ import 'test.dart';
 class ChooseInterestsPage extends StatefulWidget {
   String username , email , password,job,gender,type,Personality,Value_and_Belief,Work_Ethic,Interpersonal_Skill;
   DateTime? dob;
-  File? image;
+  String image;
   ChooseInterestsPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender,required this.type,required this.Interpersonal_Skill,required this.Personality,required this.Value_and_Belief,required this.Work_Ethic}) : super(key: key);
   @override
   _ChooseInterestsPageState createState() => _ChooseInterestsPageState();
@@ -56,9 +56,8 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
     ],
   };
   //registerUser(String username,String email,String password,File? image,DateTime dateofbirth,String job,String gender,String type,List<String>traitsarray,List<String>interet)
-  Future<Map<String, dynamic>> registerUser(String hob,spor,clu,intel) async {
-    //List<String> interets = interet;
-    String hobbies=hob,sports=spor,cultural=clu,intellectual=intel;
+  Future<Map<String, dynamic>> registerUser(String hob, spor, clu, intel) async {
+    String hobbies = hob, sports = spor, cultural = clu, intellectual = intel;
     final response = await http.post(
       Uri.parse(registration),
       body: json.encode({
@@ -67,33 +66,23 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
         "password": widget.password,
         "dob": widget.dob?.toIso8601String(),
         "job": widget.job,
-        "picture":widget.image,
-        "gender":widget.gender,
-        "type":widget.type,
-        "hobbies_pastimes":hobbies,
-        "sports_activities":sports,
-        "cultural_artistic":cultural,
-        "intellectual_academic":intellectual,
-        "personality_trait":widget.Personality,
-        "work_ethic":widget.Work_Ethic,
-        "value_belief":widget.Value_and_Belief,
-        "interpersonal_skill":widget.Interpersonal_Skill,
+        //"picture": widget.image,
+        "gender": widget.gender,
+        "type": widget.type,
+        "hobbies_pastimes": hobbies,
+        "sports_activities": sports,
+        "cultural_artistic": cultural,
+        "intellectual_academic": intellectual,
+        "personality_trait": widget.Personality,
+        "work_ethic": widget.Work_Ethic,
+        "value_belief": widget.Value_and_Belief,
+        "interpersonal_skill": widget.Interpersonal_Skill,
       }),
       headers: {'Content-Type': 'application/json'},
     );
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      /*loginUser(widget.email,widget.password).then((result){
-            final token = result['token'];
-            final id = result['id'];
-            print('Token: $token');
-            print('User ID: ${id['user_id']}');
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:id)),
-            );
-          });*/
       return {
         'status': true,
         'message': data['message'],
@@ -106,6 +95,8 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
       };
     }
   }
+
+
   bool canProceed() {
     return selectedHobby != null &&
         selectedSport != null &&

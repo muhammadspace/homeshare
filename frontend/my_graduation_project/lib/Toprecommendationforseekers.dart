@@ -240,11 +240,19 @@ class RecommendationDetailPage extends StatelessWidget {
 
   List<Widget> _userDetailsWidgets() {
     var formatter = DateFormat('yyyy-MM-dd');
-    DateTime date;
-    String formattedDate = '', stringDate;
-    stringDate = userDetails['dob'];
-    date = DateTime.parse(stringDate);
-    formattedDate = formatter.format(date);
+    String formattedDate = '';
+
+    // Check if dob is a string or DateTime and format accordingly
+    if (userDetails['dob'] is String) {
+      try {
+        DateTime date = DateTime.parse(userDetails['dob']);
+        formattedDate = formatter.format(date);
+      } catch (e) {
+        formattedDate = userDetails['dob']; // If parsing fails, keep it as a string
+      }
+    } else if (userDetails['dob'] is DateTime) {
+      formattedDate = formatter.format(userDetails['dob']);
+    }
     return [
       Text(
         'Name: ${userDetails['username']}',

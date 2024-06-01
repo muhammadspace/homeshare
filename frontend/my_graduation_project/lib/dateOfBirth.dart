@@ -6,7 +6,7 @@ import 'job.dart';
 
 class RegisterPage extends StatefulWidget {
   String username , email , password;
-  File? image;
+  String image;
   RegisterPage({Key? key,required this.username,required this.email,required this.password,required this.image}) : super(key: key);
   @override
   _RegisterPageState createState() => _RegisterPageState();

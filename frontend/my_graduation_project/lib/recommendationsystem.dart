@@ -19,7 +19,7 @@ Future <List<dynamic>> searchownerinterest(String sidsend) async {
 
   List<dynamic> dataowner = [];
 
-  final ownerintUrl = 'https://homeshare-o76b.onrender.com/flask/recommend/owners_interests' ;
+  final ownerintUrl = 'http://10.0.2.2:5000/recommend/owners_interests' ;
 
   final response = await http.post(
     Uri.parse(ownerintUrl),
@@ -70,7 +70,7 @@ Future <List<dynamic>> searchownertraits(String sidsend) async {
 Future <List<dynamic>> searchseekerinterest(String oidsend) async {
   List<dynamic> dataseeker = [];
 
-  final seekersinturl = 'https://homeshare-o76b.onrender.com/flask/recommend/seekers_interests' ;
+  final seekersinturl = 'http://10.0.2.2:5000/recommend/seekers_interests' ;
 
   final response = await http.post(
     Uri.parse(seekersinturl),

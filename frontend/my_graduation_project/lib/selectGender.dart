@@ -6,7 +6,7 @@ import 'owner.dart';
 class GenderSelectionPage extends StatefulWidget {
   String username , email , password,job;
   DateTime? dob;
-  File? image;
+  String image;
   GenderSelectionPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job}) : super(key: key);
   @override
   _GenderSelectionPageState createState() => _GenderSelectionPageState();

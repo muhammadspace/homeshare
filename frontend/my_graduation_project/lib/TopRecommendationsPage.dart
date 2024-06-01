@@ -156,19 +156,29 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   }
 }
 
+
+
 class RecommendationDetailPage extends StatelessWidget {
-  final userdetails;
+  final Map<String, dynamic> userdetails;
 
   RecommendationDetailPage({required this.userdetails});
 
   @override
   Widget build(BuildContext context) {
     var formatter = DateFormat('yyyy-MM-dd');
-    DateTime date;
-    String formattedDate = '', Stringdate;
-    Stringdate = userdetails['dob'];
-    date = DateTime.parse(Stringdate);
-    formattedDate = formatter.format(date);
+    String formattedDate = '';
+
+    // Check if dob is a string or DateTime and format accordingly
+    if (userdetails['dob'] is String) {
+      try {
+        DateTime date = DateTime.parse(userdetails['dob']);
+        formattedDate = formatter.format(date);
+      } catch (e) {
+        formattedDate = userdetails['dob']; // If parsing fails, keep it as a string
+      }
+    } else if (userdetails['dob'] is DateTime) {
+      formattedDate = formatter.format(userdetails['dob']);
+    }
 
     return Scaffold(
       appBar: AppBar(

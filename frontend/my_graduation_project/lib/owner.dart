@@ -6,7 +6,7 @@ import 'ChoseCharacterTraitsPage.dart';
 class ProfileCompletionPage extends StatefulWidget {
   String username , email , password,job,gender;
   DateTime? dob;
-  File? image;
+  String image;
   ProfileCompletionPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender}) : super(key: key);
   @override
   _ProfileCompletionPageState createState() => _ProfileCompletionPageState();

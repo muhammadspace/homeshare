@@ -6,7 +6,7 @@ import 'ChooseInterestsPage.dart';
 class ChooseCharacterTraitsPage extends StatefulWidget {
   String username , email , password,job,gender,type;
   DateTime? dob;
-  File? image;
+  String image;
   ChooseCharacterTraitsPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender,required this.type}) : super(key: key);
   @override
   _ChooseCharacterTraitsPageState createState() => _ChooseCharacterTraitsPageState();

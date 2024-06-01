@@ -1,5 +1,7 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'login.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -9,7 +11,6 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<Offset> _animation;
 
   @override
   void dispose() {
@@ -30,8 +31,6 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
         }
       });
 
-    _animation = Tween<Offset>(begin: Offset.zero, end: Offset(-1.0, 0.0)).animate(_animationController);
-
     _animationController.forward();
     super.initState();
   }
@@ -39,70 +38,95 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ClipRect(
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(MediaQuery.of(context).size.width * _animation.value.dx, 0.0),
-                    child: CachedNetworkImage(
-                      imageUrl: 'https://i.pinimg.com/736x/6a/bf/43/6abf430393f744b97461ca5f81a2f220.jpg',
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width * 2,
-                      height: MediaQuery.of(context).size.height,
-                    ),
-                  );
-                },
+      body: Stack(
+        children: [
+          CachedNetworkImage(
+            imageUrl: 'https://i.pinimg.com/736x/6a/bf/43/6abf430393f744b97461ca5f81a2f220.jpg',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+          ),
+          Positioned.fill(
+            child: ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Container(
+                  color: Colors.black.withOpacity(0.5),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    'Welcome to Our App!',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Explore amazing features and content.',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignInPage(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: AnimationConfiguration.synchronized(
+                duration: const Duration(milliseconds: 700),
+                child: SlideAnimation(
+                  verticalOffset: 50.0,
+                  child: FadeInAnimation(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: AnimationConfiguration.toStaggeredList(
+                        duration: const Duration(milliseconds: 700),
+                        childAnimationBuilder: (widget) => SlideAnimation(
+                          horizontalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: widget,
+                          ),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: Colors.orange,
-                    ),
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(fontSize: 18),
+                        children: [
+                          Text(
+                            'Welcome to Our App!',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            'Explore amazing features and content.',
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 50),
+                          SlideAnimation(
+                            horizontalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignInPage(),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                                  backgroundColor: Colors.orange,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Get Started',
+                                  style: TextStyle(fontSize: 22),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

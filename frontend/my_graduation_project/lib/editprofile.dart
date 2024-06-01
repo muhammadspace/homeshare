@@ -11,12 +11,12 @@ import 'home.dart';
 
 class ProfileEditPage extends StatefulWidget {
   final String id,token , name ,email ,DOB ,job ,gender, type, hobbies, sports, cultural, intellectual,
-  value_belief ,interpersonal_skill , work_ethic ,personality_trait;
+      value_belief ,interpersonal_skill , work_ethic ,personality_trait;
 
   ProfileEditPage({required this.id, required this.token,required this.name,required this.email,required this.DOB
-                  ,required this.job,required this.gender,required this.type
-                  ,required this.hobbies,required this.sports,required this.cultural,required this.intellectual
-                  ,required this.work_ethic,required this.interpersonal_skill,required this.value_belief,required this.personality_trait});
+    ,required this.job,required this.gender,required this.type
+    ,required this.hobbies,required this.sports,required this.cultural,required this.intellectual
+    ,required this.work_ethic,required this.interpersonal_skill,required this.value_belief,required this.personality_trait});
   @override
   _ProfileEditPageState createState() => _ProfileEditPageState();
 }
@@ -26,20 +26,20 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     //void userdata(String token, Map<String, dynamic> id) async {
     final response = await http.post(
       Uri.parse(updpro_url),
-      headers: {'Content-Type': 'application/json','authorization':'Bearer $token'},
+      headers: {'Content-Type': 'application/json','Authorization':'Bearer $token'},
       body: jsonEncode({'username': _usernameController.text,
-                        'dob':_selectedDOB.toString(),
-                        'email':_emailController.text,
-                        'gender':_selectedGender.toString(),
-                        'type': _selectedType.toString(),
-                        'cultural_artistic':_selectedCultural.toString(),
-                        'intellectual_academic':_selectedIntellectual.toString(),
-                        'hobbies_pastimes' : _selectedHobby.toString(),
-                        'sports_activities': _selectedSport.toString(),
-                        'personality_trait': _selectedpersonality_trait.toString(),
-                        'value_belief' : _selectedvalue_belief.toString(),
-                        'interpersonal_skill' :_selectedinterpersonal_skill.toString(),
-                        'work_ethic':_selectedwork_ethic.toString()
+        'dob':_selectedDOB.toString(),
+        'email':_emailController.text,
+        'gender':_selectedGender.toString(),
+        'type': _selectedType.toString(),
+        'cultural_artistic':_selectedCultural.toString(),
+        'intellectual_academic':_selectedIntellectual.toString(),
+        'hobbies_pastimes' : _selectedHobby.toString(),
+        'sports_activities': _selectedSport.toString(),
+        'personality_trait': _selectedpersonality_trait.toString(),
+        'value_belief' : _selectedvalue_belief.toString(),
+        'interpersonal_skill' :_selectedinterpersonal_skill.toString(),
+        'work_ethic':_selectedwork_ethic.toString()
       }),
     );
 
@@ -168,7 +168,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
             _buildDateField("Date of Birth", _dobController),
             _buildEmailField("Email", _emailController),
             _buildGenderField("Gender"),
-            _buildTypeField("Type"),
+            //_buildTypeField("Type"),
             _buildHobbiesField("Hobbies & Pastimes"),
             _buildSportsField("Sports and Physical Activities"),
             _buildCulturalField("Cultural & Artistic"),

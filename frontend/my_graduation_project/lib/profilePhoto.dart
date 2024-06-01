@@ -2,16 +2,28 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dateOfBirth.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:dio/dio.dart';
 
 class ProfilePicturePage extends StatefulWidget {
-  String username , email , password;
-  ProfilePicturePage({Key? key,required this.username,required this.email,required this.password}) : super(key: key);
+  final String username, email, password;
+  ProfilePicturePage({
+    Key? key,
+    required this.username,
+    required this.email,
+    required this.password,
+  }) : super(key: key);
+
   @override
   _ProfilePicturePageState createState() => _ProfilePicturePageState();
 }
 
 class _ProfilePicturePageState extends State<ProfilePicturePage> {
   File? selectedImage;
+  String uploadimgpath = '';
+  String image_id='';
+
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -19,7 +31,34 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
     if (pickedFile != null) {
       setState(() {
         selectedImage = File(pickedFile.path);
+        uploadImage(selectedImage!);
       });
+    }
+  }
+
+  Future<void> uploadImage(File imageFile) async {
+    String url = "https://homeshare-o76b.onrender.com/uploads"; // replace with your server URL
+    var request = http.MultipartRequest('POST', Uri.parse(url));
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'image', // 'image' should match the key in your backend route
+        imageFile.path,
+      ),
+    );
+
+    var response = await request.send();
+
+    if (response.statusCode == 201) {
+      final respStr = await response.stream.bytesToString();
+      final decodedResp = jsonDecode(respStr);
+      setState(() {
+        uploadimgpath = decodedResp['path'];
+        image_id=decodedResp['_id'];
+      });
+      print('Upload success: $uploadimgpath');
+      print(decodedResp);
+    } else {
+      print('Upload failed with status: ${response.statusCode}');
     }
   }
 
@@ -36,18 +75,20 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(height: 16.0),
-
               buildImagePicker(),
-
-              SizedBox(height: 500.0),
-
+              SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>
-                        RegisterPage(username: widget.username, email: widget.email, password: widget.password,image:selectedImage)),
+                    MaterialPageRoute(
+                      builder: (context) => RegisterPage(
+                        username: widget.username,
+                        email: widget.email,
+                        password: widget.password,
+                        image: image_id,
+                      ),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

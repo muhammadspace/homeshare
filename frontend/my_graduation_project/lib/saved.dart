@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SavedPage extends StatefulWidget {
   final String id, type, token;
@@ -22,7 +21,8 @@ class _SavedPageState extends State<SavedPage> {
       formattedstartDate = '',
       usertype = '',
       apt_id_resident = '',
-      owned_apt = '';
+      owned_apt = '',
+      admin_approval ='';
   int apt_bathrooms = 0,
       apt_bedrooms = 0,
       apt_max = 0,
@@ -30,6 +30,7 @@ class _SavedPageState extends State<SavedPage> {
       count = 0,
       count2 = 0;
   List<dynamic> apt_residents = [];
+  var formatter = DateFormat('yyyy-MM-dd');
 
   Future<Map<String, dynamic>> fetchUserownerData(String idt) async {
     final apiUrl = 'https://homeshare-o76b.onrender.com/user/$idt';
@@ -100,17 +101,35 @@ class _SavedPageState extends State<SavedPage> {
         apt_location = jsonResponse['location'];
         apt_bathrooms = jsonResponse['bathrooms'];
         apt_bedrooms = jsonResponse['bedrooms'];
-        apt_end = jsonResponse['end_date'];
-        apt_start = jsonResponse['start_date'];
-        DateTime enddate = DateTime.parse(apt_end);
-        DateTime startdate = DateTime.parse(apt_end);
-        var formatter = DateFormat('yyyy-MM-dd');
-        formattedendDate = formatter.format(enddate);
-        formattedstartDate = formatter.format(startdate);
+        //apt_end = jsonResponse['end_date'];
+        // Check if dob is a string or DateTime and format accordingly
+        if (jsonResponse['end_date'] is String) {
+          try {
+            DateTime date = DateTime.parse(jsonResponse['end_date']);
+            formattedendDate = formatter.format(date);
+          } catch (e) {
+            formattedendDate = jsonResponse['end_date']; // If parsing fails, keep it as a string
+          }
+        } else if (jsonResponse['end_date'] is DateTime) {
+          formattedendDate = formatter.format(jsonResponse['end_date']);
+        }
+
+
+        if (jsonResponse['start_date'] is String) {
+          try {
+            DateTime date = DateTime.parse(jsonResponse['start_date']);
+            formattedstartDate = formatter.format(date);
+          } catch (e) {
+            formattedstartDate = jsonResponse['start_date']; // If parsing fails, keep it as a string
+          }
+        } else if (jsonResponse['start_date'] is DateTime) {
+          formattedstartDate = formatter.format(jsonResponse['start_date']);
+        }
         apt_max = jsonResponse['max'];
         apt_price = jsonResponse['price'];
         apt_residents = jsonResponse['residents'];
         apt_type = jsonResponse['property_type'];
+        admin_approval = jsonResponse['admin_approval'];
       });
     } else {
       throw Exception('Failed to fetch apartment data');
@@ -123,7 +142,7 @@ class _SavedPageState extends State<SavedPage> {
     if (widget.type == 'owner') {
       fetchUserownerData(widget.id).then((_) {
         if (owned_apt != '') {
-          fetchAptData(widget.id);
+          fetchAptData(owned_apt);
         }
       });
     } else if (widget.type == 'seeker') {
@@ -144,7 +163,7 @@ class _SavedPageState extends State<SavedPage> {
       ),
       body: Center(
         child: Visibility(
-          visible: apt_id_resident != '' || owned_apt != '',
+          visible: (apt_id_resident != '' || owned_apt != '') && admin_approval == 'approved',
           child: Card(
             elevation: 3,
             margin: EdgeInsets.all(16),
@@ -176,14 +195,14 @@ class _SavedPageState extends State<SavedPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                        Text(
-                          'Location: $apt_location',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Text('Max Occupants: $apt_max'),
-                        Text('Number of Residents: ${apt_residents.length}')
-                      ],
+                    Text(
+                      'Location: $apt_location',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text('Max Occupants: $apt_max'),
+                    Text('Number of Residents: ${apt_residents.length}'),
                     // Add more details as needed
+                  ],
                 ),
               ),
             ),
@@ -194,9 +213,7 @@ class _SavedPageState extends State<SavedPage> {
   }
 }
 
-
-
-  class ApartmentDetailsPage extends StatelessWidget {
+class ApartmentDetailsPage extends StatelessWidget {
   final String location;
   final int maxOccupants;
   final int price;
@@ -227,6 +244,7 @@ class _SavedPageState extends State<SavedPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Apartment Details'),
@@ -259,7 +277,7 @@ class _SavedPageState extends State<SavedPage> {
                         residentData: residentsData[i],
                         type: type,
                         token: token,
-                        id:id
+                        id: id,
                       ),
                     ),
                   );
@@ -278,7 +296,7 @@ class ResidentDetailsPage extends StatelessWidget {
   final String token;
   final String id;
 
-  ResidentDetailsPage({required this.residentData, required this.type,required this.token,required this.id});
+  ResidentDetailsPage({required this.residentData, required this.type, required this.token, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -309,7 +327,7 @@ class ResidentDetailsPage extends StatelessWidget {
             Visibility(
               visible: type == 'owner',
               child: ElevatedButton(
-                onPressed: () async{
+                onPressed: () async {
                   final apiUrl = 'https://homeshare-o76b.onrender.com/apt/kick';
                   final response = await http.post(
                     Uri.parse(apiUrl),
@@ -317,20 +335,20 @@ class ResidentDetailsPage extends StatelessWidget {
                     body: jsonEncode({'resident': residentData['_id'], 'apt': residentData['resident_apt']}),
                   );
                   if (response.statusCode == 200) {
-                    print(json.decode(response.body)) ;
+                    print(json.decode(response.body));
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => SavedPage(
                           type: type,
-                          token: token, id: id,
+                          token: token,
+                          id: id,
                         ),
                       ),
                     );
                   } else {
                     throw Exception('Failed to fetch user data');
                   }
-                  // Your button's action here
                 },
                 child: Text('Remove'),
               ),

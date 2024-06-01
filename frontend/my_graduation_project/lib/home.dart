@@ -10,6 +10,9 @@ import 'TopRecommendationsPage.dart';
 import 'notification.dart';
 import 'saved.dart';
 import 'recommendationsystem.dart';
+import 'chatbox.dart'; // Import the new chat page
+import 'config.dart';
+
 
 class HomeScreen extends StatefulWidget {
   final String Token;
@@ -23,12 +26,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String type = '';
+  String answer = '';
+  String aptid ='';
   List<dynamic> invitesids = [];
 
   @override
   void initState() {
     super.initState();
     fetchData();
+    ip(widget.id,widget.Token);
   }
 
   Future<void> fetchData() async {
@@ -38,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final response = await http.get(
         Uri.parse(typeurl),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
       );
       if (response.statusCode == 200) {
@@ -47,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           type = jsonResponse['type'];
           invitesids = jsonResponse['invites'];
+          if(type=='owner'){
+            aptid=jsonResponse['owned_apt'];
+          }
         });
         print(invitesids);
         print(type);
@@ -102,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PropertyTypePage(id: widget.id,token: widget.Token)),
+                    MaterialPageRoute(builder: (context) => PropertyTypePage(id: widget.id, token: widget.Token)),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -119,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icon(Icons.add, size: 24, color: Colors.white),
                     SizedBox(width: 8),
                     Text(
-                      'Create an apartment',
+                      'Create and Edit your apartment',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ],
@@ -148,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icon(Icons.search, size: 24, color: Colors.white),
                   SizedBox(width: 8),
                   Text(
-                    'Search for Property',
+                    'Search for People',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ],
@@ -156,6 +165,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatPage(token: widget.Token)),
+          );
+        },
+        child: Icon(Icons.message),
+        backgroundColor: Colors.blue,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -169,7 +188,23 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Saved',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_active),
+            icon: Stack(
+              children: [Positioned(
+                right: -6,
+                top: -6,
+                child: Container(
+                  padding: EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  constraints: BoxConstraints(
+                    minWidth: 24,
+                    minHeight: 24,
+                  ),),),
+                Icon(Icons.notifications_active),
+                ],
+            ),
             label: 'Notifications',
           ),
         ],
@@ -177,12 +212,13 @@ class _HomeScreenState extends State<HomeScreen> {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SavedPage(id:widget.id,type:type,token: widget.Token,)),
+              MaterialPageRoute(builder: (context) => SavedPage(id: widget.id, type: type, token: widget.Token)),
             );
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NotificationsPage(token: widget.Token,invitesids:invitesids,type: type)),
+              MaterialPageRoute(builder: (context) =>
+                  NotificationsPage(token: widget.Token, invitesids: invitesids, type: type,)),
             );
           }
         },

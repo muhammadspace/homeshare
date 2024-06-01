@@ -8,6 +8,7 @@ import 'package:my_graduation_project/home.dart';
 import 'test.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'forgetpassword.dart';
+import 'admin.dart';
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -18,6 +19,28 @@ class _SignInPageState extends State<SignInPage> {
   bool _isNotValidate = false;
 
 
+  Future<String> fetchUserData(String id) async {
+
+    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$id'; // Replace with your actual API URL
+
+    final response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+
+        String type = jsonRes['type'];
+
+      print(response.body);
+      return type;
+    } else {
+      throw Exception('Failed to fetch user data');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -87,18 +110,31 @@ class _SignInPageState extends State<SignInPage> {
         ElevatedButton(
           onPressed: () async {
             //login();
-            loginUser(emailController.text, passwordController.text).then((result){
+            String email = emailController.text.trim();
+            String password = passwordController.text.trim();
+            loginUser(email, password).then((result) async{
               final token = result['token'];
               final id = result['id'];
               String lastid = id['id'];
               print('Token: $token');
               print('User ID: ${id['id']}');
               print('$lastid');
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:lastid)),
-              );
-            });
+              String y = await fetchUserData(lastid);
+            if (email.endsWith('@fci.helwan.edu.eg') && y=='admin') {
+              // Navigate to AdminPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>
+                        AdminPage(Token: token, id: lastid)),
+                  );
+            } else{
+              // Login regular user
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen(Token: token, id: lastid)),
+                );
+            }
+                  });
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),

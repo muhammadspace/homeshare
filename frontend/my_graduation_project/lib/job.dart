@@ -7,7 +7,7 @@ import 'dart:io';
 class JobSelectionPage extends StatefulWidget {
   String username , email , password;
   DateTime? dob;
-  File? image;
+  String image;
   JobSelectionPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob}) : super(key: key);
   @override
   _JobSelectionPageState createState() => _JobSelectionPageState();
