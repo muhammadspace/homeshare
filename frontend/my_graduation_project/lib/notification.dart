@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 Future<Map<String, dynamic>> inviteinfo(String inviteid, String token) async {
-  final apiUrl = 'https://homeshare-o76b.onrender.com/invite/$inviteid';
+  final apiUrl = invitedataurl+inviteid;
   final response = await http.get(
     Uri.parse(apiUrl),
     headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'},
@@ -19,7 +21,7 @@ Future<Map<String, dynamic>> inviteinfo(String inviteid, String token) async {
 }
 
 Future<Map<String, dynamic>> _fetchAptData(String dataAptId) async {
-  final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$dataAptId';
+  final apiUrl = aptdataurl+dataAptId;
   final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
   if (response.statusCode == 200) {
     return json.decode(response.body);
@@ -29,7 +31,7 @@ Future<Map<String, dynamic>> _fetchAptData(String dataAptId) async {
 }
 
 Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
-  final apiUrl = 'https://homeshare-o76b.onrender.com/user/$dataOwnerId';
+  final apiUrl = profiledataurl2+dataOwnerId;
   final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
   if (response.statusCode == 200) {
     return json.decode(response.body);
@@ -74,7 +76,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
   }
 
   Future<void> _acceptInvitation(String inviteId) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/invite/$inviteId/accept';
+    final apiUrl = invite_accept_reject_url+inviteId+'/accept';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ${widget.token}'},
@@ -89,7 +91,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
   }
 
   Future<void> _rejectInvitation(String inviteId) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/invite/$inviteId/reject';
+    final apiUrl = invite_accept_reject_url+inviteId+'reject';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ${widget.token}'},

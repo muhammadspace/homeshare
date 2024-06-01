@@ -6,7 +6,7 @@ Future<String> createapt(String id, String location,int price,int max,int bedroo
 
   final response = await http.post(
     //Uri.parse(apturi),
-    Uri.parse('https://homeshare-o76b.onrender.com/apt'),
+    Uri.parse(create_edit_apturl),
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({
       "location": location,

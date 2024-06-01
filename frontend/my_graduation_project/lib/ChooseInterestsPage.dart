@@ -66,7 +66,7 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
         "password": widget.password,
         "dob": widget.dob?.toIso8601String(),
         "job": widget.job,
-        //"picture": widget.image,
+        "picture": widget.image,
         "gender": widget.gender,
         "type": widget.type,
         "hobbies_pastimes": hobbies,

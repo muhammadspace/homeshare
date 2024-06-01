@@ -21,10 +21,9 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<String> fetchUserData(String id) async {
 
-    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$id'; // Replace with your actual API URL
-
+  final url = profiledataurl2 + id;
     final response = await http.get(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -118,11 +117,12 @@ class _SignInPageState extends State<SignInPage> {
               String lastid = id['id'];
               print('Token: $token');
               print('User ID: ${id['id']}');
-              print('$lastid');
               String y = await fetchUserData(lastid);
             if (email.endsWith('@fci.helwan.edu.eg') && y=='admin') {
               // Navigate to AdminPage
                   Navigator.push(
+
+
                     context,
                     MaterialPageRoute(builder: (context) =>
                         AdminPage(Token: token, id: lastid)),

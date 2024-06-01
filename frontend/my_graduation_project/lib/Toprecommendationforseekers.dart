@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'config.dart';
 
 class TopRecommendationseekers extends StatefulWidget {
   final List<dynamic> recommendations;
@@ -17,7 +18,7 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
   final DateFormat _formatter = DateFormat('yyyy-MM-dd');
 
   Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$dataOwnerId';
+    final apiUrl = profiledataurl2 + dataOwnerId;
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -27,7 +28,7 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
   }
 
   Future<Map<String, dynamic>> _fetchAptData(String dataAptId) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$dataAptId';
+    final apiUrl = aptdataurl + dataAptId;
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -37,7 +38,7 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
   }
 
   Future<Map<String, dynamic>> _joinSomeone(String aptId, String ownerId) async {
-    final inviteUrl = 'https://homeshare-o76b.onrender.com/apt/join/$aptId';
+    final inviteUrl = joinapturl + aptId;
     final response = await http.post(
       Uri.parse(inviteUrl),
       headers: {'Content-Type': 'application/json', 'authorization': 'Bearer ${widget.token}'},

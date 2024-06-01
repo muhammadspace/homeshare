@@ -39,12 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> fetchData() async {
     final String idt = widget.id;
-    final typeurl = 'https://homeshare-o76b.onrender.com/user/$idt';
+    final typeurl = profiledataurl2+idt;
     try {
       final response = await http.get(
         Uri.parse(typeurl),
         headers: {
           'Content-Type': 'application/json',
+          'authorization': 'Bearer ${widget.Token}',
         },
       );
       if (response.statusCode == 200) {
@@ -53,9 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           type = jsonResponse['type'];
           invitesids = jsonResponse['invites'];
-          if(type=='owner'){
-            aptid=jsonResponse['owned_apt'];
-          }
+          /*if(type=='owner'){
+            if(jsonResponse['owned_apt']!= null) {
+              aptid = jsonResponse['owned_apt'];
+            }
+          }*/
         });
         print(invitesids);
         print(type);

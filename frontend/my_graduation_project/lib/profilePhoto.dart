@@ -37,7 +37,7 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
   }
 
   Future<void> uploadImage(File imageFile) async {
-    String url = "https://homeshare-o76b.onrender.com/uploads"; // replace with your server URL
+    String url = "http://192.168.1.53:3000/uploads";
     var request = http.MultipartRequest('POST', Uri.parse(url));
     request.files.add(
       await http.MultipartFile.fromPath(

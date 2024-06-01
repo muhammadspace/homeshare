@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'config.dart';
 
 class SavedPage extends StatefulWidget {
   final String id, type, token;
@@ -33,7 +34,7 @@ class _SavedPageState extends State<SavedPage> {
   var formatter = DateFormat('yyyy-MM-dd');
 
   Future<Map<String, dynamic>> fetchUserownerData(String idt) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$idt';
+    final apiUrl = profiledataurl2+idt;
     final response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -53,7 +54,7 @@ class _SavedPageState extends State<SavedPage> {
   }
 
   Future<Map<String, dynamic>> fetchUserresidentData(String idt) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$idt';
+    final apiUrl = profiledataurl2+idt;
     final response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -86,7 +87,7 @@ class _SavedPageState extends State<SavedPage> {
   }
 
   Future<void> fetchAptData(String idget) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/apt/$idget';
+    final apiUrl = aptdataurl+idget;
 
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -328,9 +329,9 @@ class ResidentDetailsPage extends StatelessWidget {
               visible: type == 'owner',
               child: ElevatedButton(
                 onPressed: () async {
-                  final apiUrl = 'https://homeshare-o76b.onrender.com/apt/kick';
+                  //final apiUrl = 'https://homeshare-o76b.onrender.com/apt/kick';
                   final response = await http.post(
-                    Uri.parse(apiUrl),
+                    Uri.parse(kickurl),
                     headers: {'Content-Type': 'application/json', 'authorization': 'Bearer $token'},
                     body: jsonEncode({'resident': residentData['_id'], 'apt': residentData['resident_apt']}),
                   );

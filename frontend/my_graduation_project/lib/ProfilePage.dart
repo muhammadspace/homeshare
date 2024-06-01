@@ -33,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String formattedDate = '';
   String gender = '';
   String type = '';
+  String pictureData = '';
   String hobbies = '';
   String sports = '';
   String cultural = '';
@@ -44,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Uint8List? imageBytes;
 
   Future<void> _retrieveImage(String imageId) async {
-    String url = "http://192.168.1.53:3000/uploads/$imageId"; // Replace with your server URL
+    String url = getimageurl + imageId ; // Replace with your server URL
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -61,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> fetchUserData() async {
     final String idt = widget.id;
-    final apiUrl = 'http://192.168.1.53:3000/user/$idt'; // Replace with your actual API URL
+    final apiUrl = profiledataurl2 + idt; // Replace with your actual API URL
 
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -97,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
         } else if (jsonRes['dob'] is DateTime) {
           formattedDate = DateFormat('yyyy-MM-dd').format(jsonRes['dob']);
         }
-        final pictureData = jsonRes['picture'];
+         pictureData = jsonRes['picture'];
         //_retrieveImage("pictureData");
         if (pictureData != null) {
           _retrieveImage(pictureData);

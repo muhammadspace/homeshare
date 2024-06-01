@@ -4,7 +4,6 @@ import 'config.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 Future<Map<String, dynamic>> loginUser(String email, String password) async {
-  //final apiUrl = 'http://192.168.1.95:3000/login';
 
   final response = await http.post(
     Uri.parse(loginuri),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'config.dart';
 
 class TopRecommendationsPage extends StatefulWidget {
   final List<dynamic> recommendations;
@@ -17,7 +18,7 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   var formatter = DateFormat('yyyy-MM-dd');
   Map<String, dynamic> ownerdata = {} ;
   Future<Map<String, dynamic>> fetchUserData(String dataid) async {
-    final apiUrl = 'https://homeshare-o76b.onrender.com/user/$dataid';
+    final apiUrl = profiledataurl2+dataid;
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
@@ -28,9 +29,9 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   }
 
   Future<Map<String, dynamic>> invitesomeone(String senderid, String reciverid, String aptid) async {
-    final inviteUrl = 'https://homeshare-o76b.onrender.com/invite';
+
     final response = await http.post(
-      Uri.parse(inviteUrl),
+      Uri.parse(inviteurl),
       body: json.encode({"to": reciverid, "from": senderid,"apt":aptid}),
       headers: {'Content-Type': 'application/json',
       'Authorization':'Bearer ${widget.token}'},
