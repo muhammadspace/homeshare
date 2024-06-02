@@ -47,7 +47,14 @@ const aptSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "invite"
     }],
-    contract: String,
+    pictures: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "image"
+    },
+    contract: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "image"
+    },
     admin_approval: String, 
 })
 
