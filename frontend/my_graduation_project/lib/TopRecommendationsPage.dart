@@ -3,12 +3,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'config.dart';
+import 'dart:typed_data';
 
 class TopRecommendationsPage extends StatefulWidget {
   final List<dynamic> recommendations;
-  final String senderid,token;
+  final String senderid, token;
 
-  TopRecommendationsPage({required this.recommendations, required this.senderid,required this.token});
+  TopRecommendationsPage({
+    required this.recommendations,
+    required this.senderid,
+    required this.token,
+  });
 
   @override
   _TopRecommendationsPageState createState() => _TopRecommendationsPageState();
@@ -16,9 +21,10 @@ class TopRecommendationsPage extends StatefulWidget {
 
 class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   var formatter = DateFormat('yyyy-MM-dd');
-  Map<String, dynamic> ownerdata = {} ;
+  Map<String, dynamic> ownerdata = {};
+
   Future<Map<String, dynamic>> fetchUserData(String dataid) async {
-    final apiUrl = profiledataurl2+dataid;
+    final apiUrl = profiledataurl2 + dataid;
     final response = await http.get(Uri.parse(apiUrl), headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
@@ -29,96 +35,149 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
   }
 
   Future<Map<String, dynamic>> invitesomeone(String senderid, String reciverid, String aptid) async {
-
     final response = await http.post(
       Uri.parse(inviteurl),
-      body: json.encode({"to": reciverid, "from": senderid,"apt":aptid}),
-      headers: {'Content-Type': 'application/json',
-      'Authorization':'Bearer ${widget.token}'},
+      body: json.encode({"to": reciverid, "from": senderid, "apt": aptid}),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${widget.token}'
+      },
     );
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Failed to fetch user data');
+      throw Exception('Failed to invite user');
+    }
+  }
+
+  Future<Uint8List?> _retrieveContractImage(String imageId) async {
+    String url = getimageurl + imageId;
+    try {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return response.bodyBytes;
+      } else {
+        print('Retrieve failed with status: ${response.statusCode}');
+        return null;
+      }
+    } catch (error) {
+      print('Error: $error');
+      return null;
     }
   }
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recommendations for You'),
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: Text(
+          'Recommendation For You',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: ListView.builder(
-        itemCount: widget.recommendations.length,
-        itemBuilder: (context, index) {
-          final recommendation = widget.recommendations[index];
-          final dataid = '${recommendation['seeker_id']}';
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: widget.recommendations.length,
+          itemBuilder: (context, index) {
+            final recommendation = widget.recommendations[index];
+            final dataid = '${recommendation['seeker_id']}';
 
-          return FutureBuilder<Map<String, dynamic>>(
-            future: fetchUserData(dataid),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error: ${snapshot.error}'),
-                );
-              } else {
-                final userData = snapshot.data!;
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    elevation: 4,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        backgroundImage: userData['picture'] != null
-                            ? NetworkImage(userData['picture'])
-                            : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-                      ),
-                      title: Text('Name: ${userData['username']}'),
-                      subtitle: Text('Job: ${userData['job']}'),
-                      trailing: ElevatedButton(
-                        onPressed: () async{
-                          ownerdata = await fetchUserData(widget.senderid);
-                          _showInviteDialog(context, userData['username'], widget.senderid, dataid,ownerdata['owned_apt']);
-                        },
-                        child: Text('Invite'),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+            return FutureBuilder<Map<String, dynamic>>(
+              future: fetchUserData(dataid),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  final userData = snapshot.data!;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 4,
+                      child: ListTile(
+                        leading: FutureBuilder<Uint8List?>(
+                          future: _retrieveContractImage(userData['picture'] ?? ''),
+                          builder: (context, imageSnapshot) {
+                            if (imageSnapshot.connectionState == ConnectionState.waiting) {
+                              return CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Colors.grey.shade200,
+                              );
+                            } else if (imageSnapshot.hasError || imageSnapshot.data == null) {
+                              return CircleAvatar(
+                                radius: 30,
+                                backgroundImage: NetworkImage(
+                                    'https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+                              );
+                            } else {
+                              return CircleAvatar(
+                                radius: 30,
+                                backgroundImage: MemoryImage(imageSnapshot.data!),
+                              );
+                            }
+                          },
+                        ),
+                        title: Text(
+                          'Name: ${userData['username'] ?? ''}',
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                        ),
+                        subtitle: Text(
+                          'Job: ${userData['job'] ?? ''}',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        trailing: ElevatedButton(
+                          onPressed: () async {
+                            ownerdata = await fetchUserData(widget.senderid);
+                            _showInviteDialog(
+                                context, userData['username'], widget.senderid, dataid, ownerdata['owned_apt']);
+                          },
+                          child: Text('Invite'),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor:
+                            Colors.white,
+                            backgroundColor:
+                            Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecommendationDetailPage(userdetails: userData),
+                            ),
+                          );
+                        },
                       ),
-                      onTap: () {
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RecommendationDetailPage(userdetails: userData),
-                          ),
-                        );
-                      },
                     ),
-                  ),
-                );
-              }
-            },
-          );
-        },
+                  );
+                }
+              },
+            );
+          },
+        ),
       ),
     );
   }
 
-  Future<void> _showInviteDialog(BuildContext context, String username, String sendid, String recid,aptid) async {
+  Future<void> _showInviteDialog(
+      BuildContext context, String username, String sendid, String recid, aptid) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: true, // user must tap button!
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Invite Confirmation'),
@@ -139,8 +198,7 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
             TextButton(
               child: Text('Invite'),
               onPressed: () {
-                invitesomeone(sendid, recid,aptid);
-                // Perform action to invite the user here
+                invitesomeone(sendid, recid, aptid);
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -156,8 +214,6 @@ class _TopRecommendationsPageState extends State<TopRecommendationsPage> {
     );
   }
 }
-
-
 
 class RecommendationDetailPage extends StatelessWidget {
   final Map<String, dynamic> userdetails;
@@ -182,7 +238,8 @@ class RecommendationDetailPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar
+        (
         title: Text('Recommendation Detail'),
       ),
       body: Padding(

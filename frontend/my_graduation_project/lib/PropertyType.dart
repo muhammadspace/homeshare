@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'PropertySize.dart';
 
 class PropertyTypePage extends StatefulWidget {
-  final id,token;
-  PropertyTypePage({required this.id,required this.token});
+  final id, token;
+  PropertyTypePage({required this.id, required this.token});
   @override
   _PropertyTypePageState createState() => _PropertyTypePageState();
 }
@@ -16,30 +16,52 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Property'),
+        title: Text(
+          'Add Property',
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white), // تحديد لون الرموز داخل ال AppBar
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Select Property Type:',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildPropertyTypeTile('Flat', Icons.home),
+                    _buildPropertyTypeTile('House', Icons.house),
+                    _buildPropertyTypeTile('Room', Icons.bed),
+                    if (selectedPropertyType != 'Room' || numberOfRooms > 0)
+                      _buildNumberOfRoomsField(),
+                  ],
                 ),
               ),
-              SizedBox(height: 20.0),
-              _buildPropertyTypeTile('Flat', Icons.home),
-              _buildPropertyTypeTile('House', Icons.house),
-              _buildPropertyTypeTile('Room', Icons.bed),
-              if (selectedPropertyType != 'Room' || numberOfRooms > 0)
-                _buildNumberOfRoomsField(),
-              SizedBox(height: 350.0),
-              ElevatedButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+              child: ElevatedButton(
                 onPressed: () {
                   if (selectedPropertyType.isNotEmpty) {
                     print('Selected Property Type: $selectedPropertyType');
@@ -51,9 +73,10 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => PropertySizePage(
-                          selectedPropertyType: selectedPropertyType,
-                          numberofrooms: numberOfRooms,id:widget.id,token:widget.token
-                        ),
+                            selectedPropertyType: selectedPropertyType,
+                            numberofrooms: numberOfRooms,
+                            id: widget.id,
+                            token: widget.token),
                       ),
                     );
                   } else {
@@ -61,17 +84,19 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: const StadiumBorder(),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.orange,
+                  padding: const EdgeInsets.symmetric(vertical: 16), backgroundColor: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                  textStyle: TextStyle(fontSize: 24),
                 ),
-                child: Text(
-                  'Continue',
-                  style: TextStyle(fontSize: 18),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text('Continue'),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -79,17 +104,15 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
 
   Widget _buildPropertyTypeTile(String value, IconData icon) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(icon, size: 36, color: Colors.white), // تغيير لون الرموز هنا
       title: Text(
         value,
-        style: TextStyle(fontSize: 18),
+        style: TextStyle(fontSize: 24, color: Colors.white),
       ),
-      tileColor: selectedPropertyType == value ? Colors.grey[300] : null,
       onTap: () {
         setState(() {
           selectedPropertyType = value;
           if (selectedPropertyType != 'Room') {
-            // Reset number of rooms if property type is not 'Room'
             numberOfRooms = 0;
           }
         });
@@ -101,14 +124,16 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 20),
         Text(
           'Enter the number of rooms:',
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(height: 10),
         TextFormField(
           keyboardType: TextInputType.number,
           onChanged: (value) {
@@ -116,12 +141,17 @@ class _PropertyTypePageState extends State<PropertyTypePage> {
               numberOfRooms = int.tryParse(value) ?? 0;
             });
           },
+          style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             labelText: 'Number of Rooms',
+            labelStyle: TextStyle(color: Colors.white),
             border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
           ),
         ),
-        SizedBox(height: 20.0),
+        SizedBox(height: 20),
       ],
     );
   }

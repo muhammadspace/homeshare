@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'config.dart';
+import 'dart:typed_data';
+import 'home.dart';
 
 class SavedPage extends StatefulWidget {
   final String id, type, token;
@@ -23,7 +25,7 @@ class _SavedPageState extends State<SavedPage> {
       usertype = '',
       apt_id_resident = '',
       owned_apt = '',
-      admin_approval ='';
+      admin_approval = '';
   int apt_bathrooms = 0,
       apt_bedrooms = 0,
       apt_max = 0,
@@ -32,9 +34,28 @@ class _SavedPageState extends State<SavedPage> {
       count2 = 0;
   List<dynamic> apt_residents = [];
   var formatter = DateFormat('yyyy-MM-dd');
+  List<Uint8List> imageBytesList = [];
+
+  Future<void> _retrieveaptImages(List<dynamic> imageIds) async {
+    for (String imageId in imageIds) {
+      String url = getimageurl + imageId; // Replace with your server URL
+      try {
+        var response = await http.get(Uri.parse(url));
+        if (response.statusCode == 200) {
+          setState(() {
+            imageBytesList.add(response.bodyBytes); // Store image bytes as needed
+          });
+        } else {
+          print('Retrieve failed with status: ${response.statusCode}');
+        }
+      } catch (error) {
+        print('Error: $error');
+      }
+    }
+  }
 
   Future<Map<String, dynamic>> fetchUserownerData(String idt) async {
-    final apiUrl = profiledataurl2+idt;
+    final apiUrl = profiledataurl2 + idt;
     final response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -44,9 +65,11 @@ class _SavedPageState extends State<SavedPage> {
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      setState(() {
-        owned_apt = jsonResponse['owned_apt'];
-      });
+      if (jsonResponse['owned_apt'] != null) {
+        setState(() {
+          owned_apt = jsonResponse['owned_apt'];
+        });
+      }
       return json.decode(response.body);
     } else {
       throw Exception('Failed to fetch user data');
@@ -54,7 +77,7 @@ class _SavedPageState extends State<SavedPage> {
   }
 
   Future<Map<String, dynamic>> fetchUserresidentData(String idt) async {
-    final apiUrl = profiledataurl2+idt;
+    final apiUrl = profiledataurl2 + idt;
     final response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -87,7 +110,7 @@ class _SavedPageState extends State<SavedPage> {
   }
 
   Future<void> fetchAptData(String idget) async {
-    final apiUrl = aptdataurl+idget;
+    final apiUrl = aptdataurl + idget;
 
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -115,7 +138,6 @@ class _SavedPageState extends State<SavedPage> {
           formattedendDate = formatter.format(jsonResponse['end_date']);
         }
 
-
         if (jsonResponse['start_date'] is String) {
           try {
             DateTime date = DateTime.parse(jsonResponse['start_date']);
@@ -126,6 +148,7 @@ class _SavedPageState extends State<SavedPage> {
         } else if (jsonResponse['start_date'] is DateTime) {
           formattedstartDate = formatter.format(jsonResponse['start_date']);
         }
+        _retrieveaptImages(jsonResponse['pictures']);
         apt_max = jsonResponse['max'];
         apt_price = jsonResponse['price'];
         apt_residents = jsonResponse['residents'];
@@ -161,6 +184,17 @@ class _SavedPageState extends State<SavedPage> {
       appBar: AppBar(
         title: Text('Saved Properties'),
         backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () async {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(Token: widget.token, id: widget.id),
+                ),
+              );
+          },
+        ),
       ),
       body: Center(
         child: Visibility(
@@ -187,6 +221,7 @@ class _SavedPageState extends State<SavedPage> {
                       type: widget.type,
                       token: widget.token,
                       id: widget.id,
+                      imageBytesList: imageBytesList,
                     ),
                   ),
                 );
@@ -227,6 +262,7 @@ class ApartmentDetailsPage extends StatelessWidget {
   final String type;
   final String token;
   final String id;
+  final List<Uint8List> imageBytesList;
 
   ApartmentDetailsPage({
     required this.location,
@@ -240,12 +276,12 @@ class ApartmentDetailsPage extends StatelessWidget {
     required this.residentsData,
     required this.type,
     required this.token,
-    required this.id
+    required this.id,
+    required this.imageBytesList,
   });
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Apartment Details'),
@@ -265,6 +301,17 @@ class ApartmentDetailsPage extends StatelessWidget {
             Text('Start Date: $startDate'),
             Text('End Date: $endDate'),
             SizedBox(height: 20),
+            if (imageBytesList.isNotEmpty)
+              SizedBox(
+                height: 200, // Set the height for the ListView
+                child: ListView.builder(
+                  itemCount: imageBytesList.length,
+                  scrollDirection: Axis.horizontal, // Scroll horizontally
+                  itemBuilder: (context, index) {
+                    return Image.memory(imageBytesList[index]);
+                  },
+                ),
+              ),
             Text('Residents Details:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
             for (int i = 0; i < residentsData.length; i++)
@@ -291,13 +338,42 @@ class ApartmentDetailsPage extends StatelessWidget {
   }
 }
 
-class ResidentDetailsPage extends StatelessWidget {
+class ResidentDetailsPage extends StatefulWidget {
   final Map<String, dynamic> residentData;
   final String type;
   final String token;
   final String id;
 
   ResidentDetailsPage({required this.residentData, required this.type, required this.token, required this.id});
+
+  @override
+  _ResidentDetailsPageState createState() => _ResidentDetailsPageState();
+}
+
+class _ResidentDetailsPageState extends State<ResidentDetailsPage> {
+  Uint8List? image;
+
+  @override
+  void initState() {
+    super.initState();
+    _retrievecontractImage(widget.residentData['picture']);
+  }
+
+  Future<void> _retrievecontractImage(String imageId) async {
+    String url = getimageurl + imageId; // Replace with your server URL
+    try {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        setState(() {
+          image = response.bodyBytes;
+        });
+      } else {
+        print('Retrieve failed with status: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -311,29 +387,39 @@ class ResidentDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Name: ${residentData['username']}'),
-            Text('Email: ${residentData['email']}'),
-            Text('Gender: ${residentData['gender']}'),
-            Text('Job: ${residentData['job']}'),
-            Text('Hobbies & Pastimes: ${residentData['hobbies_pastimes']}'),
-            Text('Sports & Activities: ${residentData['sports_activities']}'),
-            Text('Cultural & Artistic: ${residentData['cultural_artistic']}'),
-            Text('Intellectual & Academic: ${residentData['intellectual_academic']}'),
-            Text('Value & Belief: ${residentData['value_belief']}'),
-            Text('Interpersonal Skills: ${residentData['interpersonal_skill']}'),
-            Text('Work Ethic: ${residentData['work_ethic']}'),
-            Text('Personality Trait: ${residentData['personality_trait']}'),
-            Text('id: ${residentData['id']}'),
-            Text('aptid: ${residentData['resident_apt']}'),
+            Center(
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage: widget.residentData['picture'] != null
+                    ? image != null
+                    ? MemoryImage(image!)
+                    : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png') as ImageProvider
+                    : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+              ),
+            ),
+            SizedBox(height: 16),
+            Text('Name: ${widget.residentData['username']}'),
+            Text('Email: ${widget.residentData['email']}'),
+            Text('Gender: ${widget.residentData['gender']}'),
+            Text('Job: ${widget.residentData['job']}'),
+            Text('Hobbies & Pastimes: ${widget.residentData['hobbies_pastimes']}'),
+            Text('Sports & Activities: ${widget.residentData['sports_activities']}'),
+            Text('Cultural & Artistic: ${widget.residentData['cultural_artistic']}'),
+            Text('Intellectual & Academic: ${widget.residentData['intellectual_academic']}'),
+            Text('Value & Belief: ${widget.residentData['value_belief']}'),
+            Text('Interpersonal Skills: ${widget.residentData['interpersonal_skill']}'),
+            Text('Work Ethic: ${widget.residentData['work_ethic']}'),
+            Text('Personality Trait: ${widget.residentData['personality_trait']}'),
+            Text('id: ${widget.residentData['id']}'),
+            Text('aptid: ${widget.residentData['resident_apt']}'),
             Visibility(
-              visible: type == 'owner',
+              visible: widget.type == 'owner',
               child: ElevatedButton(
                 onPressed: () async {
-                  //final apiUrl = 'https://homeshare-o76b.onrender.com/apt/kick';
                   final response = await http.post(
                     Uri.parse(kickurl),
-                    headers: {'Content-Type': 'application/json', 'authorization': 'Bearer $token'},
-                    body: jsonEncode({'resident': residentData['_id'], 'apt': residentData['resident_apt']}),
+                    headers: {'Content-Type': 'application/json', 'authorization': 'Bearer ${widget.token}'},
+                    body: jsonEncode({'resident': widget.residentData['_id'], 'apt': widget.residentData['resident_apt']}),
                   );
                   if (response.statusCode == 200) {
                     print(json.decode(response.body));
@@ -341,9 +427,9 @@ class ResidentDetailsPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => SavedPage(
-                          type: type,
-                          token: token,
-                          id: id,
+                          type: widget.type,
+                          token: widget.token,
+                          id: widget.id,
                         ),
                       ),
                     );

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'config.dart';
+import 'dart:typed_data';
 
 class TopRecommendationseekers extends StatefulWidget {
   final List<dynamic> recommendations;
@@ -50,96 +51,145 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
     }
   }
 
+  Future<Uint8List?> _retrieveContractImage(String imageId) async {
+    String url = getimageurl + imageId; // Replace with your server URL
+    try {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return response.bodyBytes;
+      } else {
+        print('Retrieve failed with status: ${response.statusCode}');
+        return null;
+      }
+    } catch (error) {
+      print('Error: $error');
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recommendations for You'),
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: Text('Recommendation For You', style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: ListView.builder(
-        itemCount: widget.recommendations.length,
-        itemBuilder: (context, index) {
-          final recommendation = widget.recommendations[index];
-          final dataOwnerId = '${recommendation['owner_id']}';
-          final dataAptId = '${recommendation['apt']}';
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: widget.recommendations.length,
+          itemBuilder: (context, index) {
+            final recommendation = widget.recommendations[index];
+            final dataOwnerId = '${recommendation['owner_id']}';
+            final dataAptId = '${recommendation['apt']}';
 
-          return FutureBuilder<Map<String, dynamic>>(
-            future: _fetchUserData(dataOwnerId),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error: ${snapshot.error}'),
-                );
-              } else {
-                final userData = snapshot.data!;
-                return FutureBuilder<Map<String, dynamic>>(
-                  future: _fetchAptData(dataAptId),
-                  builder: (context, aptSnapshot) {
-                    if (aptSnapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (aptSnapshot.hasError) {
-                      return Center(
-                        child: Text('Error: ${aptSnapshot.error}'),
-                      );
-                    } else {
-                      final aptData = aptSnapshot.data!;
-                      List<dynamic>? residents = aptData['residents']; // Declare residents as nullable
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              radius: 30,
-                              backgroundImage: userData['picture'] != null
-                                  ? NetworkImage(userData['picture'])
-                                  : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-                            ),
-                            title: Text('Name: ${userData['username']}'),
-                            subtitle: Text('Job: ${userData['job']}'),
-                            trailing: (aptData['max'] > (residents?.length ?? 0)) // Use null-aware operator to handle null residents
-                                ? ElevatedButton(
-                              onPressed: () {
-                                _showInviteDialog(context, userData['username'], dataAptId, dataOwnerId);
-                              },
-                              child: Text('Join'),
-                            )
-                                : Text('Fulled'),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RecommendationDetailPage(userDetails: userData, aptData: aptData),
+            return FutureBuilder<Map<String, dynamic>>(
+              future: _fetchUserData(dataOwnerId),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                } else {
+                  final userData = snapshot.data!;
+                  return FutureBuilder<Map<String, dynamic>>(
+                    future: _fetchAptData(dataAptId),
+                    builder: (context, aptSnapshot) {
+                      if (aptSnapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (aptSnapshot.hasError) {
+                        return Center(
+                          child: Text('Error: ${aptSnapshot.error}'),
+                        );
+                      } else {
+                        final aptData = aptSnapshot.data!;
+                        List<dynamic>? residents = aptData['residents'];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(8.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
                                 ),
-                              );
-                            },
+                              ],
+                            ),
+                            child: ListTile(
+                              leading: FutureBuilder<Uint8List?>(
+                                future: _retrieveContractImage(userData['picture']),
+                                builder: (context, imageSnapshot) {
+                                  if (imageSnapshot.connectionState == ConnectionState.waiting) {
+                                    return CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor: Colors.grey.shade200,
+                                    );
+                                  } else if (imageSnapshot.hasError || imageSnapshot.data == null) {
+                                    return CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+                                    );
+                                  } else {
+                                    return CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: MemoryImage(imageSnapshot.data!),
+                                    );
+                                  }
+                                },
+                              ),
+                              title: Text(
+                                'Name: ${userData['username']}',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              subtitle: Text(
+                                'Job: ${userData['job']}',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              trailing: (aptData['max'] > (residents?.length ?? 0))
+                                  ? ElevatedButton(
+                                onPressed: () {
+                                  _showInviteDialog(context, userData['username'], dataAptId, dataOwnerId);
+                                },
+                                child: Text('Join'),
+                              )
+                                  : Text('Fulled'),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RecommendationDetailPage(userDetails: userData, aptData: aptData),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                  },
-                );
-              }
-            },
-          );
-        },
+                        );
+                      }
+                    },
+                  );
+                }
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -147,7 +197,7 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
   Future<void> _showInviteDialog(BuildContext context, String username, String aptId, String ownerId) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: true, // user must tap button!
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Invite Confirmation'),
@@ -197,8 +247,8 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
 }
 
 class RecommendationDetailPage extends StatelessWidget {
-  final userDetails;
-  final aptData;
+  final Map<String, dynamic> userDetails;
+  final Map<String, dynamic> aptData;
 
   RecommendationDetailPage({required this.userDetails, required this.aptData});
 
@@ -210,30 +260,32 @@ class RecommendationDetailPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'User Details',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: userDetails['picture'] != null
-                  ? NetworkImage(userDetails['picture'])
-                  : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Apartment Details',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            ..._userDetailsWidgets(),
-            SizedBox(height: 16),
-            ..._aptDetailsWidgets(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'User Details',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 16),
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: userDetails['picture'] != null
+                    ? NetworkImage(userDetails['picture'])
+                    : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Apartment Details',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 16),
+              ..._userDetailsWidgets(),
+              SizedBox(height: 16),
+              ..._aptDetailsWidgets(),
+            ],
+          ),
         ),
       ),
     );
@@ -254,6 +306,7 @@ class RecommendationDetailPage extends StatelessWidget {
     } else if (userDetails['dob'] is DateTime) {
       formattedDate = formatter.format(userDetails['dob']);
     }
+
     return [
       Text(
         'Name: ${userDetails['username']}',

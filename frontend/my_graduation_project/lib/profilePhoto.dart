@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_graduation_project/config.dart';
 import 'dateOfBirth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -22,7 +23,7 @@ class ProfilePicturePage extends StatefulWidget {
 class _ProfilePicturePageState extends State<ProfilePicturePage> {
   File? selectedImage;
   String uploadimgpath = '';
-  String image_id='';
+  String image_id = '';
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -37,8 +38,8 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
   }
 
   Future<void> uploadImage(File imageFile) async {
-    String url = "http://192.168.1.53:3000/uploads";
-    var request = http.MultipartRequest('POST', Uri.parse(url));
+    //String url = "http://192.168.1.53:3000/uploads";
+    var request = http.MultipartRequest('POST', Uri.parse(uploadimgurl));
     request.files.add(
       await http.MultipartFile.fromPath(
         'image', // 'image' should match the key in your backend route
@@ -53,7 +54,7 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
       final decodedResp = jsonDecode(respStr);
       setState(() {
         uploadimgpath = decodedResp['path'];
-        image_id=decodedResp['_id'];
+        image_id = decodedResp['_id'];
       });
       print('Upload success: $uploadimgpath');
       print(decodedResp);
@@ -67,27 +68,45 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Complete Your Profile'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+        // Change back arrow color to white
+        titleTextStyle: TextStyle(color: Colors.white,
+            fontSize: 20), // Change title text color to white
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 16.0),
-              buildImagePicker(),
-              SizedBox(height: 16.0),
-              ElevatedButton(
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: kToolbarHeight + 20),
+            // Adjust height to include AppBar height
+            buildImagePicker(),
+            Spacer(),
+            // Add spacer to push the button to the bottom
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RegisterPage(
-                        username: widget.username,
-                        email: widget.email,
-                        password: widget.password,
-                        image: image_id,
-                      ),
+                      builder: (context) =>
+                          RegisterPage(
+                            username: widget.username,
+                            email: widget.email,
+                            password: widget.password,
+                            image: image_id,
+                          ),
                     ),
                   );
                 },
@@ -101,8 +120,8 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
                   style: TextStyle(fontSize: 18),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -114,7 +133,12 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
       children: [
         Text(
           'Select Your Profile Picture',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.0),
         ElevatedButton(

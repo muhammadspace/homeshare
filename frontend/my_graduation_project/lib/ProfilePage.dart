@@ -3,18 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:my_graduation_project/config.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'userata.dart';
 import 'editprofile.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'dart:io';
-import 'dart:typed_data';
+import 'home.dart';
 
 class ProfilePage extends StatefulWidget {
   final dynamic token;
@@ -33,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String formattedDate = '';
   String gender = '';
   String type = '';
-  String pictureData = '';
+  String? pictureData ;
   String hobbies = '';
   String sports = '';
   String cultural = '';
@@ -101,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
          pictureData = jsonRes['picture'];
         //_retrieveImage("pictureData");
         if (pictureData != null) {
-          _retrieveImage(pictureData);
+          _retrieveImage(pictureData!);
         } else {
           imageBytes = null;
         }
@@ -119,6 +112,10 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> navigateToEditProfile() async {
+    String? checkifnull = pictureData;
+    if (checkifnull == null){
+      checkifnull='x';
+    }
     final result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ProfileEditPage(
@@ -138,6 +135,8 @@ class _ProfilePageState extends State<ProfilePage> {
         value_belief: value_belief,
         interpersonal_skill: interpersonal_skill,
         work_ethic: work_ethic,
+        your_image:imageBytes,
+        image_id:checkifnull!,
       )),
     );
 
@@ -149,94 +148,139 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    const double avatarRadius = 50.0;
+    const double fontSizeTitle = 40.0;
+    const double fontSizeInfo = 24.0;
+    const double buttonHeight = 60.0;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('My Profile'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          'My Profile',
+          style: TextStyle(color: Colors.white),
+        ),
+        //iconTheme: IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () async {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(Token: widget.token, id: widget.id),
+              ),
+            );
+          },
+        ),
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          Card(
-            color: Colors.blue,
-            elevation: 8.0,
-            margin: EdgeInsets.all(16.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
+          Container(
+            height: screenHeight,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage('https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
+          ),
+          SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: imageBytes != null
-                        ? MemoryImage(imageBytes!)
-                        : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png') as ImageProvider,
+                  Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 80.0),
+                        CircleAvatar(
+                          radius: 50.0,
+                          backgroundImage: imageBytes != null
+                              ? MemoryImage(imageBytes!)
+                              : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png') as ImageProvider,
+                        ),
+                        SizedBox(height: 16.0),
+                        Text(
+                          '$name',
+                          style: TextStyle(
+                            fontSize: fontSizeTitle,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                        SizedBox(height: 8.0),
+                        buildInfoRow(Icons.cake, 'Date of Birth: $formattedDate', fontSizeInfo),
+                        buildInfoRow(Icons.email, '$email', fontSizeInfo),
+                        buildInfoRow(Icons.person, 'Gender: $gender', fontSizeInfo),
+                        buildInfoRow(Icons.label, 'Type: $type', fontSizeInfo),
+                        buildInfoRow(Icons.sports_football, 'Hobbies Pastimes: $hobbies', fontSizeInfo),
+                        buildInfoRow(Icons.sports_soccer, 'Sports Activities: $sports', fontSizeInfo),
+                        buildInfoRow(Icons.palette, 'Cultural Artistic: $cultural', fontSizeInfo),
+                        buildInfoRow(Icons.book, 'Intellectual Academic: $intellectual', fontSizeInfo),
+                        buildInfoRow(Icons.label, 'Personality Trait: $personality_trait', fontSizeInfo),
+                        buildInfoRow(Icons.label, 'Work Ethic: $work_ethic', fontSizeInfo),
+                        buildInfoRow(Icons.label, 'Value Belief: $value_belief', fontSizeInfo),
+                        buildInfoRow(Icons.label, 'Interpersonal Skill: $interpersonal_skill', fontSizeInfo),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 16.0),
-                  Text(
-                    '$name',
-                    style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  SizedBox(height: 8.0),
-                  buildInfoRow(Icons.cake, 'Date of Birth: $formattedDate', 20.0, Colors.white),
-                  buildInfoRow(Icons.email, '$email', 20.0, Colors.white),
-                  buildInfoRow(Icons.person, 'Gender: $gender', 20.0, Colors.white),
-                  buildInfoRow(Icons.label, 'Type: $type', 20.0, Colors.white),
-                  buildInfoRow(Icons.label, 'Job: $job', 20.0, Colors.white),
-                  buildInfoRow(Icons.sports_football, 'Hobbies Pastimes: $hobbies', 20.0, Colors.white),
-                  buildInfoRow(Icons.sports_soccer, 'Sports Activities: $sports', 20.0, Colors.white),
-                  buildInfoRow(Icons.palette, 'Cultural Artistic: $cultural', 20.0, Colors.white),
-                  buildInfoRow(Icons.book, 'Intellectual Academic: $intellectual', 20.0, Colors.white),
-                  buildInfoRow(Icons.label, 'Personality Trait: $personality_trait', 20.0, Colors.white),
-                  buildInfoRow(Icons.label, 'Work Ethic: $work_ethic', 20.0, Colors.white),
-                  buildInfoRow(Icons.label, 'Value Belief: $value_belief', 20.0, Colors.white),
-                  buildInfoRow(Icons.label, 'Interpersonal Skill: $interpersonal_skill', 20.0, Colors.white),
                 ],
               ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        width: screenWidth,
-        height: 60.0,
-        child: ElevatedButton(
-          onPressed: navigateToEditProfile,
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-            backgroundColor: Colors.orange,
+      bottomNavigationBar: Stack(
+        children: [
+          Container(
+            height: buttonHeight,
+            width: screenWidth,
+            child: ElevatedButton(
+              onPressed: navigateToEditProfile,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                backgroundColor: Colors.orange,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.edit, size: 24, color: Colors.white),
+                  SizedBox(width: 8),
+                  Text(
+                    'Edit Profile',
+                    style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Roboto'),
+                  ),
+                ],
+              ),
+            ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.edit, size: 24),
-              SizedBox(width: 8),
-              Text('Edit Profile', style: TextStyle(fontSize: 20)),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }
 
-  Widget buildInfoRow(IconData icon, String text, double fontSize, Color color) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: color),
-        SizedBox(width: 8.0),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(fontSize: fontSize, color: color),
-            overflow: TextOverflow.clip,
+  Widget buildInfoRow(IconData icon, String text, double fontSize) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(icon, color: Colors.white),
+          SizedBox(width: 8.0),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: fontSize, color: Colors.white, fontFamily: 'Roboto'),
+              overflow: TextOverflow.clip,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
-

@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_graduation_project/userata.dart';
 import 'PropertyType.dart';
-import 'preference.dart';
 import 'ProfilePage.dart'; // Import the ProfilePage
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'userata.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;

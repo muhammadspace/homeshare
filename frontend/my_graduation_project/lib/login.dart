@@ -46,7 +46,14 @@ class _SignInPageState extends State<SignInPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          margin: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage('https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          padding: const EdgeInsets.all(24),
+          //margin: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -66,9 +73,12 @@ class _SignInPageState extends State<SignInPage> {
       children: [
         Text(
           "Login",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        Text("Enter your credential to login"),
+        Text(
+          "Enter your credentials to login",
+          style: TextStyle(color: Colors.white),
+        ),
       ],
     );
   }
@@ -80,14 +90,14 @@ class _SignInPageState extends State<SignInPage> {
         TextField(
           controller: emailController,
           decoration: InputDecoration(
-            hintText: "email",
+            hintText: "Email",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide.none,
             ),
-            fillColor: Colors.purple.withOpacity(0.1),
             filled: true,
-            prefixIcon: const Icon(Icons.person),
+            fillColor: Colors.white.withOpacity(0.3),
+            prefixIcon: Icon(Icons.person, color: Colors.white),
           ),
         ),
         const SizedBox(height: 10),
@@ -99,9 +109,9 @@ class _SignInPageState extends State<SignInPage> {
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide.none,
             ),
-            fillColor: Colors.purple.withOpacity(0.1),
             filled: true,
-            prefixIcon: const Icon(Icons.password),
+            fillColor: Colors.white.withOpacity(0.3),
+            prefixIcon: Icon(Icons.lock, color: Colors.white),
           ),
           obscureText: true,
         ),
@@ -121,8 +131,6 @@ class _SignInPageState extends State<SignInPage> {
             if (email.endsWith('@fci.helwan.edu.eg') && y=='admin') {
               // Navigate to AdminPage
                   Navigator.push(
-
-
                     context,
                     MaterialPageRoute(builder: (context) =>
                         AdminPage(Token: token, id: lastid)),
@@ -169,7 +177,11 @@ class _SignInPageState extends State<SignInPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have an account? "),
+        //const Text("Don't have an account? "),
+        Text(
+          "Don't have an account? ",
+          style: TextStyle(color: Colors.white),
+        ),
         TextButton(
           onPressed: () {
             Navigator.push(

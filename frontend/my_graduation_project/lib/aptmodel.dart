@@ -18,6 +18,7 @@ Future<String> createapt(String id, String location,int price,int max,int bedroo
       "bathrooms": bathrooms,
       "start_date":Start,
       "end_date":End,
+      //"contract":imageid,
       }),
   );
 

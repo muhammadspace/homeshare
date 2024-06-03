@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'config.dart';
 
 class ChatPage extends StatefulWidget {
   final String token;
@@ -23,13 +24,13 @@ class _ChatPageState extends State<ChatPage> {
   List<ChatMessage> messages = [];
 
   Future<void> chatbox(String sentence) async {
-    final typeurl = 'http://10.0.2.2:5000/chat';
+    //final typeurl = 'http://10.0.2.2:5000/chat';
     setState(() {
       messages.add(ChatMessage(text: sentence, isUser: true));
     });
     try {
       final response = await http.post(
-        Uri.parse(typeurl),
+        Uri.parse(chaturl),
         headers: {
           'Content-Type': 'application/json',
         },

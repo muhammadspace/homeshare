@@ -2,36 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'config.dart';
-import 'pic_of_your_apartment.dart';
+import 'PropertyAddressPage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class contractImagesPage extends StatefulWidget {
+class PropertyImagesPage extends StatefulWidget {
   final String selectedPropertyType;
   final int numberofrooms;
   final String numberofbeds;
   final String size;
-  final id, token;
+  final String id, token,contract_id;
 
-  contractImagesPage(
+  PropertyImagesPage(
       {required this.selectedPropertyType,
         required this.numberofrooms,
         required this.numberofbeds,
         required this.size,
         required this.id,
-        required this.token});
+        required this.token,
+        required this.contract_id});
 
   @override
-  _contractImagesPage createState() => _contractImagesPage();
+  _PropertyImagesPageState createState() => _PropertyImagesPageState();
 }
 
-class _contractImagesPage extends State<contractImagesPage> {
+class _PropertyImagesPageState extends State<PropertyImagesPage> {
   List<File> propertyImages = [];
-  String contract_id='';
-  File? image;
+  List<String> imageIds = [];
 
   Future<void> uploadImage(File imageFile) async {
-    //String url = "http://192.168.1.53:3000/uploads";
     var request = http.MultipartRequest('POST', Uri.parse(uploadimgurl));
     request.files.add(
       await http.MultipartFile.fromPath(
@@ -46,30 +45,32 @@ class _contractImagesPage extends State<contractImagesPage> {
       final respStr = await response.stream.bytesToString();
       final decodedResp = jsonDecode(respStr);
       setState(() {
-       // uploadimgpath = decodedResp['path'];
-        contract_id = decodedResp['_id'];
+        imageIds.add(decodedResp['_id']);
       });
-      print('Upload success: $contract_id');
+      print('Upload success: ${decodedResp['_id']}');
       print(decodedResp);
     } else {
       print('Upload failed with status: ${response.statusCode}');
     }
   }
 
-  Future<void> _pickImage(ImageSource source) async {
+  Future<void> _pickImages() async {
     try {
-      final pickedFile = await ImagePicker().pickImage(source: source);
-      /*final picker = ImagePicker();
-      final pickedFile = await picker.pickImage(source: ImageSource.gallery);*/
+      final pickedFiles = await ImagePicker().pickMultiImage();
 
-      if (pickedFile != null) {
+      if (pickedFiles != null) {
         setState(() {
-          image = File(pickedFile.path);
-          uploadImage(image!);
+          propertyImages.addAll(pickedFiles.map((pickedFile) => File(pickedFile.path)).toList());
         });
       }
     } catch (e) {
-      print('Error picking image: $e');
+      print('Error picking images: $e');
+    }
+  }
+
+  Future<void> _uploadAllImages() async {
+    for (File image in propertyImages) {
+      await uploadImage(image);
     }
   }
 
@@ -124,7 +125,7 @@ class _contractImagesPage extends State<contractImagesPage> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        _pickImage(ImageSource.gallery);
+                        _pickImages();
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
@@ -133,24 +134,27 @@ class _contractImagesPage extends State<contractImagesPage> {
                         backgroundColor: Colors.blue,
                       ),
                       child: Text(
-                        'pick apartment contract Image',
+                        'Choose Images',
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
                     SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        await _uploadAllImages();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PropertyImagesPage(
+                            builder: (context) => PropertyAddressPage(
                               selectedPropertyType: widget.selectedPropertyType,
                               numberofrooms: widget.numberofrooms,
                               numberofbeds: widget.numberofbeds,
                               size: widget.size,
                               id: widget.id,
                               token: widget.token,
-                              contract_id:contract_id
+                              contract_id: widget.contract_id,
+                              apt_images_id: imageIds,
+
                             ),
                           ),
                         );

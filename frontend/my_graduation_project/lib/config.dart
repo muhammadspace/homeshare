@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'home.dart';
-//final url = 'http://192.168.1.8:3000/';
 import 'home.dart';
 String uid = '', utoken ='';
 void ip (String id , String token){
@@ -35,12 +34,11 @@ final owners_interestsurl = url2 +"recommend/owners_interests";
 final seekers_interestsurl = url2 +"recommend/seekers_interests";
 final seekers_traitsurl = url2 +"recommend/seekers_traits";
 final owners_traitsurl = url2 +"recommend/owners_traits";
-
 final admin_approve_reject_url = url+"admin/apt/";//approve or reject
 //final admin_approve_url = url+"admin/apt/approve";
 //final admin_rejecturl = url+"admin/apt/reject";
-final pendingapturl = url +"admin/apt/pending";
-final chaturl = url + "chat";
+//final chaturl = url + "chat";
+final chaturl = url2 + "chat";
 final uploadimgurl = url+ "uploads";
 
 //get api
@@ -49,6 +47,8 @@ final profiledataurl = url+"user/$uid";
 final profiledataurl2 = url+"user/";//user id
 final aptdataurl =url+"apt/";//aptid or ownerid
 final getimageurl=url+"uploads/";//imageId
+final pendingapturl = url +"admin/apt/pending";
+final clustersurl=url2+"admin/clusters";
 
 
 

@@ -34,11 +34,12 @@ dependencies:
   image_picker: ^0.8.4
   http:
   dio: ^5.1.1
+  animated_text_kit: ^4.2.2
   shared_preferences:
   jwt_decoder:
   decimal: ^2.3.3
   flutter_staggered_animations: ^1.0.0
-
+  flutter_scatter: ^0.2.0
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -5,9 +5,19 @@ import 'package:intl/intl.dart';
 import 'job.dart';
 
 class RegisterPage extends StatefulWidget {
-  String username , email , password;
-  String image;
-  RegisterPage({Key? key,required this.username,required this.email,required this.password,required this.image}) : super(key: key);
+  final String username;
+  final String email;
+  final String password;
+  final String image;
+
+  RegisterPage({
+    Key? key,
+    required this.username,
+    required this.email,
+    required this.password,
+    required this.image,
+  }) : super(key: key);
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -38,38 +48,66 @@ class _RegisterPageState extends State<RegisterPage> {
           'Complete Your Profile',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage('https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Stack(
           children: [
-            SizedBox(height: 16.0),
-
-            buildDateOfBirth(),
-
-            SizedBox(height: 500.0),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => JobSelectionPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image ,dob:selectedDate)),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.orange,
-              ),
-              child: Text(
-                'Continue',
-                style: TextStyle(fontSize: 18),
+            SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(height: kToolbarHeight + 40),
+                  buildDateOfBirth(),
+                  SizedBox(height: 500.0),
+                ],
               ),
             ),
-
-            // Add a SizedBox for spacing
-            SizedBox(height: 16.0),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: FractionallySizedBox(
+                widthFactor: 1.0, // استخدم 1.0 لجعل العرض يمتد على العرض الكامل
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => JobSelectionPage(
+                            username: widget.username,
+                            email: widget.email,
+                            password: widget.password,
+                            image: widget.image,
+                            dob: selectedDate,
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: Colors.orange,
+                    ),
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -82,7 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
       children: [
         Text(
           'Date of Birth',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            color: Colors.white,
+          ),
         ),
         SizedBox(height: 20.0),
         ElevatedButton.icon(
@@ -94,10 +136,8 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           icon: Icon(Icons.calendar_today, size: 24),
           label: Text(
-            selectedDate != null
-                ? formatDate(selectedDate!)
-                : 'Select Date',
-            style: TextStyle(fontSize: 18),
+            selectedDate != null ? formatDate(selectedDate!) : 'Select Date',
+            style: TextStyle(fontSize: 20),
           ),
         ),
         SizedBox(height: 20.0),

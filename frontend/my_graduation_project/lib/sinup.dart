@@ -5,7 +5,6 @@ import 'config.dart';
 import 'login.dart';
 import 'profilePhoto.dart';
 
-
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
 
@@ -19,8 +18,6 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,11 +25,17 @@ class _SignupPageState extends State<SignupPage> {
       home: Scaffold(
         body: SingleChildScrollView(
           child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage('https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            height: MediaQuery.of(context).size.height - 50,
+            height: MediaQuery.of(context).size.height,
             width: double.infinity,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Column(
@@ -41,8 +44,9 @@ class _SignupPageState extends State<SignupPage> {
                     const Text(
                       "Sign up",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 50,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(
@@ -50,10 +54,11 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     Text(
                       "Create your account",
-                      style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     )
                   ],
                 ),
+                const SizedBox(height: 40),
                 Column(
                   children: <Widget>[
                     _buildTextField(_usernameController, "Username", Icons.person),
@@ -65,6 +70,7 @@ class _SignupPageState extends State<SignupPage> {
                     _buildTextField(_confirmPasswordController, "Confirm Password", Icons.password, obscureText: true),
                   ],
                 ),
+                const SizedBox(height: 40),
                 Container(
                   padding: const EdgeInsets.only(top: 3, left: 3),
                   child: ElevatedButton(
@@ -75,17 +81,20 @@ class _SignupPageState extends State<SignupPage> {
                       final confirmPassword = _confirmPasswordController.text;
 
                       if (password == confirmPassword) {
-
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) =>
-                              ProfilePicturePage(username: username, email: email, password: password)),
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePicturePage(
+                                  username: username,
+                                  email: email,
+                                  password: password)),
                         );
                       } else {
                         showDialog(
                           context: context,
                           builder: (_) => AlertDialog(
                             title: const Text('Sign Up Error'),
+                            content: const Text('Passwords do not match'),
                             actions: [
                               TextButton(
                                 onPressed: () {
@@ -97,8 +106,6 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         );
                       }
-
-
                     },
                     child: const Text(
                       "Sign up",
@@ -111,10 +118,11 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text("Already have an account?"),
+                    const Text("Already have an account?", style: TextStyle(color: Colors.white)),
                     TextButton(
                       onPressed: () {
                         Navigator.push(
@@ -142,15 +150,17 @@ class _SignupPageState extends State<SignupPage> {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: TextStyle(color: Colors.white, fontSize: 18),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
           borderSide: BorderSide.none,
         ),
-        fillColor: Colors.purple.withOpacity(0.1),
+        fillColor: Colors.white.withOpacity(0.3),
         filled: true,
-        prefixIcon: Icon(prefixIcon),
+        prefixIcon: Icon(prefixIcon, color: Colors.white),
       ),
       obscureText: obscureText,
+      style: TextStyle(color: Colors.white, fontSize: 18),
     );
   }
 }

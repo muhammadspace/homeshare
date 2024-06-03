@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'recommendationsystem.dart';
 import 'package:my_graduation_project/TopRecommendationsPage.dart';
-import 'preference.dart';
 import 'package:my_graduation_project/Toprecommendationforseekers.dart';
 
 class SearchPage extends StatefulWidget {
@@ -17,13 +16,19 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true, // To make the AppBar transparent over the background
       appBar: AppBar(
-        title: Text('Search'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text('Search', style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('https://i.pinimg.com/474x/ba/2b/e1/ba2be18dd28516a8a813b256dcf4fec2.jpg'),
+            image: NetworkImage('https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -33,8 +38,9 @@ class _SearchPageState extends State<SearchPage> {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -68,14 +74,15 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Text(
                   'Search with Interests',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -109,7 +116,7 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Text(
                   'Search with Traits',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
             ],
