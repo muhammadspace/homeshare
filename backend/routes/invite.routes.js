@@ -150,4 +150,19 @@ router.post(("/:inviteid/accept"), async (req, res) => {
     }
 })
 
+router.post("/:inviteid", async (req, res) => {
+    const newMarkAsRead = req.body.markAsRead
+    try
+    {
+        const invite = await Invite.findById(req.params.inviteid)
+        invite.markAsRead = newMarkAsRead   
+        await invite.save()
+        res.status(204).json(invite)
+    } catch (err) {
+        console.log("An error occured when trying to GET this invite:")
+        console.log(err)
+        res.json({ error: err, success: false }).status(500)
+    }
+})
+
 module.exports = router
