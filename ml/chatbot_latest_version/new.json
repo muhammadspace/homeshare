@@ -27,6 +27,7 @@
             "Bye",
             "See you later",
             "Take care",
+           
             "Farewell"
          ],
          "responses":[
@@ -44,6 +45,8 @@
          "tag":"how_are_u",
          "patterns":[
             "how are you?",
+            "how is everything",
+            "what's app",
             "how do you do?"
             
          ],
@@ -139,9 +142,8 @@
             "Home Harmony matches users with compatible roommates based on shared interests and compatible character traits.",
             "Factors considered in the matching process include common interests and character traits.",
             "The matching algorithms in Home Harmony are designed to be accurate in finding compatible roommates.",
-            "add your apartement and once it's accpted ypu can serach for flatmates based on common interests/traits",
-            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits",
-            "click on search for flatmates then you can serach for apartement oweners based on common interests/traits"
+            "add your apartement and once it's accpted ypu can serach for flatmates based on common interests/traits"
+            
          ],
          "context":[
             ""
@@ -165,10 +167,26 @@
          ]
       },
       {
+         "tag":"editss",
+         "patterns":[
+            
+           "can i edit apartemnt",
+           "can i make edits on my apartment advertisement"
+          
+         ],
+         "responses":[                                  
+            "you can't edit your apartement as it must be approved by admin"                 
+         ],
+         "context":[
+            ""
+         ]
+      },
+      {
          "tag":"flatmates_apartement",
          "patterns":[
             "how can i find owners",           
             "how can i find apartement",
+            "how can i share apartement",
             "how can i search for owners"
          ],
          "responses":[
@@ -177,6 +195,21 @@
             "click on search for flatmates then you can serach for apartement oweners based on common interests/traits"
          ],
          "context":[
+            ""
+         ]
+      },  
+      {
+         "tag":"do",
+         "patterns":[
+            "what do yoy offer",
+            "what do you do",
+            "how can you help me"
+         ],
+         "responses":[
+            "I'm a chatbot made to assist you in using the application,tell me how can I do so"
+         ],
+         "context":[
+            
             ""
          ]
       },

@@ -13,6 +13,7 @@ const inviteSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "apt"
     },
+    markAsRead: Boolean,
     rejected: Boolean,
     accepted: Boolean
 })
