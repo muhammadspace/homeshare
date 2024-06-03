@@ -8,12 +8,35 @@ import 'home.dart';
 import 'dart:convert';
 import 'test.dart';
 
-
 class ChooseInterestsPage extends StatefulWidget {
-  String username , email , password,job,gender,type,Personality,Value_and_Belief,Work_Ethic,Interpersonal_Skill;
-  DateTime? dob;
-  String image;
-  ChooseInterestsPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender,required this.type,required this.Interpersonal_Skill,required this.Personality,required this.Value_and_Belief,required this.Work_Ethic}) : super(key: key);
+  final String username,
+      email,
+      password,
+      job,
+      gender,
+      type,
+      Personality,
+      Value_and_Belief,
+      Work_Ethic,
+      Interpersonal_Skill,image;
+  final DateTime? dob;
+
+  ChooseInterestsPage({
+    Key? key,
+    required this.username,
+    required this.email,
+    required this.password,
+    required this.image,
+    required this.dob,
+    required this.job,
+    required this.gender,
+    required this.type,
+    required this.Interpersonal_Skill,
+    required this.Personality,
+    required this.Value_and_Belief,
+    required this.Work_Ethic,
+  }) : super(key: key);
+
   @override
   _ChooseInterestsPageState createState() => _ChooseInterestsPageState();
 }
@@ -26,38 +49,141 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
 
   Map<String, List<String>> interestsOptions = {
     'Hobbies and Pastimes': [
-      'Gardening', 'Cooking', 'Photography', 'Painting', 'Woodworking', 'Reading', 'Writing', 'Playing guitar', 'Sewing',
-      'Knitting', 'Birdwatching', 'Hiking', 'Cycling', 'DIY projects', 'Yoga', 'Meditation', 'Stamp collecting',
-      'Coin collecting', 'Antiques collecting', 'Pottery', 'Ceramics', 'Astronomy', 'Model building ',
-      'Scuba diving', 'Camping', 'Fishing', 'Playing chess', 'Baking', 'Scrapbooking', 'Calligraphy',
+      'Gardening',
+      'Cooking',
+      'Photography',
+      'Painting',
+      'Woodworking',
+      'Reading',
+      'Writing',
+      'Playing guitar',
+      'Sewing',
+      'Knitting',
+      'Birdwatching',
+      'Hiking',
+      'Cycling',
+      'DIY projects',
+      'Yoga',
+      'Meditation',
+      'Stamp collecting',
+      'Coin collecting',
+      'Antiques collecting',
+      'Pottery',
+      'Ceramics',
+      'Astronomy',
+      'Model building ',
+      'Scuba diving',
+      'Camping',
+      'Fishing',
+      'Playing chess',
+      'Baking',
+      'Scrapbooking',
+      'Calligraphy',
     ],
     'Sports and Physical Activities': [
-      'Soccer', 'Basketball', 'Tennis', 'Swimming', 'Running', 'Cycling', 'Golf', 'Yoga', 'Karate', 'Judo',
-      'Ballet', 'Hip-hop dance', 'Gymnastics', 'Skiing', 'Snowboarding', 'Surfing', 'Rock climbing', 'Horseback riding',
-      'Skateboarding', 'Fencing', 'Ultimate Frisbee', 'Rowing', 'Archery', 'Martial arts', 'Triathlons', 'Volleyball',
-      'Rugby', 'Kickboxing', 'Sailing', 'Mountain biking',
+      'Soccer',
+      'Basketball',
+      'Tennis',
+      'Swimming',
+      'Running',
+      'Cycling',
+      'Golf',
+      'Yoga',
+      'Karate',
+      'Judo',
+      'Ballet',
+      'Hip-hop dance',
+      'Gymnastics',
+      'Skiing',
+      'Snowboarding',
+      'Surfing',
+      'Rock climbing',
+      'Horseback riding',
+      'Skateboarding',
+      'Fencing',
+      'Ultimate Frisbee',
+      'Rowing',
+      'Archery',
+      'Martial arts',
+      'Triathlons',
+      'Volleyball',
+      'Rugby',
+      'Kickboxing',
+      'Sailing',
+      'Mountain biking',
     ],
     'Cultural and Artistic Pursuits': [
-      'Theater', 'Music concerts', 'Art galleries', 'Museums', 'Film festivals', 'Poetry readings', 'Opera', 'Ballet',
-      'Symphony ', 'Stand-up comedy shows', 'Street art tours', 'Cultural festivals', 'Photography exhibitions',
-      'Book clubs', 'Live storytelling events', 'Pottery workshops', 'Sculpture gardens', 'Poetry slams', 'Calligraphy classes',
-      'Indigenous art experiences', 'Classical music appreciation', 'Jazz clubs', 'Opera appreciation', 'Renaissance art appreciation',
-      'Baroque music appreciation', 'Film analysis clubs', 'Impressionist art ', 'World music concerts', 'Theater workshops',
+      'Theater',
+      'Music concerts',
+      'Art galleries',
+      'Museums',
+      'Film festivals',
+      'Poetry readings',
+      'Opera',
+      'Ballet',
+      'Symphony ',
+      'Stand-up comedy shows',
+      'Street art tours',
+      'Cultural festivals',
+      'Photography exhibitions',
+      'Book clubs',
+      'Live storytelling events',
+      'Pottery workshops',
+      'Sculpture gardens',
+      'Poetry slams',
+      'Calligraphy classes',
+      'Indigenous art experiences',
+      'Classical music appreciation',
+      'Jazz clubs',
+      'Opera appreciation',
+      'Renaissance art appreciation',
+      'Baroque music appreciation',
+      'Film analysis clubs',
+      'Impressionist art ',
+      'World music concerts',
+      'Theater workshops',
       'Shakespearean plays',
     ],
     'Intellectual and Academic Interests': [
-      'Science fiction literature', 'Philosophy discussions', 'History lectures', 'Political debates', 'Psychology seminars',
-      'Economics forums', 'Linguistics workshops', 'Mathematics competitions', 'Computer programming', 'Astronomy clubs',
-      'Environmental sustainability', 'Robotics competitions', 'Bioinformatics symposiums', 'Archaeological digs',
-      'Sociology conferences', 'Cultural anthropology', 'Legal seminars', 'Ethical debates', 'Educational technology',
-      'Literature appreciation', 'Scientific research', 'Academic publishing', 'Data analysis workshops', 'Chemistry experiments',
-      'Physics lectures', 'Climate change discussions', 'Medical ethics debates', 'Genetics research', 'Linguistic analysis',
+      'Science fiction literature',
+      'Philosophy discussions',
+      'History lectures',
+      'Political debates',
+      'Psychology seminars',
+      'Economics forums',
+      'Linguistics workshops',
+      'Mathematics competitions',
+      'Computer programming',
+      'Astronomy clubs',
+      'Environmental sustainability',
+      'Robotics competitions',
+      'Bioinformatics symposiums',
+      'Archaeological digs',
+      'Sociology conferences',
+      'Cultural anthropology',
+      'Legal seminars',
+      'Ethical debates',
+      'Educational technology',
+      'Literature appreciation',
+      'Scientific research',
+      'Academic publishing',
+      'Data analysis workshops',
+      'Chemistry experiments',
+      'Physics lectures',
+      'Climate change discussions',
+      'Medical ethics debates',
+      'Genetics research',
+      'Linguistic analysis',
       'Political science forums',
     ],
   };
-  //registerUser(String username,String email,String password,File? image,DateTime dateofbirth,String job,String gender,String type,List<String>traitsarray,List<String>interet)
-  Future<Map<String, dynamic>> registerUser(String hob, spor, clu, intel) async {
-    String hobbies = hob, sports = spor, cultural = clu, intellectual = intel;
+
+  Future<Map<String, dynamic>> registerUser(
+      String hob, spor, clu, intel) async {
+    String hobbies = hob,
+        sports = spor,
+        cultural = clu,
+        intellectual = intel;
     final response = await http.post(
       Uri.parse(registration),
       body: json.encode({
@@ -96,7 +222,6 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
     }
   }
 
-
   bool canProceed() {
     return selectedHobby != null &&
         selectedSport != null &&
@@ -106,88 +231,112 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double topPadding = MediaQuery.of(context).padding.top + kToolbarHeight;
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text('Choose Your Interests'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: interestsOptions.keys.map((interest) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Select your interest in $interest:',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Column(
-                    children: interestsOptions[interest]!.map((subInterest) {
-                      return RadioListTile(
-                        title: Row(
-                          children: [
-                            Icon(Icons.star),
-                            SizedBox(width: 8),
-                            Text(
-                              subInterest,
-                              style: TextStyle(fontSize: 18),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.network(
+              'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg',
+              fit: BoxFit.cover,
+              color: Colors.black.withOpacity(0.5),
+              colorBlendMode: BlendMode.darken,
+            ),
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: topPadding, left: 16.0, right: 16.0, bottom: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: interestsOptions.keys.map((interest) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Select your interest in $interest:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.black,
+                              offset: Offset(5.0, 5.0),
                             ),
                           ],
                         ),
-                        value: subInterest,
-                        groupValue: _getSelectedValue(interest),
-                        onChanged: (value) {
-                          setState(() {
-                            _updateSelection(interest, value.toString());
-                          });
-                        },
-                      );
-                    }).toList(),
-                  ),
-                  SizedBox(height: 20.0),
-                ],
-              );
-            }).toList(),
+                      ),
+                      Column(
+                        children: interestsOptions[interest]!.map((subInterest) {
+                          return RadioListTile(
+                            title: Row(
+                              children: [
+                                Icon(Icons.star, color: Colors.orange),
+                                SizedBox(width: 8),
+                                Text(
+                                  subInterest,
+                                  style: TextStyle(fontSize: 18, color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            value: subInterest,
+                            groupValue: _getSelectedValue(interest),
+                            onChanged: (value) {
+                              setState(() {
+                                _updateSelection(interest, value.toString());
+                              });
+                            },
+                            activeColor: Colors.orange,
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: 20.0),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: canProceed()
-            ? () {
-          print('Selected Hobby: $selectedHobby');
-          print('Selected Sport: $selectedSport');
-          print('Selected Cultural: $selectedCultural');
-          print('Selected Intellectual: $selectedIntellectual');
-          //List<String> allinterest = ['$selectedHobby','$selectedSport','$selectedCultural','$selectedIntellectual'];
-          registerUser('$selectedHobby','$selectedSport','$selectedCultural','$selectedIntellectual');
-          // Navigate to the recommendation page
-          /*loginUser(widget.email,widget.password).then((result){
-            final token = result['token'];
-            final id = result['id'];
-            print('Token: $token');
-            print('User ID: ${id['user_id']}');
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: ElevatedButton(
+          onPressed: canProceed()
+              ? () {
+            print('Selected Hobby: $selectedHobby');
+            print('Selected Sport: $selectedSport');
+            print('Selected Cultural: $selectedCultural');
+            print('Selected Intellectual: $selectedIntellectual');
+            registerUser('$selectedHobby', '$selectedSport',
+                '$selectedCultural', '$selectedIntellectual');
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen(Token:token,id:id)),
+              MaterialPageRoute(
+                builder: (context) => SignInPage(),
+              ),
             );
-          });*/
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SignInPage(), //Homescreen(),
-            ),
-          );
-        }
-            : null,
-        label: Text('View Recommendations'),
-        icon: Icon(Icons.arrow_forward),
-        backgroundColor: canProceed() ? Colors.orange : Colors.grey,
+          }
+              : null,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: canProceed() ? Colors.orange : Colors.grey,
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            textStyle: TextStyle(fontSize: 18),
+          ),
+          child: Text('Continue'),
+        ),
       ),
     );
   }
@@ -226,5 +375,3 @@ class _ChooseInterestsPageState extends State<ChooseInterestsPage> {
     });
   }
 }
-
-

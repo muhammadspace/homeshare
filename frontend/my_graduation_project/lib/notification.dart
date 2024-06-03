@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'home.dart';
 
 
 Future<Map<String, dynamic>> inviteinfo(String inviteid, String token) async {
@@ -41,11 +42,11 @@ Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
 }
 
 class NotificationsPage extends StatefulWidget {
-  final String token;
+  final String token,id;
   final List<dynamic> invitesids;
   final String type;
 
-  NotificationsPage({required this.invitesids, required this.token, required this.type});
+  NotificationsPage({required this.invitesids, required this.token, required this.type,required this.id});
 
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
@@ -119,7 +120,18 @@ class _NotificationsPageState extends State<NotificationsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Notifications'),
-        backgroundColor: Colors.blue, // Changing the background color of the app bar
+        backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () async {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(Token: widget.token, id: widget.id),
+              ),
+            );
+          },
+        ),// Changing the background color of the app bar
       ),
       body: invitesData.isEmpty
           ? Center(

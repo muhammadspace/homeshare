@@ -9,7 +9,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 FirebaseMessaging firebaseMessaging =  FirebaseMessaging.instance;
 void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
+  /*WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -22,7 +22,7 @@ void main() async{
       print('Message also contained a notification: ${message.notification}');
     }}));
     FirebaseMessaging.onMessageOpenedApp.listen((query) {});
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);*/
   runApp(MyApp());
 
 }
@@ -30,7 +30,7 @@ void main() async{
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(firebaseMessaging.getToken().then((value) => print(value)));
+    //print(firebaseMessaging.getToken().then((value) => print(value)));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: WelcomePage(),

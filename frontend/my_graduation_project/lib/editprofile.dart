@@ -5,72 +5,118 @@ import 'package:flutter/material.dart';
 import 'package:my_graduation_project/config.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'ProfilePage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'home.dart';
+import 'dart:typed_data';
 
 
 class ProfileEditPage extends StatefulWidget {
-  final String id,token , name ,email ,DOB ,job ,gender, type, hobbies, sports, cultural, intellectual,
-      value_belief ,interpersonal_skill , work_ethic ,personality_trait;
+  final String id, token, name, email, DOB, job, gender, type, hobbies, sports, cultural, intellectual,
+      value_belief, interpersonal_skill, work_ethic, personality_trait,image_id;
+  Uint8List? your_image;
 
-  ProfileEditPage({required this.id, required this.token,required this.name,required this.email,required this.DOB
-    ,required this.job,required this.gender,required this.type
-    ,required this.hobbies,required this.sports,required this.cultural,required this.intellectual
-    ,required this.work_ethic,required this.interpersonal_skill,required this.value_belief,required this.personality_trait});
+  ProfileEditPage({
+    required this.id,
+    required this.token,
+    required this.name,
+    required this.email,
+    required this.DOB,
+    required this.job,
+    required this.gender,
+    required this.type,
+    required this.hobbies,
+    required this.sports,
+    required this.cultural,
+    required this.intellectual,
+    required this.work_ethic,
+    required this.interpersonal_skill,
+    required this.value_belief,
+    required this.personality_trait,
+    required this.your_image,
+    required this.image_id
+  });
+
   @override
   _ProfileEditPageState createState() => _ProfileEditPageState();
 }
 
 class _ProfileEditPageState extends State<ProfileEditPage> {
+  String image_id = '';
+  File? _imageFile;
+
+  Future<void> uploadImage(File imageFile) async {
+    //String url = "http://192.168.1.53:3000/uploads";
+    var request = http.MultipartRequest('POST', Uri.parse(uploadimgurl));
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'image', // 'image' should match the key in your backend route
+        imageFile.path,
+      ),
+    );
+
+    var response = await request.send();
+
+    if (response.statusCode == 201) {
+      final respStr = await response.stream.bytesToString();
+      final decodedResp = jsonDecode(respStr);
+      setState(() {
+        image_id = decodedResp['_id'];
+      });
+      print('Upload success: $image_id');
+      print(decodedResp);
+    } else {
+      print('Upload failed with status: ${response.statusCode}');
+    }
+  }
+
   Future<void> edit(String token) async {
-    //void userdata(String token, Map<String, dynamic> id) async {
+    String checkifnull = image_id;
+    if(image_id=='x'){
+      checkifnull='';
+    }
     final response = await http.post(
       Uri.parse(updpro_url),
-      headers: {'Content-Type': 'application/json','Authorization':'Bearer $token'},
-      body: jsonEncode({'username': _usernameController.text,
-        'dob':_selectedDOB.toString(),
-        'email':_emailController.text,
-        'gender':_selectedGender.toString(),
+      headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'},
+      body: jsonEncode({
+        if(_usernameController.text!='')
+        'username': _usernameController.text,
+        if(_selectedDOB.toString()!='')
+        'dob': _selectedDOB.toString(),
+        if(_emailController.text!='')
+        'email': _emailController.text,
+        if(_selectedGender.toString()!='')
+        'gender': _selectedGender.toString(),
+        if(_selectedType.toString()!='')
         'type': _selectedType.toString(),
-        'cultural_artistic':_selectedCultural.toString(),
-        'intellectual_academic':_selectedIntellectual.toString(),
-        'hobbies_pastimes' : _selectedHobby.toString(),
+        if(_selectedCultural.toString()!='')
+        'cultural_artistic': _selectedCultural.toString(),
+        if(_selectedIntellectual.toString()!='')
+        'intellectual_academic': _selectedIntellectual.toString(),
+        if(_selectedHobby.toString()!='')
+        'hobbies_pastimes': _selectedHobby.toString(),
+        if(_selectedSport.toString()!='')
         'sports_activities': _selectedSport.toString(),
+        if(_selectedpersonality_trait.toString()!='')
         'personality_trait': _selectedpersonality_trait.toString(),
-        'value_belief' : _selectedvalue_belief.toString(),
-        'interpersonal_skill' :_selectedinterpersonal_skill.toString(),
-        'work_ethic':_selectedwork_ethic.toString()
+        if(_selectedvalue_belief.toString()!='')
+        'value_belief': _selectedvalue_belief.toString(),
+        if(_selectedinterpersonal_skill.toString()!='')
+        'interpersonal_skill': _selectedinterpersonal_skill.toString(),
+        if(_selectedwork_ethic.toString()!='')
+        'work_ethic': _selectedwork_ethic.toString(),
+        if(checkifnull!='')
+        'picture': checkifnull, // Add this line to update the image ID
       }),
     );
 
     if (response.statusCode == 200) {
-      //return result;
-      //,intrests:$intrests,traits:$traits
+      // Handle success
     } else {
-      throw Exception('cant get the data');
+      throw Exception('Cannot update the data');
     }
   }
 
-/*
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _dobController = TextEditingController();
-  TextEditingController _phoneNumberController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _hobbiesController = TextEditingController();
-  TextEditingController _sportsController = TextEditingController();
-  TextEditingController _culturalController = TextEditingController();
-  TextEditingController _intellectualController = TextEditingController();
-
-  DateTime _selectedDOB = DateTime.parse(widget.DOB); // Initialize with current date
-  String _selectedGender = widget.gender; // Variable to hold selected gender
-  String _selectedType = widget.type; // Variable to hold selected type
-  String _selectedCultural = widget.cultural; // Variable to hold selected cultural activity
-  String _selectedIntellectual = widget.intellectual; // Variable to hold selected intellectual interest
-
-  String? _selectedHobby = widget.hobbies; // Variable to hold selected hobby
-  String? _selectedSport = widget.sports; // Variable to hold selected sport*/
-
-  // List of hobbies and pastimes options
   late TextEditingController _usernameController;
   late TextEditingController _dobController;
   late TextEditingController _phoneNumberController;
@@ -94,42 +140,13 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   String? _selectedwork_ethic;
 
   List<String> _hobbiesOptions = [
-    "Hiking",
-    "Playing chess",
-    "Fishing",
-    "Yoga",
-    "Playing guitar",
-    "Stamp collecting",
-    "Knitting",
-    "Woodworking",
-    "Reading",
-    "Sewing",
-    "Birdwatching",
-    "Scrapbooking",
-    "Astronomy",
-    "Calligraphy",
-    "DIY projects",
-    "Coin collecting",
-    "Pottery",
-    "Baking",
-    "Meditation",
-    "Painting",
-    "Camping",
-    "Ceramics",
-    "Cooking",
-    "Cycling",
-    "Photography",
-    "Antiques collecting",
-    "Gardening",
-    "Model building (e.g., airplanes, ships)",
-    "Scuba diving",
-    "Writing",
+    // List of hobbies
   ];
 
   @override
   void initState() {
     super.initState();
-
+      image_id = widget.image_id;
     _usernameController = TextEditingController(text: widget.name);
     _dobController = TextEditingController(text: widget.DOB);
     _phoneNumberController = TextEditingController();
@@ -151,9 +168,21 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     _selectedwork_ethic = widget.work_ethic;
     _selectedinterpersonal_skill = widget.interpersonal_skill;
     _selectedvalue_belief = widget.value_belief;
-    _selectedpersonality_trait= widget.personality_trait;
-
+    _selectedpersonality_trait = widget.personality_trait;
   }
+
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+      await uploadImage(_imageFile!);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -164,6 +193,21 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: GestureDetector(
+                onTap: _pickImage,
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: widget.your_image != null
+                      ? MemoryImage(widget.your_image!)
+                      : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png')as ImageProvider,
+                  child: _imageFile == null && widget.your_image == null
+                      ? Icon(Icons.add_a_photo, size: 50, color: Colors.grey)
+                      : null,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
             _buildTextField("Username", _usernameController),
             _buildDateField("Date of Birth", _dobController),
             _buildEmailField("Email", _emailController),
@@ -173,18 +217,19 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
             _buildSportsField("Sports and Physical Activities"),
             _buildCulturalField("Cultural & Artistic"),
             _buildIntellectualField("Intellectual & Academic"),
-            _buildpersonality_traitField("personality & trait"),
-            _buildinterpersonal_skillField("interpersonal & skill"),
-            _buildwork_ethicField("work & ethic"),
-            _buildvalue_beliefField("value & belief"),
+            _buildpersonality_traitField("Personality & Trait"),
+            _buildinterpersonal_skillField("Interpersonal & Skill"),
+            _buildwork_ethicField("Work & Ethic"),
+            _buildvalue_beliefField("Value & Belief"),
             SizedBox(height: 20),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   edit(widget.token);
                   Navigator.push(
-                    context ,
-                    MaterialPageRoute(builder: (context) =>HomeScreen(id: widget.id, Token: widget.token)),//ProfilePage(name:'$name', DOB: DOB,job: job,gender: gender,type: type,sports: sports,hobbies:hobbies,intellectual:intellectual ,cultural:cultural ,token:Token )),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomeScreen(id: widget.id, Token: widget.token)),
                   );
                   // Save functionality
                 },
@@ -196,7 +241,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       ),
     );
   }
-
   Widget _buildTextField(String label, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -337,48 +381,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                 onChanged: (value) {
                   setState(() {
                     _selectedGender = value!;
-                  });
-                },
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20),
-      ],
-    );
-  }
-
-  Widget _buildTypeField(String label) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 8),
-        Row(
-          children: [
-            Expanded(
-              child: RadioListTile<String>(
-                title: Text('owner'),
-                value: 'owner',
-                groupValue: _selectedType,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedType = value!;
-                  });
-                },
-              ),
-            ),
-            Expanded(
-              child: RadioListTile<String>(
-                title: Text('seeker'),
-                value: 'seeker',
-                groupValue: _selectedType,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedType = value!;
                   });
                 },
               ),

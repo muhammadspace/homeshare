@@ -4,10 +4,22 @@ import 'dart:io';
 import 'ChooseInterestsPage.dart';
 
 class ChooseCharacterTraitsPage extends StatefulWidget {
-  String username , email , password,job,gender,type;
-  DateTime? dob;
-  String image;
-  ChooseCharacterTraitsPage({Key? key,required this.username,required this.email,required this.password,required this.image,required this.dob,required this.job,required this.gender,required this.type}) : super(key: key);
+  final String username, email, password, job, gender, type;
+  final DateTime? dob;
+  final String image;
+
+  ChooseCharacterTraitsPage({
+    Key? key,
+    required this.username,
+    required this.email,
+    required this.password,
+    required this.image,
+    required this.dob,
+    required this.job,
+    required this.gender,
+    required this.type,
+  }) : super(key: key);
+
   @override
   _ChooseCharacterTraitsPageState createState() => _ChooseCharacterTraitsPageState();
 }
@@ -109,97 +121,163 @@ class _ChooseCharacterTraitsPageState extends State<ChooseCharacterTraitsPage> {
     ],
   };
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Choose the personality traits of the residents in your property',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20.0),
-              ...characterTraitsOptions.keys.map((category) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Select your top trait in $category:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(
+          'Choose Character Traits',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+      ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.network(
+              'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg',
+              fit: BoxFit.cover,
+              color: Colors.black.withOpacity(0.5),
+              colorBlendMode: BlendMode.darken,
+            ),
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(height: kToolbarHeight + 20), // Space for AppBar
+                  Text(
+                    'Choose the personality traits of the residents in your property',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 10.0,
+                          color: Colors.black,
+                          offset: Offset(5.0, 5.0),
+                        ),
+                      ],
                     ),
-                    Column(
-                      children: characterTraitsOptions[category]!.map((trait) {
-                        return RadioListTile(
-                          title: Row(
-                            children: [
-                              Icon(Icons.star),
-                              SizedBox(width: 8),
-                              Text(
-                                trait,
-                                style: TextStyle(fontSize: 18),
+                  ),
+                  SizedBox(height: 20.0),
+                  ...characterTraitsOptions.keys.map((category) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Select your top trait in $category:',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 10.0,
+                                color: Colors.black,
+                                offset: Offset(5.0, 5.0),
                               ),
                             ],
                           ),
-                          value: trait,
-                          groupValue: _getSelectedValue(category),
-                          onChanged: (value) {
-                            setState(() {
-                              _updateSelection(category, value.toString());
-                            });
-                          },
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 20.0),
-                  ],
-                );
-              }).toList(),
-            ],
+                        ),
+                        Column(
+                          children: characterTraitsOptions[category]!.map((trait) {
+                            return RadioListTile(
+                              title: Row(
+                                children: [
+                                  Icon(Icons.star, color: Colors.orange),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    trait,
+                                    style: TextStyle(fontSize: 18, color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              value: trait,
+                              groupValue: _getSelectedValue(category),
+                              onChanged: (value) {
+                                setState(() {
+                                  _updateSelection(category, value.toString());
+                                });
+                              },
+                              activeColor: Colors.orange,
+                            );
+                          }).toList(),
+                        ),
+                        SizedBox(height: 20.0),
+                      ],
+                    );
+                  }).toList(),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: selectedPersonalityTrait != null &&
-            selectedValueBelief != null &&
-            selectedWorkEthic != null &&
-            selectedInterpersonalSkill != null
-            ? () {
-          print('Selected Personality Trait: $selectedPersonalityTrait');
-          print('Selected Value and Belief: $selectedValueBelief');
-          print('Selected Work Ethic: $selectedWorkEthic');
-          print('Selected Interpersonal Skill: $selectedInterpersonalSkill');
-          List<String> characterTraits = ['$selectedPersonalityTrait','$selectedValueBelief','$selectedWorkEthic','$selectedInterpersonalSkill'];
-          // Navigate to the recommendation page
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChooseInterestsPage(username: widget.username, email: widget.email, password: widget.password,image: widget.image , dob:widget.dob,job:widget.job,gender:widget.gender,type:widget.type, Interpersonal_Skill: '$selectedInterpersonalSkill', Personality: '$selectedPersonalityTrait', Value_and_Belief: '$selectedValueBelief', Work_Ethic: '$selectedWorkEthic',),
-            ),
-          );
-        }
-            : null,
-        label: Text('View Recommendation'),
-        icon: Icon(Icons.arrow_forward),
-        backgroundColor: selectedPersonalityTrait != null &&
-            selectedValueBelief != null &&
-            selectedWorkEthic != null &&
-            selectedInterpersonalSkill != null
-            ? Colors.orange
-            : Colors.grey,
+      floatingActionButton: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: ElevatedButton(
+          onPressed: selectedPersonalityTrait != null &&
+              selectedValueBelief != null &&
+              selectedWorkEthic != null &&
+              selectedInterpersonalSkill != null
+              ? () {
+            print('Selected Personality Trait: $selectedPersonalityTrait');
+            print('Selected Value and Belief: $selectedValueBelief');
+            print('Selected Work Ethic: $selectedWorkEthic');
+            print('Selected Interpersonal Skill: $selectedInterpersonalSkill');
+            List<String> characterTraits = [
+              '$selectedPersonalityTrait',
+              '$selectedValueBelief',
+              '$selectedWorkEthic',
+              '$selectedInterpersonalSkill'
+            ];
+            // Navigate to the recommendation page
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChooseInterestsPage(
+                  username: widget.username,
+                  email: widget.email,
+                  password: widget.password,
+                  image: widget.image,
+                  dob: widget.dob,
+                  job: widget.job,
+                  gender: widget.gender,
+                  type: widget.type,
+                  Interpersonal_Skill: '$selectedInterpersonalSkill',
+                  Personality: '$selectedPersonalityTrait',
+                  Value_and_Belief: '$selectedValueBelief',
+                  Work_Ethic: '$selectedWorkEthic',
+                ),
+              ),
+            );
+          }
+              : null,
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            backgroundColor: selectedPersonalityTrait != null &&
+                selectedValueBelief != null &&
+                selectedWorkEthic != null &&
+                selectedInterpersonalSkill != null
+                ? Colors.orange
+                : Colors.grey,
+          ),
+          child: Text(
+            'Continue',
+            style: TextStyle(fontSize: 22, color: Colors.white),
+          ),
+        ),
       ),
     );
   }
