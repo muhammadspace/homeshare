@@ -7,7 +7,7 @@ const { userExtractor } = require("../utils/middleware")
 router.post("/", async (req, res) => {
     try
     {
-        const properties = { location, owner, max, residents, price, bedrooms, bathrooms, property_type, start_date, end_date, invites, contract } = req.body
+        const properties = { location, owner, max, residents, pictures, price, bedrooms, bathrooms, property_type, start_date, end_date, invites, contract } = req.body
         const apt = new Apt({ ...properties, admin_approval: "pending" })
 
         const ownerUser = await User.findById(apt.owner)
