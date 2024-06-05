@@ -67,9 +67,23 @@ router.post("/join/:aptid", userExtractor, async (req, res) => {
     {
         const apt = await Apt.findById(req.params.aptid)
 
-        if (apt.residents.length < apt.max)
+        if (Object.prototype.toString.call(apt?.residents) !== "array" || apt?.residents === "empty")
+        {
+            apt.residents = []
+        }
+
+        if (apt?.residents?.length < apt.max)
         {
             const user = await User.findById(req.user.id)
+
+            if (user.resident_apt)
+            {
+                const oldApt = await Apt.findById(user.resident_apt)
+                console.log(oldApt)
+                oldApt.residents = oldApt.residents.filter(residentId => residentId.toString() !== user._id.toString())
+                await oldApt.save()
+            }
+
             apt.residents.push(user._id)
             user.resident_apt = apt._id
             apt.save()
