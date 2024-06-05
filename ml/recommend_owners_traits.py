@@ -51,17 +51,24 @@ def recommend_owners_traits(seeker_id):
         # print(f"Recommendations for Seeker {seeker_id}:")
         recommendations = []
         for idx in sorted_indices:
-            owner_id = owners_df.at[idx, '_id']
+            owner_series = owners_df.iloc[idx]
+            
+            if pd.isna(owner_series.owned_apt):
+                print(f"owner {owner_series._id} does not have an apartment")
+                continue
+                
+            # owner_id = owners_df.at[idx, '_id']
+            owner_id = owner_series._id
             
             # Count the number of common interests
-            common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Traits'].split(', ') if interest in owners_df.iloc[idx]['All Traits'].split(', '))
+            common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Traits'].split(', ') if interest in owner_series['All Traits'].split(', '))
             
             # If common interests are non-zero, print recommendation
             if common_interests > 0:
                 recommendations_found = True
 
-                owner_apartment = apts_df[apts_df.owner == owner_id]
-                print("apartment status: " + owner_apartment.admin_approval.item())
+                owner_apartment = apts_df[apts_df._id == owner_series.owned_apt]
+                # owner_apartment = apts_df[apts_df.owner == owner_id]
                 if owner_apartment.admin_approval.item() == "pending":
                     print("skipped")
                     continue

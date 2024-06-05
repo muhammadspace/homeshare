@@ -51,21 +51,29 @@ def recommend_owners_interests(seeker_id):
         # print(f"Recommendations for Seeker {seeker_id}:")
         recommendations = []
         for idx in sorted_indices:
-            owner_id = owners_df.at[idx, '_id']
+            owner_series = owners_df.iloc[idx]
+            
+            if pd.isna(owner_series.owned_apt):
+                print(f"owner {owner_series._id} does not have an apartment")
+                continue
+                
+            # owner_id = owners_df.at[idx, '_id']
+            owner_id = owner_series._id
             
             # Count the number of common interests
-            common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Interests'].split(', ') if interest in owners_df.iloc[idx]['All Interests'].split(', '))
+            common_interests = sum(1 for interest in seekers_df.iloc[seeker_index]['All Interests'].split(', ') if interest in owner_series['All Interests'].split(', '))
             
             # If common interests are non-zero, print recommendation
             if common_interests > 0:
                 recommendations_found = True
 
-                owner_apartment = apts_df[apts_df.owner == owner_id]
-                print("===========================================================")
-                print(owner_apartment.head())
-                print(owner_id)
-                print("apartment status: " + owner_apartment.admin_approval.item())
-                print("===========================================================")
+                owner_apartment = apts_df[apts_df._id == owner_series.owned_apt]
+                # owner_apartment = apts_df[apts_df._id == owner.owned_apt]
+                # print("===========================================================")
+                # print(owner_apartment.head())
+                # print(owner_id)
+                # print("apartment status: " + owner_apartment.admin_approval.item())
+                # print("===========================================================")
                 if owner_apartment.admin_approval.item() == "pending":
                     print("skipped")
                     continue
@@ -73,6 +81,7 @@ def recommend_owners_interests(seeker_id):
                 owner = Owner(owner_id, common_interests, Apt(owner_apartment))
                 
                 recommendations.append(owner)
+
 
                 # Find apartments owned by the recommended owner
                 # owner_apartments = apts_df[apts_df.owner == owner_id]
