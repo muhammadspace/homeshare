@@ -38,12 +38,12 @@ class _SavedPageState extends State<SavedPage> {
 
   Future<void> _retrieveaptImages(List<dynamic> imageIds) async {
     for (String imageId in imageIds) {
-      String url = getimageurl + imageId; // Replace with your server URL
+      String url = getimageurl + imageId;
       try {
         var response = await http.get(Uri.parse(url));
         if (response.statusCode == 200) {
           setState(() {
-            imageBytesList.add(response.bodyBytes); // Store image bytes as needed
+            imageBytesList.add(response.bodyBytes);
           });
         } else {
           print('Retrieve failed with status: ${response.statusCode}');
@@ -125,14 +125,12 @@ class _SavedPageState extends State<SavedPage> {
         apt_location = jsonResponse['location'];
         apt_bathrooms = jsonResponse['bathrooms'];
         apt_bedrooms = jsonResponse['bedrooms'];
-        //apt_end = jsonResponse['end_date'];
-        // Check if dob is a string or DateTime and format accordingly
         if (jsonResponse['end_date'] is String) {
           try {
             DateTime date = DateTime.parse(jsonResponse['end_date']);
             formattedendDate = formatter.format(date);
           } catch (e) {
-            formattedendDate = jsonResponse['end_date']; // If parsing fails, keep it as a string
+            formattedendDate = jsonResponse['end_date'];
           }
         } else if (jsonResponse['end_date'] is DateTime) {
           formattedendDate = formatter.format(jsonResponse['end_date']);
@@ -143,7 +141,7 @@ class _SavedPageState extends State<SavedPage> {
             DateTime date = DateTime.parse(jsonResponse['start_date']);
             formattedstartDate = formatter.format(date);
           } catch (e) {
-            formattedstartDate = jsonResponse['start_date']; // If parsing fails, keep it as a string
+            formattedstartDate = jsonResponse['start_date'];
           }
         } else if (jsonResponse['start_date'] is DateTime) {
           formattedstartDate = formatter.format(jsonResponse['start_date']);
@@ -181,27 +179,39 @@ class _SavedPageState extends State<SavedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,  // To make app bar transparent
       appBar: AppBar(
-        title: Text('Saved Properties'),
-        backgroundColor: Colors.blue,
+        title: Text(
+          'Saved Properties',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.transparent, // Make AppBar transparent
+        elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () async {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(Token: widget.token, id: widget.id),
-                ),
-              );
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(Token: widget.token, id: widget.id),
+              ),
+            );
           },
         ),
       ),
-      body: Center(
-        child: Visibility(
-          visible: (apt_id_resident != '' || owned_apt != '') && admin_approval == 'approved',
-          child: Card(
-            elevation: 3,
-            margin: EdgeInsets.all(16),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg',
+            ),
+            fit: BoxFit.cover,  // Ensure the image covers the whole screen
+          ),
+        ),
+        child: Center(
+          child: Visibility(
+            visible: (apt_id_resident != '' || owned_apt != '') &&
+                admin_approval == 'approved',
             child: InkWell(
               onTap: () async {
                 List<Map<String, dynamic>> residents_data = await fetchResidentsData();
@@ -226,19 +236,26 @@ class _SavedPageState extends State<SavedPage> {
                   ),
                 );
               },
-              child: Container(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Location: $apt_location',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    Text('Max Occupants: $apt_max'),
-                    Text('Number of Residents: ${apt_residents.length}'),
-                    // Add more details as needed
-                  ],
+              child: FittedBox(
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  color: Colors.white.withOpacity(0.8),  // Background color with some opacity
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Your apartment",style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
+                      /*Text(
+                        'Location: $apt_location',
+                        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                      ),*/
+                      SizedBox(height: 8),
+                      Text('Max Occupants: $apt_max',
+                          style: TextStyle(fontSize: 22)),
+                      SizedBox(height: 8),
+                      Text('Number of Residents: ${apt_residents.length}',
+                          style: TextStyle(fontSize: 22)),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -247,6 +264,7 @@ class _SavedPageState extends State<SavedPage> {
       ),
     );
   }
+
 }
 
 class ApartmentDetailsPage extends StatelessWidget {
@@ -283,55 +301,160 @@ class ApartmentDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true, // Extend body behind app bar
       appBar: AppBar(
-        title: Text('Apartment Details'),
-        backgroundColor: Colors.blue,
+        title: Text(
+          'Apartment Details',
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () async {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SavedPage(token: token, id: id,type:type ),
+              ),
+            );
+          },
+        ),
+        backgroundColor: Colors.transparent, // Make app bar transparent
+        elevation: 0, // Remove shadow
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Location: $location'),
-            Text('Max Occupants: $maxOccupants'),
-            Text('Price: $price'),
-            Text('Bedrooms: $bedrooms'),
-            Text('Bathrooms: $bathrooms'),
-            Text('Property Type: $propertyType'),
-            Text('Start Date: $startDate'),
-            Text('End Date: $endDate'),
-            SizedBox(height: 20),
-            if (imageBytesList.isNotEmpty)
-              SizedBox(
-                height: 200, // Set the height for the ListView
-                child: ListView.builder(
-                  itemCount: imageBytesList.length,
-                  scrollDirection: Axis.horizontal, // Scroll horizontally
-                  itemBuilder: (context, index) {
-                    return Image.memory(imageBytesList[index]);
-                  },
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg',
+            ),
+            fit: BoxFit.cover, // Ensure the image covers the whole screen
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 80), // Add space to avoid overlap with app bar
+              Text(
+                'Location: $location',
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white, shadows: [
+                  Shadow(
+                    offset: Offset(2, 2),
+                    blurRadius: 3,
+                    color: Colors.black54,
+                  ),
+                ]),
+              ),
+              SizedBox(height: 8),
+              Text('Max Occupants: $maxOccupants', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
                 ),
-              ),
-            Text('Residents Details:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10),
-            for (int i = 0; i < residentsData.length; i++)
-              ListTile(
-                title: Text('Resident ${i + 1}'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ResidentDetailsPage(
-                        residentData: residentsData[i],
-                        type: type,
-                        token: token,
-                        id: id,
-                      ),
-                    ),
-                  );
-                },
-              ),
-          ],
+              ])),
+              SizedBox(height: 8),
+              Text('Price: $price', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 8),
+              Text('Bedrooms: $bedrooms', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 8),
+              Text('Bathrooms: $bathrooms', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 8),
+              Text('Property Type: $propertyType', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 8),
+              Text('Start Date: $startDate', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 8),
+              Text('End Date: $endDate', style: TextStyle(fontSize: 22, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 20),
+              if (imageBytesList.isNotEmpty)
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: imageBytesList.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.memory(imageBytesList[index]),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              SizedBox(height: 20),
+              Text('Residents Details:', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white, shadows: [
+                Shadow(
+                  offset: Offset(2, 2),
+                  blurRadius: 3,
+                  color: Colors.black54,
+                ),
+              ])),
+              SizedBox(height: 10),
+              for (int i = 0; i < residentsData.length; i++)
+                Card(
+                  elevation: 2,
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: ListTile(
+                    title: Text('Resident ${i + 1}', style: TextStyle(fontSize: 18)),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResidentDetailsPage(
+                            residentData: residentsData[i],
+                            type: type,
+                            token: token,
+                            id: id,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -356,11 +479,12 @@ class _ResidentDetailsPageState extends State<ResidentDetailsPage> {
   @override
   void initState() {
     super.initState();
-    _retrievecontractImage(widget.residentData['picture']);
+    if (widget.residentData['picture'] != null)
+      _retrievecontractImage(widget.residentData['picture']);
   }
 
   Future<void> _retrievecontractImage(String imageId) async {
-    String url = getimageurl + imageId; // Replace with your server URL
+    String url = getimageurl + imageId;
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -378,71 +502,134 @@ class _ResidentDetailsPageState extends State<ResidentDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Resident Details'),
-        backgroundColor: Colors.blue,
+        title: Text('Resident Details', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: widget.residentData['picture'] != null
-                    ? image != null
-                    ? MemoryImage(image!)
-                    : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png') as ImageProvider
-                    : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                  'https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg',
+                ),
+                fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 16),
-            Text('Name: ${widget.residentData['username']}'),
-            Text('Email: ${widget.residentData['email']}'),
-            Text('Gender: ${widget.residentData['gender']}'),
-            Text('Job: ${widget.residentData['job']}'),
-            Text('Hobbies & Pastimes: ${widget.residentData['hobbies_pastimes']}'),
-            Text('Sports & Activities: ${widget.residentData['sports_activities']}'),
-            Text('Cultural & Artistic: ${widget.residentData['cultural_artistic']}'),
-            Text('Intellectual & Academic: ${widget.residentData['intellectual_academic']}'),
-            Text('Value & Belief: ${widget.residentData['value_belief']}'),
-            Text('Interpersonal Skills: ${widget.residentData['interpersonal_skill']}'),
-            Text('Work Ethic: ${widget.residentData['work_ethic']}'),
-            Text('Personality Trait: ${widget.residentData['personality_trait']}'),
-            Text('id: ${widget.residentData['id']}'),
-            Text('aptid: ${widget.residentData['resident_apt']}'),
-            Visibility(
-              visible: widget.type == 'owner',
-              child: ElevatedButton(
-                onPressed: () async {
-                  final response = await http.post(
-                    Uri.parse(kickurl),
-                    headers: {'Content-Type': 'application/json', 'authorization': 'Bearer ${widget.token}'},
-                    body: jsonEncode({'resident': widget.residentData['_id'], 'apt': widget.residentData['resident_apt']}),
-                  );
-                  if (response.statusCode == 200) {
-                    print(json.decode(response.body));
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SavedPage(
-                          type: widget.type,
-                          token: widget.token,
-                          id: widget.id,
-                        ),
-                      ),
+          ),
+          SingleChildScrollView(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 80), // Add space to avoid overlap with app bar
+                Center(
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundImage: widget.residentData['picture'] != null
+                        ? image != null
+                        ? MemoryImage(image!)
+                        : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png')
+                    as ImageProvider
+                        : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+                  ),
+                ),
+                SizedBox(height: 16),
+                buildText('Name: ${widget.residentData['username']}', 18),
+                buildText('Gender: ${widget.residentData['gender']}', 16),
+                buildText('Job: ${widget.residentData['job']}', 16),
+                buildText('Hobbies & Pastimes: ${widget.residentData['hobbies_pastimes']}', 16),
+                buildText('Sports & Activities: ${widget.residentData['sports_activities']}', 16),
+                buildText('Cultural & Artistic: ${widget.residentData['cultural_artistic']}', 16),
+                buildText('Intellectual & Academic: ${widget.residentData['intellectual_academic']}', 16),
+                buildText('Value & Belief: ${widget.residentData['value_belief']}', 16),
+                buildText('Interpersonal Skills: ${widget.residentData['interpersonal_skill']}', 16),
+                buildText('Work Ethic: ${widget.residentData['work_ethic']}', 16),
+                buildText('Personality Trait: ${widget.residentData['personality_trait']}', 16),
+                SizedBox(height: 80), // Space for the bottom button
+              ],
+            ),
+          ),
+          if (widget.type == 'owner')
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                color: Colors.transparent,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white, backgroundColor: Colors.orange,
+                    minimumSize: Size(double.infinity, 50), // Set the width to fill the screen and height to 50
+                  ),
+                  onPressed: () async {
+                    final response = await http.post(
+                      Uri.parse(kickurl),
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'authorization': 'Bearer ${widget.token}'
+                      },
+                      body: jsonEncode({
+                        'resident': widget.residentData['_id'],
+                        'apt': widget.residentData['resident_apt']
+                      }),
                     );
-                  } else {
-                    throw Exception('Failed to fetch user data');
-                  }
-                },
-                child: Text('Remove'),
+                    if (response.statusCode == 200) {
+                      print(json.decode(response.body));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SavedPage(
+                            type: widget.type,
+                            token: widget.token,
+                            id: widget.id,
+                          ),
+                        ),
+                      );
+                    } else {
+                      throw Exception('Failed to fetch user data');
+                    }
+                  },
+                  child: Text('Remove'),
+                ),
               ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildText(String text, double fontSize) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          shadows: [
+            Shadow(
+              offset: Offset(2, 2),
+              blurRadius: 3,
+              color: Colors.black54,
             ),
           ],
         ),
       ),
     );
   }
+
 }

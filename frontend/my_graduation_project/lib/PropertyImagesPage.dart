@@ -6,32 +6,31 @@ import 'pic_of_your_apartment.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class contractImagesPage extends StatefulWidget {
+class ContractImagesPage extends StatefulWidget {
   final String selectedPropertyType;
   final int numberofrooms;
   final String numberofbeds;
   final String size;
-  final id, token;
+  final String id, token;
 
-  contractImagesPage(
-      {required this.selectedPropertyType,
-        required this.numberofrooms,
-        required this.numberofbeds,
-        required this.size,
-        required this.id,
-        required this.token});
+  ContractImagesPage({
+    required this.selectedPropertyType,
+    required this.numberofrooms,
+    required this.numberofbeds,
+    required this.size,
+    required this.id,
+    required this.token,
+  });
 
   @override
-  _contractImagesPage createState() => _contractImagesPage();
+  _ContractImagesPageState createState() => _ContractImagesPageState();
 }
 
-class _contractImagesPage extends State<contractImagesPage> {
+class _ContractImagesPageState extends State<ContractImagesPage> {
   List<File> propertyImages = [];
-  String contract_id='';
-  File? image;
+  String contractId = '';
 
   Future<void> uploadImage(File imageFile) async {
-    //String url = "http://192.168.1.53:3000/uploads";
     var request = http.MultipartRequest('POST', Uri.parse(uploadimgurl));
     request.files.add(
       await http.MultipartFile.fromPath(
@@ -46,10 +45,9 @@ class _contractImagesPage extends State<contractImagesPage> {
       final respStr = await response.stream.bytesToString();
       final decodedResp = jsonDecode(respStr);
       setState(() {
-       // uploadimgpath = decodedResp['path'];
-        contract_id = decodedResp['_id'];
+        contractId = decodedResp['_id'];
       });
-      print('Upload success: $contract_id');
+      print('Upload success: $contractId');
       print(decodedResp);
     } else {
       print('Upload failed with status: ${response.statusCode}');
@@ -59,13 +57,12 @@ class _contractImagesPage extends State<contractImagesPage> {
   Future<void> _pickImage(ImageSource source) async {
     try {
       final pickedFile = await ImagePicker().pickImage(source: source);
-      /*final picker = ImagePicker();
-      final pickedFile = await picker.pickImage(source: ImageSource.gallery);*/
 
       if (pickedFile != null) {
         setState(() {
-          image = File(pickedFile.path);
-          uploadImage(image!);
+          File image = File(pickedFile.path);
+          propertyImages.add(image);
+          uploadImage(image);
         });
       }
     } catch (e) {
@@ -79,7 +76,7 @@ class _contractImagesPage extends State<contractImagesPage> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
-          'Property Images',
+          'Contract Image',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
@@ -133,7 +130,7 @@ class _contractImagesPage extends State<contractImagesPage> {
                         backgroundColor: Colors.blue,
                       ),
                       child: Text(
-                        'pick apartment contract Image',
+                        'Pick Apartment Contract Image',
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
@@ -150,7 +147,7 @@ class _contractImagesPage extends State<contractImagesPage> {
                               size: widget.size,
                               id: widget.id,
                               token: widget.token,
-                              contract_id:contract_id
+                              contract_id: contractId,
                             ),
                           ),
                         );

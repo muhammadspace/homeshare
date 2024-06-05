@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:my_graduation_project/config.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -10,10 +9,9 @@ import 'dart:io';
 import 'home.dart';
 import 'dart:typed_data';
 
-
 class ProfileEditPage extends StatefulWidget {
   final String id, token, name, email, DOB, job, gender, type, hobbies, sports, cultural, intellectual,
-      value_belief, interpersonal_skill, work_ethic, personality_trait,image_id;
+      value_belief, interpersonal_skill, work_ethic, personality_trait, image_id;
   Uint8List? your_image;
 
   ProfileEditPage({
@@ -46,7 +44,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   File? _imageFile;
 
   Future<void> uploadImage(File imageFile) async {
-    //String url = "http://192.168.1.53:3000/uploads";
     var request = http.MultipartRequest('POST', Uri.parse(uploadimgurl));
     request.files.add(
       await http.MultipartFile.fromPath(
@@ -72,41 +69,27 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
 
   Future<void> edit(String token) async {
     String checkifnull = image_id;
-    if(image_id=='x'){
-      checkifnull='';
+    if (image_id == 'x') {
+      checkifnull = '';
     }
     final response = await http.post(
       Uri.parse(updpro_url),
       headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'},
       body: jsonEncode({
-        if(_usernameController.text!='')
-        'username': _usernameController.text,
-        if(_selectedDOB.toString()!='')
-        'dob': _selectedDOB.toString(),
-        if(_emailController.text!='')
-        'email': _emailController.text,
-        if(_selectedGender.toString()!='')
-        'gender': _selectedGender.toString(),
-        if(_selectedType.toString()!='')
-        'type': _selectedType.toString(),
-        if(_selectedCultural.toString()!='')
-        'cultural_artistic': _selectedCultural.toString(),
-        if(_selectedIntellectual.toString()!='')
-        'intellectual_academic': _selectedIntellectual.toString(),
-        if(_selectedHobby.toString()!='')
-        'hobbies_pastimes': _selectedHobby.toString(),
-        if(_selectedSport.toString()!='')
-        'sports_activities': _selectedSport.toString(),
-        if(_selectedpersonality_trait.toString()!='')
-        'personality_trait': _selectedpersonality_trait.toString(),
-        if(_selectedvalue_belief.toString()!='')
-        'value_belief': _selectedvalue_belief.toString(),
-        if(_selectedinterpersonal_skill.toString()!='')
-        'interpersonal_skill': _selectedinterpersonal_skill.toString(),
-        if(_selectedwork_ethic.toString()!='')
-        'work_ethic': _selectedwork_ethic.toString(),
-        if(checkifnull!='')
-        'picture': checkifnull, // Add this line to update the image ID
+        if (_usernameController.text != '') 'username': _usernameController.text,
+        if (_selectedDOB.toString() != '') 'dob': _selectedDOB.toString(),
+        if (_emailController.text != '') 'email': _emailController.text,
+        if (_selectedGender.toString() != '') 'gender': _selectedGender.toString(),
+        if (_selectedType.toString() != '') 'type': _selectedType.toString(),
+        if (_selectedCultural.toString() != '') 'cultural_artistic': _selectedCultural.toString(),
+        if (_selectedIntellectual.toString() != '') 'intellectual_academic': _selectedIntellectual.toString(),
+        if (_selectedHobby.toString() != '') 'hobbies_pastimes': _selectedHobby.toString(),
+        if (_selectedSport.toString() != '') 'sports_activities': _selectedSport.toString(),
+        if (_selectedpersonality_trait.toString() != '') 'personality_trait': _selectedpersonality_trait.toString(),
+        if (_selectedvalue_belief.toString() != '') 'value_belief': _selectedvalue_belief.toString(),
+        if (_selectedinterpersonal_skill.toString() != '') 'interpersonal_skill': _selectedinterpersonal_skill.toString(),
+        if (_selectedwork_ethic.toString() != '') 'work_ethic': _selectedwork_ethic.toString(),
+        if (checkifnull != '') 'picture': checkifnull, // Add this line to update the image ID
       }),
     );
 
@@ -146,7 +129,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   @override
   void initState() {
     super.initState();
-      image_id = widget.image_id;
+    image_id = widget.image_id;
     _usernameController = TextEditingController(text: widget.name);
     _dobController = TextEditingController(text: widget.DOB);
     _phoneNumberController = TextEditingController();
@@ -198,9 +181,11 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                 onTap: _pickImage,
                 child: CircleAvatar(
                   radius: 50,
-                  backgroundImage: widget.your_image != null
+                  backgroundImage: _imageFile != null
+                      ? FileImage(_imageFile!)
+                      : widget.your_image != null
                       ? MemoryImage(widget.your_image!)
-                      : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png')as ImageProvider,
+                      : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png') as ImageProvider,
                   child: _imageFile == null && widget.your_image == null
                       ? Icon(Icons.add_a_photo, size: 50, color: Colors.grey)
                       : null,
@@ -241,6 +226,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       ),
     );
   }
+
   Widget _buildTextField(String label, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,19 +4,20 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'config.dart';
 import 'dart:typed_data';
+import 'recommendation search.dart';
+
 
 class TopRecommendationseekers extends StatefulWidget {
   final List<dynamic> recommendations;
-  final String senderid, token;
+  final String senderid, token,type;
 
-  TopRecommendationseekers({required this.recommendations, required this.senderid, required this.token});
+  TopRecommendationseekers({required this.recommendations, required this.senderid, required this.token,required this.type});
 
   @override
   _TopRecommendationseekersState createState() => _TopRecommendationseekersState();
 }
 
 class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
-  final DateFormat _formatter = DateFormat('yyyy-MM-dd');
 
   Future<Map<String, dynamic>> _fetchUserData(String dataOwnerId) async {
     final apiUrl = profiledataurl2 + dataOwnerId;
@@ -75,6 +76,15 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
         elevation: 0,
         title: Text('Recommendation For You', style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () async {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SearchPage(type: widget.type, senderid: widget.senderid, token: widget.token)),
+            );
+          },
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -134,8 +144,9 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
                               ],
                             ),
                             child: ListTile(
+
                               leading: FutureBuilder<Uint8List?>(
-                                future: _retrieveContractImage(userData['picture']),
+                                future: _retrieveContractImage(userData['picture'] ?? ''),
                                 builder: (context, imageSnapshot) {
                                   if (imageSnapshot.connectionState == ConnectionState.waiting) {
                                     return CircleAvatar(
@@ -200,7 +211,7 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Invite Confirmation'),
+          title: Text('Join Confirmation'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -223,8 +234,19 @@ class _TopRecommendationseekersState extends State<TopRecommendationseekers> {
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Invitation sent to $username'),
+                      content: Text('You have joined $username\'s apartment'),
                       duration: Duration(seconds: 2),
+                    ),
+                  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TopRecommendationseekers(
+                        recommendations: widget.recommendations,
+                        senderid: widget.senderid,
+                        token: widget.token,
+                        type: widget.type,
+                      ),
                     ),
                   );
                 } catch (e) {
@@ -255,38 +277,57 @@ class RecommendationDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Recommendation Detail'),
+        title: Text('Recommendation Detail', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'User Details',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage('https://static.vecteezy.com/system/resources/previews/030/314/140/non_2x/house-model-on-wood-table-real-estate-agent-offer-house-property-insurance-vertical-mobile-wallpaper-ai-generated-free-photo.jpg'),
+                fit: BoxFit.cover,
               ),
-              SizedBox(height: 16),
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: userDetails['picture'] != null
-                    ? NetworkImage(userDetails['picture'])
-                    : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Apartment Details',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16),
-              ..._userDetailsWidgets(),
-              SizedBox(height: 16),
-              ..._aptDetailsWidgets(),
-            ],
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 80), // Spacer to push content below the AppBar
+                  Text(
+                    'User Details',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                  SizedBox(height: 16),
+                  Center(
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: userDetails['picture'] != null
+                          ? NetworkImage(userDetails['picture'])
+                          : NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Apartment Details',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                  SizedBox(height: 16),
+                  ..._userDetailsWidgets(),
+                  SizedBox(height: 16),
+                  ..._aptDetailsWidgets(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -308,104 +349,40 @@ class RecommendationDetailPage extends StatelessWidget {
     }
 
     return [
-      Text(
-        'Name: ${userDetails['username']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Job: ${userDetails['job']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Date Of Birth: $formattedDate',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Gender: ${userDetails['gender']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Type: ${userDetails['type']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Hobbies Pastimes: ${userDetails['hobbies_pastimes']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Sports Activities: ${userDetails['sports_activities']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Cultural Artistic: ${userDetails['cultural_artistic']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Intellectual Academic: ${userDetails['intellectual_academic']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Personality Trait: ${userDetails['personality_trait']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Value Belief: ${userDetails['value_belief']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Interpersonal Skill: ${userDetails['interpersonal_skill']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Work Ethic: ${userDetails['work_ethic']}',
-        style: TextStyle(fontSize: 18),
-      ),
+      _buildDetailText('Name: ${userDetails['username']}'),
+      _buildDetailText('Job: ${userDetails['job']}'),
+      _buildDetailText('Date Of Birth: $formattedDate'),
+      _buildDetailText('Gender: ${userDetails['gender']}'),
+      _buildDetailText('Type: ${userDetails['type']}'),
+      _buildDetailText('Hobbies Pastimes: ${userDetails['hobbies_pastimes']}'),
+      _buildDetailText('Sports Activities: ${userDetails['sports_activities']}'),
+      _buildDetailText('Cultural Artistic: ${userDetails['cultural_artistic']}'),
+      _buildDetailText('Intellectual Academic: ${userDetails['intellectual_academic']}'),
+      _buildDetailText('Personality Trait: ${userDetails['personality_trait']}'),
+      _buildDetailText('Value Belief: ${userDetails['value_belief']}'),
+      _buildDetailText('Interpersonal Skill: ${userDetails['interpersonal_skill']}'),
+      _buildDetailText('Work Ethic: ${userDetails['work_ethic']}'),
     ];
   }
 
   List<Widget> _aptDetailsWidgets() {
     return [
-      Text(
-        'Location: ${aptData['location']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Max Occupants: ${aptData['max']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Price: ${aptData['price']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Bedrooms: ${aptData['bedrooms']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Bathrooms: ${aptData['bathrooms']}',
-        style: TextStyle(fontSize: 18),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Property Type: ${aptData['property_type']}',
-        style: TextStyle(fontSize: 18),
-      ),
+      _buildDetailText('Location: ${aptData['location']}'),
+      _buildDetailText('Max Occupants: ${aptData['max']}'),
+      _buildDetailText('Price: ${aptData['price']}'),
+      _buildDetailText('Bedrooms: ${aptData['bedrooms']}'),
+      _buildDetailText('Bathrooms: ${aptData['bathrooms']}'),
+      _buildDetailText('Property Type: ${aptData['property_type']}'),
     ];
+  }
+
+  Widget _buildDetailText(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    );
   }
 }

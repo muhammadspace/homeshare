@@ -135,7 +135,7 @@ class _PropertySizePageState extends State<PropertySizePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => contractImagesPage(
+                          builder: (context) => ContractImagesPage(
                               selectedPropertyType: widget.selectedPropertyType,
                               numberofrooms: widget.numberofrooms,
                               numberofbeds: numberOfBeds,

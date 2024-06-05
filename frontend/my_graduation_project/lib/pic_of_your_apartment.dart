@@ -49,6 +49,7 @@ class _PropertyImagesPageState extends State<PropertyImagesPage> {
       });
       print('Upload success: ${decodedResp['_id']}');
       print(decodedResp);
+      print(imageIds);
     } else {
       print('Upload failed with status: ${response.statusCode}');
     }

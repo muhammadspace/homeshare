@@ -10,7 +10,7 @@ void ip (String id , String token){
 
 }
 //final url = 'https://homeshare-o76b.onrender.com/';
-final url = 'http://192.168.1.53:3000/';//change based on your ip type ipconfig in the cmd
+final url = 'http://192.168.1.77:3000/';//change based on your ip type ipconfig in the cmd
 final url2 = 'http://10.0.2.2:5000/';
 //post api
 

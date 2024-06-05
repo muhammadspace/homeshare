@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'config.dart';
 
-Future<String> createapt(String id, String location,int price,int max,int bedrooms, int bathrooms,String Start,String End,String type) async {
+Future<String> createapt(String id, String location,int price,int max,int bedrooms, int bathrooms,String Start,String End,String type,String contract_id,List<String> pictures_id) async {
 
   final response = await http.post(
     //Uri.parse(apturi),
@@ -18,7 +18,8 @@ Future<String> createapt(String id, String location,int price,int max,int bedroo
       "bathrooms": bathrooms,
       "start_date":Start,
       "end_date":End,
-      //"contract":imageid,
+      "contract":contract_id,
+      "pictures":pictures_id
       }),
   );
 

@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:typed_data';
-import 'config.dart';
+import 'config.dart'; // Make sure this imports the URLs correctly
 import 'clusterpage.dart';
 import 'notification.dart';
 import 'ProfilePage.dart';
@@ -39,11 +39,12 @@ class _AdminPage extends State<AdminPage> {
           ),
         ],
       ),
-    ) ?? false;
+    ) ??
+        false;
   }
 
   Future<void> pending(String action, String aptid) async {
-    final apiUrl = admin_approve_reject_url + action;
+    final apiUrl = '$admin_approve_reject_url$action';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ${widget.Token}'},
@@ -167,10 +168,13 @@ class PropertyItem extends StatelessWidget {
     return FadeInLeft(
       child: Card(
         elevation: 4.0,
-        margin: EdgeInsets.symmetric(vertical: 8.0),
+        margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         child: ListTile(
-          title: Text(aptData['location']),
-          subtitle: Text('Owner: ${aptData['owner']}'),
+          title: Text(
+            aptData['location'],
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text('Max Occupancy: ${aptData['max']}'),
           onTap: onDetails,
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
@@ -208,13 +212,17 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
   @override
   void initState() {
     super.initState();
-    _retrieveaptImages(widget.aptData['pictures']);
-    _retrievecontractImage(widget.aptData['contract']);
+    if (widget.aptData['pictures'] != null) {
+      _retrieveaptImages(widget.aptData['pictures']);
+    }
+    if (widget.aptData['contract'] != null) {
+      _retrievecontractImage(widget.aptData['contract']);
+    }
   }
 
   Future<void> _retrieveaptImages(List<dynamic> imageIds) async {
     for (String imageId in imageIds) {
-      String url = getimageurl + imageId; // Replace with your server URL
+      String url = '$getimageurl$imageId'; // Replace with your server URL
       try {
         var response = await http.get(Uri.parse(url));
         if (response.statusCode == 200) {
@@ -231,7 +239,7 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
   }
 
   Future<void> _retrievecontractImage(String imageId) async {
-    String url = getimageurl + imageId; // Replace with your server URL
+    String url = '$getimageurl$imageId'; // Replace with your server URL
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -251,6 +259,7 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Property Details'),
+
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -260,37 +269,107 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: Text(
-                  'Location: ${widget.aptData['location']}\n'
-                      'Owner: ${widget.aptData['owner']}\n'
-                      'Max: ${widget.aptData['max']}\n'
-                      'Bedrooms: ${widget.aptData['bedrooms']}\n'
-                      'Bathrooms: ${widget.aptData['bathrooms']}\n'
-                      'Property Type: ${widget.aptData['property_type']}\n'
-                      'Price: ${widget.aptData['price']}\n',
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                      'Property Details',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16.0),
+                    Text(
+                      'Location: ${widget.aptData['location']}',
+                      style: TextStyle(fontSize: 20.0, color: Colors.black),
+                    ),
+                    Text(
+                      'Owner ID: ${widget.aptData['owner']}',
+                      style: TextStyle(fontSize: 20.0, color: Colors.black),
+                    ),
+                    Text(
+                      'Max Occupancy: ${widget.aptData['max']}',
+                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                    ),
+                    Text(
+                      'Bedrooms: ${widget.aptData['bedrooms']}',
+                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                    ),
+                    Text(
+                      'Bathrooms: ${widget.aptData['bathrooms']}',
+                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                    ),
+                    Text(
+                      'Property Type: ${widget.aptData['property_type']}',
+                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                    ),
+                    Text(
+                      'Price: \$${widget.aptData['price']} per month',
+                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                    ),
+                    if (imageBytesList.isNotEmpty && contract != null)
+                      SizedBox(height: 16.0) else SizedBox(height: 500.0),
+                    if (imageBytesList.isNotEmpty) ...[
+                      Text(
+                        'Apartment Pictures',
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 8.0),
+                      Column(
+                        children: imageBytesList.map((imageBytes) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.memory(
+                                imageBytes,
+                                fit: BoxFit.cover,
+                                height: 200,
+                                width: double.infinity,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                    if (contract != null) ...[
+                      Text(
+                        'Contract Image',
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 8.0),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.memory(
+                          contract!,
+                          fit: BoxFit.cover,
+                          height: 200,
+                          width: double.infinity,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
             ),
-            if (imageBytesList.isNotEmpty)
-            Expanded(
-              child: ListView.builder(
-                itemCount: imageBytesList.length,
-                itemBuilder: (context, index) {
-                  return Image.memory(imageBytesList[index]);
-                },
-              ),
-            ),
-            if (contract != null)
-              Expanded(
-                child: Image.memory(contract!),
-              ),
           ],
         ),
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'recommendationsystem.dart';
 import 'package:my_graduation_project/TopRecommendationsPage.dart';
 import 'package:my_graduation_project/Toprecommendationforseekers.dart';
-
+import 'home.dart';
 class SearchPage extends StatefulWidget {
   final String senderid, type, token;
 
@@ -22,6 +22,17 @@ class _SearchPageState extends State<SearchPage> {
         elevation: 0,
         title: Text('Search', style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () async {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(Token: widget.token, id: widget.senderid),
+              ),
+            );
+          },
+        ),
       ),
       body: Container(
         width: double.infinity,
@@ -67,6 +78,7 @@ class _SearchPageState extends State<SearchPage> {
                           recommendations: ownersdata,
                           senderid: widget.senderid,
                           token: widget.token,
+                          type: widget.type,
                         ),
                       ),
                     );
@@ -109,6 +121,7 @@ class _SearchPageState extends State<SearchPage> {
                           recommendations: ownersdata,
                           senderid: widget.senderid,
                           token: widget.token,
+                          type: widget.type,
                         ),
                       ),
                     );

@@ -157,7 +157,7 @@ class _RentPropertyPageState extends State<RentPropertyPage> {
                       final int numbeds = int.parse(widget.numberofbeds);
 
                       createapt(widget.id, widget.address, rentprice, numbeds, widget.numberofrooms, 2,
-                        '$startDate', '$endDate', widget.selectedPropertyType,);
+                        '$startDate', '$endDate', widget.selectedPropertyType,widget.contract_id,widget.apt_images_id);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
