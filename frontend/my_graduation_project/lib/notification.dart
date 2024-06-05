@@ -107,12 +107,19 @@ class _NotificationsPageState extends State<NotificationsPage> {
   }
 
   Future<void> _markAsRead(String inviteId) async {
-    // Save the inviteId to local storage
-    await prefs.setString(inviteId, 'read');
-    // Refresh the page to reflect changes
-    setState(() {
-      invitesData.removeWhere((element) => element['invite_id'] == inviteId);
-    });
+    final apiUrl = invitedataurl+inviteId;
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json','Authorization': 'Bearer ${widget.token}'},
+      body: jsonEncode({
+        "markAsRead":true
+      })
+    );
+    if (response.statusCode == 204) {
+      print("mark as read");
+    } else {
+      throw Exception('error in marking the invitation');
+    }
   }
 
   @override
@@ -143,7 +150,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
           final invite = invitesData[index];
           final bool accepted = invite['accepted'] ?? false;
           final bool rejected = invite['rejected'] ?? false;
-          final bool markedAsRead = prefs.getString(invite['invite_id']) == 'read'; // Check if invitation is marked as read
           if (widget.type == 'seeker') {
             if (!accepted && !rejected) {
               return Card(
@@ -199,7 +205,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             } else {
               return Container();
             }
-          } else if (widget.type == 'owner' && !markedAsRead) { // Check if owner and not marked as read
+          } else if (widget.type == 'owner' && invite['markAsRead'] == false) { // Check if owner and not marked as read
             if (accepted || rejected) {
               return Card(
                 elevation: 3,
